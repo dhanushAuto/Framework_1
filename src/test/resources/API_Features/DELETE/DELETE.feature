@@ -1,0 +1,3 @@
+@DELETE
+  Feature: DELETE requests
+
