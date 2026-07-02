@@ -28,7 +28,7 @@ pipeline {
 
                 stage('Publish Extent Report') {
                     steps {
-                        publishHTML([
+                        publishHTML(target: [
                             allowMissing: false,
                             alwaysLinkToLastBuild: true,
                             keepAll: true,
@@ -120,7 +120,7 @@ pipeline {
              </html>
              """,
 
-             attachmentsPattern: 'target/extent_report/*.html'
+             attachmentsPattern: 'target/extent_report/ExtentReport.html'
 
          )
      }
