@@ -1,44 +1,24 @@
-pipeline {
-    agent any
+post {
 
-    tools {
-        jdk 'JDK21'
-        maven 'Maven3'
+    always {
+
+        archiveArtifacts artifacts: 'target/**/*', allowEmptyArchive: true
+
+        publishHTML(target: [
+                allowMissing: true,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'target/ExtentReport',
+                reportFiles: 'index.html',
+                reportName: 'Extent Report'
+        ])
     }
 
-    stages {
-
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Clean') {
-            steps {
-                bat 'mvn clean'
-            }
-        }
-
-        stage('Build & Test') {
-            steps {
-                bat 'mvn test'
-            }
-        }
+    success {
+        echo 'Build completed successfully.'
     }
 
-    post {
-
-        always {
-            archiveArtifacts artifacts: 'target/**/*', allowEmptyArchive: true
-        }
-
-        success {
-            echo 'Build completed successfully.'
-        }
-
-        failure {
-            echo 'Build failed.'
-        }
+    failure {
+        echo 'Build failed.'
     }
 }

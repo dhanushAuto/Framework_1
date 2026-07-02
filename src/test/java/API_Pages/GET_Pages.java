@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import utilities.json_utils;
-
+import utilities.report_utils;
 
 public class GET_Pages {
     private static final String API_DATA_FILE = "src/test/resources/Payloads/api_data.json";
@@ -14,28 +14,40 @@ public class GET_Pages {
     private String endpoint;
     private String resourcePath;
 
+    public void createTestLog(String testName) {
+        report_utils.createTest(testName);
+        report_utils.info("Test started: " + testName);
+    }
+
     public void GET_Request_With_Endpoint(String endpoint, String resource_path) {
         this.endpoint = getApiValue(endpoint);
         this.resourcePath = getApiValue(resource_path);
     }
 
     public void iSendGETRequest() {
+        try {
+            report_utils.info("Sending GET request to: " + endpoint + this.resourcePath);
+            response = RestAssured.given()
+                    .baseUri(endpoint)
+                    .when()
+                    .get(resourcePath)
+                    .then()
+                    .extract()
+                    .response();
 
-        response = RestAssured.given()
-                .baseUri(endpoint)
-                .when()
-                .get(resourcePath)
-                .then()
-                .extract()
-                .response();
-        response.prettyPrint();
+            report_utils.info("GET request completed successfully. Response status: " + response.prettyPrint());
+        } catch (Exception e) {
+            report_utils.fail("Failed to send GET request: " + e.getMessage());
+            throw e;
+        }
     }
 
     public void iReceiveValidHTTPResponseCode(int expectedStatusCode) {
         int actualStatusCode = response.getStatusCode();
         if (actualStatusCode == expectedStatusCode) {
-            System.out.println("Status code validation passed: " + actualStatusCode);
+            report_utils.pass("Status code validation passed. Expected: " + expectedStatusCode + ", Actual: " + actualStatusCode);
         } else {
+            report_utils.fail("Status code validation failed. Expected: " + expectedStatusCode + ", Actual: " + actualStatusCode);
             throw new AssertionError("Expected status code: " + expectedStatusCode + " but got: " + actualStatusCode);
         }
     }
