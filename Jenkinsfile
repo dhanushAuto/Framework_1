@@ -25,20 +25,20 @@ pipeline {
                 bat 'mvn test'
             }
         }
-    }
-    stage('Publish Extent Report') {
-                steps {
-                    publishHTML([
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: true,
-                        keepAll: true,
-                        reportDir: 'target/extent_report',
-                        reportFiles: 'ExtentReport.html',
-                        reportName: 'Extent Report'
-                    ])
+
+                stage('Publish Extent Report') {
+                    steps {
+                        publishHTML([
+                            allowMissing: false,
+                            alwaysLinkToLastBuild: true,
+                            keepAll: true,
+                            reportDir: 'target/extent_report',
+                            reportFiles: 'ExtentReport.html',
+                            reportName: 'Extent Report'
+                        ])
+                    }
                 }
             }
-        }
 
  post {
 
