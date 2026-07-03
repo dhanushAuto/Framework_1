@@ -2,7 +2,7 @@
   Feature: GET request to retrieve user information
 
 
-    @Smoke
+    @Regression
     Scenario Outline: Retrieve data from server
       Given I set GET request with endpoint "<endpoint>" and resource path "<resource_path>"
       When I send GET request

@@ -1,6 +1,6 @@
-package API_StepDef;
+package StepDef;
 
-import API_Pages.GET_Pages;
+import pages.api.GET_Pages;
 import io.cucumber.java.en.*;
 
 public class GET_Steps {

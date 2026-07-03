@@ -1,4 +1,4 @@
-package API_Pages;
+package pages.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.restassured.RestAssured;

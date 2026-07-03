@@ -8,8 +8,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="733aa41d-50dd-4aba-8f9c-54a1c449b9ea" name="Changes" comment="jenkinsfile updates">
+      <change afterPath="$PROJECT_DIR$/src/main/java/DriverManager/driver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/config/ConfigLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/config/EnvironmentManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/constants/APIConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/constants/BrowserConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/constants/FileConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/constants/FrameworkConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/constants/TimeoutConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/factories/APIClientFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/factories/BrowserFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/factories/DriverFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/factories/ReportFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/listeners/CucumberListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/listeners/RetryListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/listeners/SuiteListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/listeners/TestListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/ActionUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/AlertUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/BrowserUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/FrameUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/JavaScriptUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/ScreenshotUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/WaitUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/WindowUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Runner/smoke_runner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/config/config/prod/properties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/config/config/properties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/config/config/qa/properties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/config/config/uat/properties.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/API_Pages/GET_Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/GET_Pages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/API_Runner/SmokeRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Runner/regression_Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/API_StepDef/GET_Steps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/StepDef/GET_Steps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/API_StepDef/Hooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Hooks/Hooks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/API_Features/DELETE/DELETE.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/API_Features/regression/DELETE/DELETE.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/API_Features/GET/GET.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/API_Features/regression/GET/GET.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/API_Features/POST/POST.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/API_Features/regression/POST/POST.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/API_Features/PUT/PUT.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/API_Features/regression/PUT/PUT.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/TestNg_files/testNG.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/TestNg_files/testNG.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +60,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="26" />
+    <option name="cachedIndexableFilesCount" value="66" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -61,23 +99,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.4957895158721852E-5" />
-      <entry key="MS500" value="0.1506035549938875" />
-      <entry key="S2" value="1.33216855427504" />
-      <entry key="S5" value="2.1571625459811226" />
-      <entry key="S10" value="2.5417955633001332" />
-      <entry key="S30" value="2.8382341769733324" />
-      <entry key="S60" value="2.917929940301646" />
-      <entry key="M2" value="2.958663621331844" />
-      <entry key="M5" value="2.9833925325905" />
-      <entry key="M10" value="2.9916840639352067" />
-      <entry key="M15" value="2.994453327293613" />
-      <entry key="M30" value="2.9972253050570905" />
-      <entry key="H1" value="2.998612312707605" />
-      <entry key="H2" value="2.999306071376868" />
-      <entry key="H4" value="2.999653014441488" />
-      <entry key="D1" value="2.9999421661223864" />
-      <entry key="W1" value="2.999991737945207" />
+      <entry key="MS100" value="1.4984779607165026E-7" />
+      <entry key="MS500" value="0.04856240141873678" />
+      <entry key="S2" value="1.0667627585769737" />
+      <entry key="S5" value="2.3161902437855284" />
+      <entry key="S10" value="3.0354381104336667" />
+      <entry key="S30" value="3.6463414598742627" />
+      <entry key="S60" value="3.8188025921439808" />
+      <entry key="M2" value="3.908289105312353" />
+      <entry key="M5" value="3.972230528014298" />
+      <entry key="M10" value="4.077342297826858" />
+      <entry key="M15" value="4.197106521104185" />
+      <entry key="M30" value="4.451490464205331" />
+      <entry key="H1" value="4.673461068409688" />
+      <entry key="H2" value="4.831576767253385" />
+      <entry key="H4" value="5.084618477755051" />
+      <entry key="D1" value="6.858119163093904" />
+      <entry key="W1" value="7.802713122020479" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="1.0" />
@@ -91,31 +129,31 @@
       <entry key="M5" value="1.0" />
       <entry key="M10" value="1.0" />
       <entry key="M15" value="1.0" />
-      <entry key="M30" value="1.0" />
-      <entry key="H1" value="1.0" />
-      <entry key="H2" value="1.0" />
-      <entry key="H4" value="1.0" />
-      <entry key="D1" value="1.0" />
-      <entry key="W1" value="1.0" />
+      <entry key="M30" value="1.0000000001570237" />
+      <entry key="H1" value="1.0000125309086312" />
+      <entry key="H2" value="1.0035399023476848" />
+      <entry key="H4" value="1.0594970784802475" />
+      <entry key="D1" value="1.6248118727635485" />
+      <entry key="W1" value="1.9350209134749803" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="5.120359905497263E-5" />
-      <entry key="MS500" value="0.2513420269117229" />
-      <entry key="S2" value="1.8564164683198539" />
-      <entry key="S5" value="2.921180459547145" />
-      <entry key="S10" value="3.4140751607052877" />
-      <entry key="S30" value="3.793246705089558" />
-      <entry key="S60" value="3.89511698980811" />
-      <entry key="M2" value="3.94717596200078" />
-      <entry key="M5" value="3.9787778048795626" />
-      <entry key="M10" value="3.989373407635567" />
-      <entry key="M15" value="3.9929121569819577" />
-      <entry key="M30" value="3.9964543532304506" />
-      <entry key="H1" value="3.998226745073752" />
-      <entry key="H2" value="3.9991132646232015" />
-      <entry key="H4" value="3.9995566053296434" />
-      <entry key="D1" value="3.999926097140479" />
-      <entry key="W1" value="3.999989442356853" />
+      <entry key="MS100" value="1.4516716115506304E-4" />
+      <entry key="MS500" value="0.1883329630653272" />
+      <entry key="S2" value="1.5843277443054853" />
+      <entry key="S5" value="3.065521682543056" />
+      <entry key="S10" value="3.8971624879931364" />
+      <entry key="S30" value="4.596966855159434" />
+      <entry key="S60" value="4.793676446623434" />
+      <entry key="M2" value="4.895613275971707" />
+      <entry key="M5" value="4.96676783390921" />
+      <entry key="M10" value="5.072863518581871" />
+      <entry key="M15" value="5.192588992044897" />
+      <entry key="M30" value="5.447553319910274" />
+      <entry key="H1" value="5.670763461246183" />
+      <entry key="H2" value="5.83351327931856" />
+      <entry key="H4" value="6.143236826578295" />
+      <entry key="D1" value="8.482764611872934" />
+      <entry key="W1" value="9.737709268944958" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -174,7 +212,7 @@
     &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/eclipse-workspace/Framework_1/src/test/resources/API_Features&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/eclipse-workspace/Framework_1/src/main/java/config/config/prod&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -183,20 +221,29 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\main\java\config\config\prod" />
+      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\main\java\config\config" />
       <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\API_Features" />
       <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\Payloads" />
-      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\API_Features\PUT" />
-      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\API_Features\POST" />
-      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\API_Features\GET" />
-      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\API_Features\DELETE" />
+      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources" />
+      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\config\config" />
+      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\config" />
+      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\API_Features\regression" />
+      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\API_Features\regression\" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="config" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="config.uat" />
+      <recent name="config.prod" />
     </key>
   </component>
   <component name="RunManager">
@@ -219,8 +266,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.25134.95" />
-        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.25134.95" />
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.26222.65" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.26222.65" />
       </set>
     </attachedChunks>
   </component>
@@ -352,7 +399,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783063593268</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="jenkinsfile updates">
+      <option name="closed" value="true" />
+      <created>1783065725024</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1783065725024</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

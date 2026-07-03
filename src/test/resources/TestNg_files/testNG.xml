@@ -5,7 +5,7 @@
     <!-- API_Pages Tests -->
     <test name="API_Pages Tests" enabled="true">
         <classes>
-            <class name="API_Runner.SmokeRunner" />
+            <class name="Runner.regression_Runner" />
         </classes>
     </test>
 
