@@ -1,6 +1,7 @@
-package utilities;
+package utilities.ui;
 
 import org.openqa.selenium.WebDriver;
+import utilities.common_utils.log_utils;
 
 import java.util.Set;
 

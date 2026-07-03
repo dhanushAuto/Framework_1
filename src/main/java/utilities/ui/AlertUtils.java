@@ -1,7 +1,8 @@
-package utilities;
+package utilities.ui;
 
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
+import utilities.common_utils.log_utils;
 
 
 public class AlertUtils {

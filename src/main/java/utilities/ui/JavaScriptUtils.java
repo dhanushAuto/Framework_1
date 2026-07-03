@@ -1,8 +1,9 @@
-package utilities;
+package utilities.ui;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import utilities.common_utils.log_utils;
 
 public class JavaScriptUtils {
 

@@ -5,12 +5,13 @@
     <listeners>
         <listener class-name="listeners.SuiteListener"/>
         <listener class-name="listeners.RetryTransformer"/>
+        <listener class-name="listeners.TestListener"/>
     </listeners>
 
     <!-- API_Pages Tests -->
     <test name="API_Pages Tests" enabled="true">
         <classes>
-            <class name="Runner.regression_Runner" />
+            <class name="Runner.regressionRunner" />
         </classes>
     </test>
 

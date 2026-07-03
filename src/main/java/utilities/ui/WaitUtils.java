@@ -1,4 +1,4 @@
-package utilities;
+package utilities.ui;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.common_utils.log_utils;
 
 import java.time.Duration;
 import java.util.NoSuchElementException;

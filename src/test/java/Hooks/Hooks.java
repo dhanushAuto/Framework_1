@@ -3,7 +3,7 @@ package Hooks;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import utilities.report_utils;
+import utilities.common_utils.report_utils;
 
 public class Hooks {
 
@@ -17,14 +17,14 @@ public class Hooks {
 
     @After
     public void afterScenario(Scenario scenario) {
-        // Log scenario status and flush the report to generate the HTML file
+
         if (scenario.isFailed()) {
-            report_utils.info("Scenario failed: " + scenario.getName());
+            report_utils.fail("Scenario failed: " + scenario.getName());
         } else {
-            report_utils.info("Scenario passed: " + scenario.getName());
+            report_utils.pass("Scenario passed: " + scenario.getName());
         }
+
         report_utils.flushReport();
     }
+
 }
-
-

@@ -1,4 +1,4 @@
-package utilities;
+package utilities.common_utils;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -15,7 +15,7 @@ public class report_utils {
         if (extent == null) {
 
             ExtentSparkReporter spark = new ExtentSparkReporter(
-                    "target/extent_report/ExtentReport.html");
+                    "reports/ExtentReport.html");
 
             spark.config().setDocumentTitle("Automation Report");
             spark.config().setReportName("UI & API Automation");
@@ -31,6 +31,10 @@ public class report_utils {
     }
 
     public static void createTest(String testName) {
+        // Ensure extent is initialized before creating test
+        if (extent == null) {
+            getReport();
+        }
         test = extent.createTest(testName);
     }
 

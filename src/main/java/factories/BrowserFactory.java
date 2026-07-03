@@ -1,4 +1,28 @@
 package factories;
 
-public class BrowserFactory {
-}
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+    public class BrowserFactory {
+
+        public static WebDriver createBrowser(String browser) {
+
+            switch (browser.toLowerCase()) {
+
+                case "chrome":
+                    return new ChromeDriver();
+
+                case "firefox":
+                    return new FirefoxDriver();
+
+                case "edge":
+                    return new EdgeDriver();
+
+                default:
+                    throw new RuntimeException("Invalid Browser : " + browser);
+            }
+        }
+    }
+

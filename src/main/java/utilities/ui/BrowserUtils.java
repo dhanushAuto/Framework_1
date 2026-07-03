@@ -1,9 +1,10 @@
-package utilities;
+package utilities.ui;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import utilities.common_utils.log_utils;
 
 public class BrowserUtils {
 

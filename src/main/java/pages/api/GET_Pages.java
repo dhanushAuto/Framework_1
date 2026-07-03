@@ -3,8 +3,8 @@ package pages.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import utilities.json_utils;
-import utilities.report_utils;
+import utilities.common_utils.json_utils;
+import utilities.common_utils.report_utils;
 
 public class GET_Pages {
     private static final String API_DATA_FILE = "src/test/resources/Payloads/api_data.json";

@@ -7,33 +7,38 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="733aa41d-50dd-4aba-8f9c-54a1c449b9ea" name="Changes" comment="Restructured Framework">
-      <change afterPath="$PROJECT_DIR$/src/main/java/listeners/RetryTransformer.java" afterDir="false" />
+    <list default="true" id="733aa41d-50dd-4aba-8f9c-54a1c449b9ea" name="Changes" comment="Restructured Framework&#10;Added reusable utilities">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/config/ConfigLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/config/ConfigLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/config/EnvironmentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/config/EnvironmentManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/constants/APIConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/constants/APIConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/constants/BrowserConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/constants/BrowserConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/constants/FileConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/constants/FileConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/constants/FrameworkConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/constants/FrameworkConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/constants/TimeoutConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/constants/TimeoutConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listeners/CucumberListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listeners/RetryListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listeners/RetryListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listeners/SuiteListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listeners/SuiteListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/factories/APIClientFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/factories/APIClientFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/factories/BrowserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/factories/BrowserFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/factories/DriverFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/factories/DriverFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/factories/ReportFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/factories/ReportFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/listeners/TestListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listeners/TestListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/ActionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ActionUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/AlertUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/AlertUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/BrowserUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/BrowserUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/FrameUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/FrameUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/JavaScriptUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/JavaScriptUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/ScreenshotUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ScreenshotUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/WaitUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/WaitUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/WindowUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/WindowUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/config_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/config_utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/json_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/json_utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/log_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/log_utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/GET_Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/GET_Pages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/ActionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/ActionUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/AlertUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/AlertUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/BrowserUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/BrowserUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/FrameUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/FrameUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/JavaScriptUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/JavaScriptUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/ScreenshotUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/ScreenshotUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/WaitUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/WaitUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/WindowUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/WindowUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/config_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/api/config_utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/json_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/json_utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/log_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/log_utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/report_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/report_utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Hooks/Hooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Hooks/Hooks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Runner/regression_Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Runner/regressionRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/TestNg_files/testNG.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/TestNg_files/testNG.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/config/config/qa/properties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config/config/qa/properties.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/CSV/Products.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/CSV/Products.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/CSV/Users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/CSV/Users.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/Excel/EmployeeData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/Excel/EmployeeData.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/Excel/LoginData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/Excel/LoginData.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/Excel/RegistrationData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/Excel/RegistrationData.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/JSON/ExpectedResponse.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/JSON/ExpectedResponse.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/JSON/ExpectedUser.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/JSON/ExpectedUser.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/TXT/SampleText.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/TXT/SampleText.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testdata/XML/Employee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/XML/Employee.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,61 +90,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="3.5963840027051224E-201" />
+      <entry key="S5" value="6.642727283240404E-81" />
+      <entry key="S10" value="8.150292806544072E-41" />
+      <entry key="S30" value="4.335685151885072E-14" />
+      <entry key="S60" value="2.0822311924217636E-7" />
+      <entry key="M2" value="4.5650987476702045E-4" />
+      <entry key="M5" value="0.048171577012848944" />
+      <entry key="M10" value="0.2602376598073411" />
+      <entry key="M15" value="0.487260040533934" />
+      <entry key="M30" value="1.0396066534062216" />
+      <entry key="H1" value="2.074656519643143" />
+      <entry key="H2" value="3.705886281253994" />
+      <entry key="H4" value="5.427523771615044" />
+      <entry key="D1" value="9.171557098572196" />
+      <entry key="W1" value="10.689407771265477" />
+    </decayedCancelled>
+    <decayedSelected>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
       <entry key="S2" value="1.0" />
       <entry key="S5" value="1.0" />
       <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0000000000000335" />
-      <entry key="S60" value="1.0000001829940404" />
-      <entry key="M2" value="1.0004277780269368" />
-      <entry key="M5" value="1.0449249293654295" />
-      <entry key="M10" value="1.2120408520023733" />
-      <entry key="M15" value="1.3589147285849834" />
-      <entry key="M30" value="1.7361400459513971" />
-      <entry key="H1" value="2.6810447153409322" />
-      <entry key="H2" value="4.212801675921899" />
-      <entry key="H4" value="5.786836303279466" />
-      <entry key="D1" value="9.270069382465087" />
-      <entry key="W1" value="10.705734995666846" />
-    </decayedCancelled>
-    <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="4.3510489052203764E-287" />
-      <entry key="S30" value="3.5172074812058676E-96" />
-      <entry key="S60" value="1.875421947510977E-48" />
-      <entry key="M2" value="1.369460458542333E-24" />
-      <entry key="M5" value="2.8485234484209655E-10" />
-      <entry key="M10" value="1.6877569281211572E-5" />
-      <entry key="M15" value="6.579707682820068E-4" />
-      <entry key="M30" value="0.02565094088895456" />
-      <entry key="H1" value="0.1601611180909637" />
-      <entry key="H2" value="0.40161550432982823" />
-      <entry key="H4" value="0.6702513169363221" />
-      <entry key="D1" value="1.5054259660734304" />
-      <entry key="W1" value="1.914039303941647" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0" />
+      <entry key="M2" value="1.0" />
+      <entry key="M5" value="1.000000000013132" />
+      <entry key="M10" value="1.0000036237880314" />
+      <entry key="M15" value="1.0002359256666216" />
+      <entry key="M30" value="1.0153598719622146" />
+      <entry key="H1" value="1.1239365035351525" />
+      <entry key="H2" value="1.353290162302529" />
+      <entry key="H4" value="1.628634501647574" />
+      <entry key="D1" value="2.4894279250630706" />
+      <entry key="W1" value="2.911120219054795" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.1290154537130505E-13" />
-      <entry key="MS500" value="0.0025735936557307413" />
-      <entry key="S2" value="0.22523454178051797" />
-      <entry key="S5" value="0.5508761849897656" />
-      <entry key="S10" value="0.7422103374312201" />
-      <entry key="S30" value="0.9054038417960305" />
-      <entry key="S60" value="0.9515272861754027" />
-      <entry key="M2" value="0.9758817856903694" />
-      <entry key="M5" value="1.0346773635415223" />
-      <entry key="M10" value="1.2062516958758935" />
-      <entry key="M15" value="1.3553085654337595" />
-      <entry key="M30" value="1.7591644122384433" />
-      <entry key="H1" value="2.8391991272386066" />
-      <entry key="H2" value="4.612782439468641" />
-      <entry key="H4" value="6.4559425992366135" />
-      <entry key="D1" value="10.775224077353391" />
-      <entry key="W1" value="12.619732509070042" />
+      <entry key="MS100" value="9.21271977693048E-33" />
+      <entry key="MS500" value="3.916314605484323E-7" />
+      <entry key="S2" value="0.025016087833009466" />
+      <entry key="S5" value="0.2287113709835805" />
+      <entry key="S10" value="0.47823777661700934" />
+      <entry key="S30" value="0.7820141766829447" />
+      <entry key="S60" value="0.8843158525672632" />
+      <entry key="M2" value="0.9408258993848948" />
+      <entry key="M5" value="1.0234107463224853" />
+      <entry key="M10" value="1.2467758117918468" />
+      <entry key="M15" value="1.477804410534177" />
+      <entry key="M30" value="2.049304068772556" />
+      <entry key="H1" value="3.1949932636607534" />
+      <entry key="H2" value="5.056714421441574" />
+      <entry key="H4" value="7.054572224352059" />
+      <entry key="D1" value="11.66063126303493" />
+      <entry key="W1" value="13.600474067042482" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -219,10 +224,10 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources" />
+      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1" />
       <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\config\config" />
       <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\config" />
       <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\API_Features\regression" />
-      <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\test\resources\API_Features\regression\" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="config" />
@@ -401,7 +406,23 @@
       <option name="project" value="LOCAL" />
       <updated>1783077249445</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Restructured Framework&#10;Added reusable utilities">
+      <option name="closed" value="true" />
+      <created>1783087692231</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1783087692231</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Restructured Framework&#10;Added reusable utilities">
+      <option name="closed" value="true" />
+      <created>1783087715458</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1783087715458</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,7 +433,8 @@
     <MESSAGE value="jenkinsfile added" />
     <MESSAGE value="jenkinsfile updates" />
     <MESSAGE value="Restructured Framework" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restructured Framework" />
+    <MESSAGE value="Restructured Framework&#10;Added reusable utilities" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructured Framework&#10;Added reusable utilities" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
