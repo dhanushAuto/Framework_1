@@ -2,17 +2,21 @@ package constants;
 
 public class APIConstants {
 
-        public static final String BASE_URI = "https://jsonplaceholder.typicode.com";
+        public static String BASE_URI = "https://jsonplaceholder.typicode.com";
 
-        public static final String USERS = "/users/";
+        public static String CREATE_POST = "/posts";
 
-        public static final String albums = "/albums/";
+        public static String UPDATE_POST = "/posts/{id}";
 
-        public static final String photos = "/photos/";
+        public static String USERS = "/users/";
 
-        public static final String todos = "/todos/";
+        public static String albums = "/albums/";
 
-        public static final String CONTENT_TYPE = "application/json";
+        public static String photos = "/photos/";
+
+        public static String todos = "/todos/";
+
+        public static String CONTENT_TYPE = "application/json";
 
     }
 

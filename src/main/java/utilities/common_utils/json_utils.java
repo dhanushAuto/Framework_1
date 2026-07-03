@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class json_utils {
 
@@ -72,7 +74,18 @@ public class json_utils {
             throw new RuntimeException(e);
         }
     }
+
+    public static String getPayload(String fileName) {
+
+        try {
+            return Files.readString(
+                    Paths.get("src/test/resources/payloads/" + fileName + ".json"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+
 
 
 

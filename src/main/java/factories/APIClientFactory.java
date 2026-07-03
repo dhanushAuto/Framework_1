@@ -3,14 +3,13 @@ package factories;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 
-    public class APIClientFactory {
+public class APIClientFactory {
 
-        public static RequestSpecification getRequest() {
+    public static RequestSpecification APIRequest(String baseUri) {
 
-            return RestAssured
-                    .given()
-                    .baseUri("https://reqres.in")
-                    .header("Content-Type", "application/json");
-        }
+        return RestAssured
+                .given()
+                .baseUri(baseUri)
+                .contentType("application/json");
     }
-
+}

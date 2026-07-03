@@ -8,9 +8,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="733aa41d-50dd-4aba-8f9c-54a1c449b9ea" name="Changes" comment="Restructured Framework&#10;Added reusable utilities">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pages/api/POST_Pages.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/StepDef/POST_Steps.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/constants/APIConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/constants/APIConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/factories/APIClientFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/factories/APIClientFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/GET_Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/GET_Pages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/common_utils/json_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/json_utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Runner/regressionRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Runner/regressionRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/StepDef/GET_Steps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/StepDef/GET_Steps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/API_Features/regression/GET/GET.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/API_Features/regression/GET/GET.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/API_Features/regression/POST/POST.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/API_Features/regression/POST/POST.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/Payloads/CreateUser.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/Payloads/DeleteUser.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/Payloads/DELETE.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/Payloads/Login.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/Payloads/POST.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/Payloads/UpdateUser.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/Payloads/PUT.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/Payloads/api_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/Payloads/GET.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,25 +75,6 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="3.5963840027051224E-201" />
-      <entry key="S5" value="6.642727283240404E-81" />
-      <entry key="S10" value="8.150292806544072E-41" />
-      <entry key="S30" value="4.335685151885072E-14" />
-      <entry key="S60" value="2.0822311924217636E-7" />
-      <entry key="M2" value="4.5650987476702045E-4" />
-      <entry key="M5" value="0.048171577012848944" />
-      <entry key="M10" value="0.2602376598073411" />
-      <entry key="M15" value="0.487260040533934" />
-      <entry key="M30" value="1.0396066534062216" />
-      <entry key="H1" value="2.074656519643143" />
-      <entry key="H2" value="3.705886281253994" />
-      <entry key="H4" value="5.427523771615044" />
-      <entry key="D1" value="9.171557098572196" />
-      <entry key="W1" value="10.689407771265477" />
-    </decayedCancelled>
-    <decayedSelected>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
       <entry key="S2" value="1.0" />
@@ -89,34 +83,53 @@
       <entry key="S30" value="1.0" />
       <entry key="S60" value="1.0" />
       <entry key="M2" value="1.0" />
-      <entry key="M5" value="1.000000000013132" />
-      <entry key="M10" value="1.0000036237880314" />
-      <entry key="M15" value="1.0002359256666216" />
-      <entry key="M30" value="1.0153598719622146" />
-      <entry key="H1" value="1.1239365035351525" />
-      <entry key="H2" value="1.353290162302529" />
-      <entry key="H4" value="1.628634501647574" />
-      <entry key="D1" value="2.4894279250630706" />
-      <entry key="W1" value="2.911120219054795" />
+      <entry key="M5" value="1.0000000000068197" />
+      <entry key="M10" value="1.0000030964108193" />
+      <entry key="M15" value="1.000253952846208" />
+      <entry key="M30" value="1.023733686098383" />
+      <entry key="H1" value="1.3134687680204866" />
+      <entry key="H2" value="2.440509492160583" />
+      <entry key="H4" value="4.383870639565308" />
+      <entry key="D1" value="9.477056488094112" />
+      <entry key="W1" value="11.56983520809662" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="2.283800483473132E-133" />
+      <entry key="S10" value="4.778912515911054E-67" />
+      <entry key="S30" value="7.818252518608423E-23" />
+      <entry key="S60" value="8.842088281966213E-12" />
+      <entry key="M2" value="2.9735649113423124E-6" />
+      <entry key="M5" value="0.0061561753177745175" />
+      <entry key="M10" value="0.07847319575350208" />
+      <entry key="M15" value="0.18379648914907457" />
+      <entry key="M30" value="0.4512866508232524" />
+      <entry key="H1" value="0.824118879794614" />
+      <entry key="H2" value="1.3349225758179906" />
+      <entry key="H4" value="1.914778027962357" />
+      <entry key="D1" value="3.2834008454298558" />
+      <entry key="W1" value="3.876034432190004" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="9.21271977693048E-33" />
-      <entry key="MS500" value="3.916314605484323E-7" />
-      <entry key="S2" value="0.025016087833009466" />
-      <entry key="S5" value="0.2287113709835805" />
-      <entry key="S10" value="0.47823777661700934" />
-      <entry key="S30" value="0.7820141766829447" />
-      <entry key="S60" value="0.8843158525672632" />
-      <entry key="M2" value="0.9408258993848948" />
-      <entry key="M5" value="1.0234107463224853" />
-      <entry key="M10" value="1.2467758117918468" />
-      <entry key="M15" value="1.477804410534177" />
-      <entry key="M30" value="2.049304068772556" />
-      <entry key="H1" value="3.1949932636607534" />
-      <entry key="H2" value="5.056714421441574" />
-      <entry key="H4" value="7.054572224352059" />
-      <entry key="D1" value="11.66063126303493" />
-      <entry key="W1" value="13.600474067042482" />
+      <entry key="MS100" value="3.212055151142335E-7" />
+      <entry key="MS500" value="0.050275523183869734" />
+      <entry key="S2" value="0.47352089702092737" />
+      <entry key="S5" value="0.7415418393617573" />
+      <entry key="S10" value="0.8611282363049985" />
+      <entry key="S30" value="0.9513842189752761" />
+      <entry key="S60" value="0.9753892653659217" />
+      <entry key="M2" value="0.9876208210335538" />
+      <entry key="M5" value="1.001077492411675" />
+      <entry key="M10" value="1.0753002478243072" />
+      <entry key="M15" value="1.1813139419581564" />
+      <entry key="M30" value="1.4728074141386922" />
+      <entry key="H1" value="2.1356700172920036" />
+      <entry key="H2" value="3.7736747256747654" />
+      <entry key="H4" value="6.297226435040747" />
+      <entry key="D1" value="12.760053044766854" />
+      <entry key="W1" value="15.445805143930114" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -403,7 +416,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783090207818</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Restructured Framework&#10;Added reusable utilities">
+      <option name="closed" value="true" />
+      <created>1783090347361</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1783090347361</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
