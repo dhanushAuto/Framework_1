@@ -8,37 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="733aa41d-50dd-4aba-8f9c-54a1c449b9ea" name="Changes" comment="Restructured Framework&#10;Added reusable utilities">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/factories/APIClientFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/factories/APIClientFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/factories/BrowserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/factories/BrowserFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/factories/DriverFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/factories/DriverFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/factories/ReportFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/factories/ReportFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listeners/TestListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listeners/TestListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/GET_Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/GET_Pages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/ActionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/ActionUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/AlertUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/AlertUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/BrowserUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/BrowserUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/FrameUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/FrameUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/JavaScriptUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/JavaScriptUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/ScreenshotUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/ScreenshotUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/WaitUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/WaitUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/WindowUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ui/WindowUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/config_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/api/config_utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/json_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/json_utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/log_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/log_utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/report_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/report_utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Hooks/Hooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Hooks/Hooks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Runner/regression_Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Runner/regressionRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/TestNg_files/testNG.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/TestNg_files/testNG.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/CSV/Products.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/CSV/Products.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/CSV/Users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/CSV/Users.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/Excel/EmployeeData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/Excel/EmployeeData.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/Excel/LoginData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/Excel/LoginData.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/Excel/RegistrationData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/Excel/RegistrationData.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/JSON/ExpectedResponse.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/JSON/ExpectedResponse.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/JSON/ExpectedUser.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/JSON/ExpectedUser.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/TXT/SampleText.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/TXT/SampleText.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdata/XML/Employee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testdata/XML/Employee.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +120,7 @@
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="AISelfReview" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4,
@@ -185,36 +157,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;TestNG.C:/Users/Admin/eclipse-workspace/Framework_1/src/test/resources/TestNg_files/testNG.xml.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/eclipse-workspace/Framework_1/src/main/java/config/config/prod&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TestNG.C:/Users/Admin/eclipse-workspace/Framework_1/src/test/resources/TestNg_files/testNG.xml.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Admin/eclipse-workspace/Framework_1/src/main/java/config/config/prod",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "terminal"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Admin\eclipse-workspace\Framework_1\src\main\java\config\config\prod" />
@@ -422,7 +395,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783087715458</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Restructured Framework&#10;Added reusable utilities">
+      <option name="closed" value="true" />
+      <created>1783090207818</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1783090207818</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -32,7 +32,7 @@ pipeline {
                             allowMissing: false,
                             alwaysLinkToLastBuild: true,
                             keepAll: true,
-                            reportDir: 'target/extent_report',
+                            reportDir: 'reports',
                             reportFiles: 'ExtentReport.html',
                             reportName: 'Extent Report'
                         ])
@@ -120,7 +120,7 @@ pipeline {
              </html>
              """,
 
-             attachmentsPattern: 'target/extent_report/ExtentReport.html'
+             attachmentsPattern: 'reports/ExtentReport.html'
 
          )
      }
@@ -199,7 +199,7 @@ pipeline {
              </html>
              """,
 
-             attachmentsPattern: 'target/extent_report/ExtentReport.html'
+             attachmentsPattern: 'reports/ExtentReport.html'
          )
      }
 
