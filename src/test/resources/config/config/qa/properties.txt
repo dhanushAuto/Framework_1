@@ -1,0 +1,3 @@
+browser=chrome
+baseUrl=https://www.google.com
+headless=false

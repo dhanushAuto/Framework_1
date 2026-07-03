@@ -1,28 +1,33 @@
 package utilities;
 
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class log_utils {
 
-    private static final Logger log = Logger.getLogger(String.valueOf(log_utils.class));
-
-    public static void info(String message){
-        log.info(message);
-    }
-    public static void warn(String message){
-        log.warning(message);
-    }
-    public static void error(String message){
-        log.severe(message);
-    }
-    public static void fatal(String message){
-        log.log(java.util.logging.Level.SEVERE, message);
-    }
-    public static void debug(String message){
-        log.finest(message);
-    }
-    public static void trace(String message){
-        log.finer(message);
+    private static Logger getLogger() {
+        StackTraceElement caller = Thread.currentThread().getStackTrace()[3];
+        return LogManager.getLogger(caller.getClassName());
     }
 
+    public static void info(String message) {
+        getLogger().info(message);
+    }
+
+    public static void warn(String message) {
+        getLogger().warn(message);
+    }
+
+    public static void error(String message) {
+        getLogger().error(message);
+    }
+
+    public static void debug(String message) {
+        getLogger().debug(message);
+    }
+
+    public static void fatal(String message) {
+        getLogger().fatal(message);
+    }
 }
+
