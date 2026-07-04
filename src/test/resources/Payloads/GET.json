@@ -1,6 +1,3 @@
 {
-  "GET_API": {
-    "endpoint": "https://jsonplaceholder.typicode.com",
-    "resourcePath": "/users/1"
+
   }
-}

@@ -39,6 +39,7 @@ public class GET_Pages {
     }
 
     public void iReceiveValidHTTPResponseCode(int expectedStatusCode) {
+
         response.then().statusCode(expectedStatusCode);
     }
 }

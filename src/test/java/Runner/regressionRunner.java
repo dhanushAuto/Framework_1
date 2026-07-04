@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-        features = "src/test/resources/API_Features/regression",
+        features = "src/test/resources/API_Features/regression/DELETE",
         glue = {"StepDef", "Hooks"},
         tags = "@Regression",
         plugin = {

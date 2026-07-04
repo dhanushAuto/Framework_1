@@ -4,7 +4,7 @@ public class APIConstants {
 
         public static String BASE_URI = "https://jsonplaceholder.typicode.com";
 
-        public static String CREATE_POST = "/posts";
+        public static String CREATE_POST = "/posts/";
 
         public static String UPDATE_POST = "/posts/{id}";
 
