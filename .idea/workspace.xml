@@ -7,18 +7,8 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="733aa41d-50dd-4aba-8f9c-54a1c449b9ea" name="Changes" comment="Restructured Framework&#10;Added reusable utilities">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pages/api/DELETE_Pages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/StepDef/DELETE_Steps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/constants/APIConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/constants/APIConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/GET_Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/GET_Pages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/POST_Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/POST_Pages.java" afterDir="false" />
+    <list default="true" id="733aa41d-50dd-4aba-8f9c-54a1c449b9ea" name="Changes" comment="DELETE API and POST API">
       <change beforePath="$PROJECT_DIR$/src/test/java/Runner/regressionRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Runner/regressionRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/API_Features/regression/DELETE/DELETE.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/API_Features/regression/DELETE/DELETE.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/Payloads/DELETE.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/Payloads/DELETE.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/Payloads/GET.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/Payloads/GET.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -427,7 +417,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783101640597</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="DELETE API and POST API">
+      <option name="closed" value="true" />
+      <created>1783154321022</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1783154321022</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,7 +437,8 @@
     <MESSAGE value="jenkinsfile updates" />
     <MESSAGE value="Restructured Framework" />
     <MESSAGE value="Restructured Framework&#10;Added reusable utilities" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restructured Framework&#10;Added reusable utilities" />
+    <MESSAGE value="DELETE API and POST API" />
+    <option name="LAST_COMMIT_MESSAGE" value="DELETE API and POST API" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
