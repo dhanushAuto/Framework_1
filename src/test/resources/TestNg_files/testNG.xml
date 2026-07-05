@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Framework Test Suite" parallel="false" thread-count="1">
+<suite name="Framework Test Suite" parallel="tests" thread-count="3" data-provider-thread-count="3">
 
     <listeners>
         <listener class-name="listeners.SuiteListener"/>
         <listener class-name="listeners.RetryTransformer"/>
         <listener class-name="listeners.TestListener"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
     </listeners>
 
-    <!-- API_Pages Tests -->
-    <test name="API_Pages Tests" enabled="true">
+    <parameter name="browser" value="${browser}"/>
+    <parameter name="environment" value="${environment}"/>
+
+    <!-- API Tests - POST -> GET -> DELETE -->
+    <test name="API Tests" enabled="true">
         <classes>
-            <class name="Runner.regressionRunner" />
+            <class name="Runner.POSTRunner" />
+            <class name="Runner.GETRunner" />
+            <class name="Runner.DELETERunner" />
         </classes>
     </test>
 

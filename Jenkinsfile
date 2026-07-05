@@ -1,9 +1,40 @@
 pipeline {
     agent any
+    options {
 
+    timeout(time: 60, unit: 'MINUTES')
+
+    timestamps()
+
+    skipDefaultCheckout()
+
+    buildDiscarder(logRotator(
+            numToKeepStr: '20',
+            artifactNumToKeepStr: '10'
+    ))
+
+}
     tools {
         jdk 'JDK21'
         maven 'Maven3'
+    }
+    
+    parameters {
+        choice(
+            name: 'BROWSER',
+            choices: ['chrome', 'firefox', 'edge'],
+            description: 'Select browser for execution'
+        )
+        choice(
+            name: 'ENVIRONMENT',
+            choices: ['QA', 'UAT', 'PROD'],
+            description: 'Select environment for execution'
+        )
+        booleanParam(
+            name: 'PARALLEL_EXECUTION',
+            defaultValue: true,
+            description: 'Enable parallel test execution'
+        )
     }
 
     stages {
@@ -14,16 +45,47 @@ pipeline {
             }
         }
 
-        stage('Clean') {
+        stage('Build & Test') {
             steps {
-                bat 'mvn clean'
+                script {
+                    def browser = params.BROWSER
+                    def environment = params.ENVIRONMENT
+                    def parallel = params.PARALLEL_EXECUTION
+                    
+                    bat "mvn clean verify -Dbrowser=${browser} -Denvironment=${environment}"
+                }
             }
         }
 
-        stage('Test') {
+        stage('SonarQube Analysis') {
             steps {
-                bat 'mvn test'
+                withSonarQubeEnv('SonarQube') {
+                    bat 'mvn sonar:sonar'
+                }
             }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+        stage('Publish Allure') {
+
+            steps {
+
+                allure(
+
+                    includeProperties: false,
+
+                    results: [[path: 'target/allure-results']]
+
+                )
+
+            }
+
         }
 
                 stage('Publish Extent Report') {
@@ -44,6 +106,28 @@ pipeline {
 
      always {
          archiveArtifacts artifacts: 'target/**/*', allowEmptyArchive: true
+         junit allowEmptyResults: true,
+
+               testResults: 'target/surefire-reports/*.xml'
+
+               publishCoverage adapters: [
+
+                   jacocoAdapter('target/site/jacoco/jacoco.xml')
+
+               ]
+               publishHTML(target: [
+
+                   reportDir: 'target',
+
+                   reportFiles: 'dependency-check-report.html',
+
+                   reportName: 'OWASP Report',
+
+                   keepAll: true,
+
+                   alwaysLinkToLastBuild: true
+
+               ])
      }
 
      success {

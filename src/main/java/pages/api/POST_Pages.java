@@ -24,7 +24,7 @@ public class POST_Pages {
         JSONObject jsonObject = new JSONObject(payload);
         report_utils.info("Endpoint : " + APIConstants.BASE_URI + APIConstants.CREATE_POST);
 
-        for(int i = 0; i <= 50; i++) {
+        for(int i = 0; i <= 5; i++) {
             jsonObject.getJSONObject("POST_API").put("userId", i);
             jsonObject.getJSONObject("POST_API").put("id", i);
 

@@ -37,3 +37,37 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Build
+target/
+
+# Reports
+reports/
+allure-results/
+allure-report/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Logs
+logs/
+*.log
+
+# Test Outputs
+test-output/
+
+# Screenshots
+screenshots/
+
+# OWASP
+dependency-check-report.html
+
+# JaCoCo
+jacoco.exec
+
+# OS
+.DS_Store
+Thumbs.db

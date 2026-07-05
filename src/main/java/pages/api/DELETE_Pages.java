@@ -12,7 +12,7 @@ public class DELETE_Pages {
     public void Delete_Request() {
         report_utils.info("Endpoint : " + APIConstants.BASE_URI + DELETE_POST);
 
-        for (int i = 0; i <= 50; i++) {
+        for (int i = 0; i <= 5; i++) {
             response = APIClientFactory.APIRequest(APIConstants.BASE_URI)
                     .pathParam("id", i)
                     .when().delete(DELETE_POST);

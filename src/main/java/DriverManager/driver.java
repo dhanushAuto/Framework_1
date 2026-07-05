@@ -5,22 +5,45 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
 
 public class driver {
 
+    private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
+
     public static void initDriver(String browser) {
-         WebDriverManager.chromedriver().setup();
+        browser = browser != null ? browser.toLowerCase() : "chrome";
+        
+        switch (browser) {
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                webDriver.set(new FirefoxDriver());
+                break;
+            case "edge":
+                WebDriverManager.edgedriver().setup();
+                webDriver.set(new EdgeDriver());
+                break;
+            case "chrome":
+            default:
+                WebDriverManager.chromedriver().setup();
+                webDriver.set(new ChromeDriver());
+                break;
+        }
     }
+    
     public static WebDriver getDriver() {
-        return WebDriverManager.chromedriver().create();
+        return webDriver.get();
     }
 
     public static void quitDriver() {
-        WebDriver driver = getDriver();
+        WebDriver driver = webDriver.get();
         if (driver != null) {
             driver.quit();
+            webDriver.remove();
         }
     }
     public static void closeBrowser() {
