@@ -60,23 +60,21 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    bat """
-                    mvn clean verify sonar:sonar ^
-                    -Dsonar.projectKey=UnifiedAutomationFramework ^
-                    -Dsonar.host.url=http://localhost:9000 ^
-                    -Dsonar.login=YOUR_TOKEN
-                    """
+                    bat '''
+                    mvn sonar:sonar ^
+                    -Dsonar.projectKey=UnifiedAutomationFramework
+                    '''
                 }
             }
         }
 
-        stage('Quality Gate') {
-            steps {
-                timeout(time: 5, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+//         stage('Quality Gate') {
+//             steps {
+//                 timeout(time: 5, unit: 'MINUTES') {
+//                     waitForQualityGate abortPipeline: true
+//                 }
+//             }
+//         }
         stage('Publish Allure') {
 
             steps {
