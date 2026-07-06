@@ -60,7 +60,12 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    bat 'mvn sonar:sonar'
+                    bat """
+                    mvn clean verify sonar:sonar ^
+                    -Dsonar.projectKey=UnifiedAutomationFramework ^
+                    -Dsonar.host.url=http://localhost:9000 ^
+                    -Dsonar.login=YOUR_TOKEN
+                    """
                 }
             }
         }
