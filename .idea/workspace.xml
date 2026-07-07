@@ -22,7 +22,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="79" />
+    <option name="cachedIndexableFilesCount" value="80" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -442,7 +442,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783361577393</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Phase 1 – Advanced Test Automation Framework - done&#10;Phase 2 – Professional Reporting&#10;Phase 3 – Jenkins Pipeline&#10;Phase 4 – Dashboards &amp; Trends&#10;Phase 5 – Code Quality &amp; Security">
+      <option name="closed" value="true" />
+      <created>1783413584923</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1783413584923</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

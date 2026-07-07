@@ -60,10 +60,7 @@ pipeline {
 //         stage('SonarQube Analysis') {
 //             steps {
 //                 withSonarQubeEnv('SonarQube') {
-//                     bat '''
-//                     mvn sonar:sonar ^
-//                     -Dsonar.projectKey=UnifiedAutomationFramework
-//                     '''
+//                     bat 'mvn sonar:sonar'
 //                 }
 //             }
 //         }
