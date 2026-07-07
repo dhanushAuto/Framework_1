@@ -72,21 +72,21 @@ pipeline {
 //                 }
 //             }
 //         }
-        stage('Publish Allure') {
-
-            steps {
-
-                allure(
-
-                    includeProperties: false,
-
-                    results: [[path: 'target/allure-results']]
-
-                )
-
-            }
-
-        }
+//         stage('Publish Allure') {
+//
+//             steps {
+//
+//                 allure(
+//
+//                     includeProperties: false,
+//
+//                     results: [[path: 'target/allure-results']]
+//
+//                 )
+//
+//             }
+//
+//         }
 
                 stage('Publish Extent Report') {
                     steps {
