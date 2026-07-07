@@ -9,11 +9,13 @@ pipeline {
     skipDefaultCheckout()
 
     buildDiscarder(logRotator(
-            numToKeepStr: '20',
-            artifactNumToKeepStr: '10'
-    ))
+                    daysToKeepStr: '15',
+                    numToKeepStr: '30',
+                    artifactDaysToKeepStr: '15',
+                    artifactNumToKeepStr: '10'
+                ))
+            }
 
-}
     tools {
         jdk 'JDK21'
         maven 'Maven3'
@@ -21,13 +23,17 @@ pipeline {
     
     parameters {
         choice(
+            name: 'TEST_SUITE',
+            choices: ['Smoke','Regression','Sanity','API','UI']
+        )
+        choice(
             name: 'BROWSER',
             choices: ['chrome', 'firefox', 'edge'],
             description: 'Select browser for execution'
         )
         choice(
             name: 'ENVIRONMENT',
-            choices: ['QA', 'UAT', 'PROD'],
+            choices: ['DEV', 'SIT', 'QA'],
             description: 'Select environment for execution'
         )
         booleanParam(
@@ -48,6 +54,7 @@ pipeline {
         stage('Build & Test') {
             steps {
                 script {
+                    def testSuite = params.TEST_SUITE
                     def browser = params.BROWSER
                     def environment = params.ENVIRONMENT
                     def parallel = params.PARALLEL_EXECUTION
@@ -105,11 +112,15 @@ pipeline {
  post {
 
      always {
-         archiveArtifacts artifacts: 'target/**/*', allowEmptyArchive: true
-         junit allowEmptyResults: true,
 
-               testResults: 'target/surefire-reports/*.xml'
-
+         archiveArtifacts artifacts: '''
+         target/ExtentReport/**
+         target/screenshots/**
+         target/dependency-check-report.html
+         ''', allowEmptyArchive: true
+             )
+                }
+            }
 //                publishCoverage adapters: [
 //
 //                    jacocoAdapter('target/site/jacoco/jacoco.xml')
