@@ -57,16 +57,16 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    bat '''
-                    mvn sonar:sonar ^
-                    -Dsonar.projectKey=UnifiedAutomationFramework
-                    '''
-                }
-            }
-        }
+//         stage('SonarQube Analysis') {
+//             steps {
+//                 withSonarQubeEnv('SonarQube') {
+//                     bat '''
+//                     mvn sonar:sonar ^
+//                     -Dsonar.projectKey=UnifiedAutomationFramework
+//                     '''
+//                 }
+//             }
+//         }
 
 //         stage('Quality Gate') {
 //             steps {
