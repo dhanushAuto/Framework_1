@@ -118,7 +118,7 @@ pipeline {
          target/screenshots/**
          target/dependency-check-report.html
          ''', allowEmptyArchive: true
-             )
+
                 }
             }
 //                publishCoverage adapters: [

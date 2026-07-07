@@ -8,6 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="733aa41d-50dd-4aba-8f9c-54a1c449b9ea" name="Changes" comment="Phase 1 – Advanced Test Automation Framework - done&#10;Phase 2 – Professional Reporting&#10;Phase 3 – Jenkins Pipeline&#10;Phase 4 – Dashboards &amp; Trends&#10;Phase 5 – Code Quality &amp; Security">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,61 +61,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0037038728857357" />
-      <entry key="MS500" value="1.4939687647542692" />
-      <entry key="S2" value="3.6124296358300882" />
-      <entry key="S5" value="5.225455771204973" />
-      <entry key="S10" value="6.0206900111602115" />
-      <entry key="S30" value="6.6504712635648975" />
-      <entry key="S60" value="6.822166188726666" />
-      <entry key="M2" value="6.910301277240191" />
-      <entry key="M5" value="6.963938939006522" />
-      <entry key="M10" value="6.988106739140854" />
-      <entry key="M15" value="7.046805989697348" />
-      <entry key="M30" value="7.57614999586591" />
-      <entry key="H1" value="8.932218146129657" />
-      <entry key="H2" value="11.060710436753123" />
-      <entry key="H4" value="13.880088757226998" />
-      <entry key="D1" value="20.724376325207093" />
-      <entry key="W1" value="23.443036714197973" />
+      <entry key="MS100" value="1.1450416199321878" />
+      <entry key="MS500" value="2.75269170023462" />
+      <entry key="S2" value="5.996963085103462" />
+      <entry key="S5" value="10.001198143850951" />
+      <entry key="S10" value="13.462607073403865" />
+      <entry key="S30" value="17.31939643161593" />
+      <entry key="S60" value="18.582942784582023" />
+      <entry key="M2" value="19.27102012542193" />
+      <entry key="M5" value="19.703335775548567" />
+      <entry key="M10" value="19.856905510818997" />
+      <entry key="M15" value="19.95875361881519" />
+      <entry key="M30" value="20.530043322691306" />
+      <entry key="H1" value="21.906569239256086" />
+      <entry key="H2" value="24.045857356833732" />
+      <entry key="H4" value="26.87132028343878" />
+      <entry key="D1" value="33.72237223190716" />
+      <entry key="W1" value="36.44271962538408" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
-      <entry key="S10" value="7.319942524389992E-172" />
-      <entry key="S30" value="9.012305194628692E-58" />
-      <entry key="S60" value="3.002050165241862E-29" />
-      <entry key="M2" value="5.479096798823243E-15" />
-      <entry key="M5" value="1.975172283195111E-6" />
-      <entry key="M10" value="0.0014287105202917" />
-      <entry key="M15" value="0.01336834648751002" />
-      <entry key="M30" value="0.14219964111001737" />
-      <entry key="H1" value="0.5478375188825385" />
-      <entry key="H2" value="1.2574276366707084" />
-      <entry key="H4" value="2.126120765491143" />
-      <entry key="D1" value="4.058931840987285" />
-      <entry key="W1" value="4.8384665190768334" />
+      <entry key="S10" value="3.690796824753237E-172" />
+      <entry key="S30" value="7.17309714929072E-58" />
+      <entry key="S60" value="2.678263831158298E-29" />
+      <entry key="M2" value="5.175194525964942E-15" />
+      <entry key="M5" value="1.9305989467767152E-6" />
+      <entry key="M10" value="0.0014124978120913976" />
+      <entry key="M15" value="0.01326702010806248" />
+      <entry key="M30" value="0.14165970965749825" />
+      <entry key="H1" value="0.5467964613167128" />
+      <entry key="H2" value="1.256232321452837" />
+      <entry key="H4" value="2.125109976209347" />
+      <entry key="D1" value="4.058610164548054" />
+      <entry key="W1" value="4.838411737825845" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.009570043536482352" />
-      <entry key="MS500" value="0.748290940516188" />
-      <entry key="S2" value="3.3020302227325895" />
-      <entry key="S5" value="5.084439187326923" />
-      <entry key="S10" value="5.946903802326322" />
-      <entry key="S30" value="6.62509439439622" />
-      <entry key="S60" value="6.8093764602664315" />
-      <entry key="M2" value="6.903880806596591" />
-      <entry key="M5" value="6.961366526305957" />
-      <entry key="M10" value="6.988240214608089" />
-      <entry key="M15" value="7.059266677032185" />
-      <entry key="M30" value="7.7176076955351185" />
-      <entry key="H1" value="9.479097387730617" />
-      <entry key="H2" value="12.316921991767243" />
-      <entry key="H4" value="16.00499989283683" />
-      <entry key="D1" value="24.782887348593746" />
-      <entry key="W1" value="28.281433557365354" />
+      <entry key="MS100" value="1.0915644823175559" />
+      <entry key="MS500" value="2.7273174952696215" />
+      <entry key="S2" value="5.969235512602595" />
+      <entry key="S5" value="9.945397539343672" />
+      <entry key="S10" value="13.408918591554771" />
+      <entry key="S30" value="17.29126281214072" />
+      <entry key="S60" value="18.567168310834674" />
+      <entry key="M2" value="19.262666256886064" />
+      <entry key="M5" value="19.699878688486255" />
+      <entry key="M10" value="19.8565615241994" />
+      <entry key="M15" value="19.970801534954024" />
+      <entry key="M30" value="20.670804230858792" />
+      <entry key="H1" value="22.452329276622336" />
+      <entry key="H2" value="25.300834736482635" />
+      <entry key="H4" value="28.99520118867892" />
+      <entry key="D1" value="37.78055827505439" />
+      <entry key="W1" value="41.28106121132603" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -465,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783421891938</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Phase 1 – Advanced Test Automation Framework - done&#10;Phase 2 – Professional Reporting&#10;Phase 3 – Jenkins Pipeline&#10;Phase 4 – Dashboards &amp; Trends&#10;Phase 5 – Code Quality &amp; Security">
+      <option name="closed" value="true" />
+      <created>1783422090963</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1783422090963</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
