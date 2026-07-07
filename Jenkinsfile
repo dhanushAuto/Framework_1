@@ -114,7 +114,7 @@ pipeline {
 //
 //                    jacocoAdapter('target/site/jacoco/jacoco.xml')
 
-               ]
+  //             ]
                publishHTML(target: [
 
                    reportDir: 'target',
