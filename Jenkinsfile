@@ -110,9 +110,9 @@ pipeline {
 
                testResults: 'target/surefire-reports/*.xml'
 
-               publishCoverage adapters: [
-
-                   jacocoAdapter('target/site/jacoco/jacoco.xml')
+//                publishCoverage adapters: [
+//
+//                    jacocoAdapter('target/site/jacoco/jacoco.xml')
 
                ]
                publishHTML(target: [
