@@ -109,37 +109,25 @@ pipeline {
                 }
             }
 
- post {
+    post {
 
-     always {
+        always {
 
-         archiveArtifacts artifacts: '''
-         target/ExtentReport/**
-         target/screenshots/**
-         target/dependency-check-report.html
-         ''', allowEmptyArchive: true
+            archiveArtifacts artifacts: '''
+            target/ExtentReport/**
+            target/screenshots/**
+            target/dependency-check-report.html
+            ''', allowEmptyArchive: true
 
-                }
-            }
-//                publishCoverage adapters: [
-//
-//                    jacocoAdapter('target/site/jacoco/jacoco.xml')
+            publishHTML(target: [
+                reportDir: 'target',
+                reportFiles: 'dependency-check-report.html',
+                reportName: 'OWASP Report',
+                keepAll: true,
+                alwaysLinkToLastBuild: true
+            ])
 
-  //             ]
-               publishHTML(target: [
-
-                   reportDir: 'target',
-
-                   reportFiles: 'dependency-check-report.html',
-
-                   reportName: 'OWASP Report',
-
-                   keepAll: true,
-
-                   alwaysLinkToLastBuild: true
-
-               ])
-     }
+        }
 
      success {
 
@@ -296,7 +284,7 @@ pipeline {
 
              attachmentsPattern: 'reports/ExtentReport.html'
          )
-     }
-
+    }
+    }
 
 }

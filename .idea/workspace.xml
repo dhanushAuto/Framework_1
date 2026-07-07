@@ -481,7 +481,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783450885491</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Phase 1 – Advanced Test Automation Framework - done&#10;Phase 2 – Professional Reporting&#10;Phase 3 – Jenkins Pipeline&#10;Phase 4 – Dashboards &amp; Trends&#10;Phase 5 – Code Quality &amp; Security">
+      <option name="closed" value="true" />
+      <created>1783450998436</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1783450998436</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
