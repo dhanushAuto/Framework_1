@@ -118,7 +118,30 @@ public class report_utils {
             }
         }
     }
+    public static void addAIAnalysis(String aiAnalysis) {
 
+        ExtentTest extentTest = test.get();
+
+        if (extentTest != null) {
+
+            extentTest.info("""
+                <div style='background:#1E1E1E;
+                            border-left:5px solid #00BCD4;
+                            padding:10px;
+                            border-radius:5px;'>
+
+                <h3>🤖 AI Failure Analysis</h3>
+
+                <pre>
+                """ + aiAnalysis + """
+                </pre>
+
+                </div>
+                """);
+
+        }
+
+    }
     public static void flushReport() {
         if (extent != null) {
             extent.flush();

@@ -1,0 +1,312 @@
+package ai.release;
+
+import ai.service.AIService;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ReleaseRiskPredictor {
+
+    private final AIService aiService = new AIService();
+
+    public ReleaseReadinessAssessment assessReadiness(ReleaseContext context) throws Exception {
+        
+        String prompt = buildReadinessPrompt(context);
+        
+        String aiResponse = aiService.ask(prompt);
+        
+        return parseReadinessAssessment(aiResponse);
+    }
+
+    public RiskPrediction predictRisk(ReleaseContext context) throws Exception {
+        
+        String prompt = buildRiskPredictionPrompt(context);
+        
+        String aiResponse = aiService.ask(prompt);
+        
+        return parseRiskPrediction(aiResponse);
+    }
+
+    public List<String> identifyBlockingIssues(ReleaseContext context) throws Exception {
+        
+        String prompt = buildBlockingIssuesPrompt(context);
+        
+        String aiResponse = aiService.ask(prompt);
+        
+        return parseBlockingIssues(aiResponse);
+    }
+
+    public String generateReleaseReport(ReleaseContext context) throws Exception {
+        
+        String prompt = buildReleaseReportPrompt(context);
+        
+        return aiService.ask(prompt);
+    }
+
+    private String buildReadinessPrompt(ReleaseContext context) {
+        return """
+            You are a Release Readiness Assessment Expert.
+            
+            Assess the readiness of the release based on the following context.
+            
+            Release Version: %s
+            Changed Components: %s
+            Test Results: %s
+            Defect Count: %d
+            Critical Defects: %d
+            Code Coverage: %.1f%%
+            Performance Metrics: %s
+            Security Scan Results: %s
+            
+            Provide:
+            1. READINESS_SCORE: 0-100
+            2. STATUS: READY/CONDITIONAL/NOT_READY
+            3. BLOCKERS: List of blocking issues
+            4. RECOMMENDATIONS: Action items before release
+            5. RISK_LEVEL: LOW/MEDIUM/HIGH/CRITICAL
+            
+            Format:
+            READINESS_SCORE: 85
+            STATUS: CONDITIONAL
+            BLOCKERS: issue1, issue2
+            RECOMMENDATIONS: recommendation1, recommendation2
+            RISK_LEVEL: MEDIUM
+            """.formatted(
+            context.version,
+            String.join(", ", context.changedComponents),
+            context.testResults,
+            context.defectCount,
+            context.criticalDefectCount,
+            context.codeCoverage,
+            context.performanceMetrics,
+            context.securityScanResults
+        );
+    }
+
+    private String buildRiskPredictionPrompt(ReleaseContext context) {
+        return """
+            You are a Release Risk Prediction Expert.
+            
+            Predict the risk level for this release based on historical data and current metrics.
+            
+            Release Version: %s
+            Changed Components: %s
+            Test Pass Rate: %.1f%%
+            Defect Density: %.2f defects/KLOC
+            Historical Failure Rate: %.1f%%
+            Complexity Score: %.1f
+            Team Experience: %s
+            Time Pressure: %s
+            
+            Provide:
+            1. RISK_PROBABILITY: 0.0-1.0
+            2. RISK_IMPACT: LOW/MEDIUM/HIGH/CRITICAL
+            3. RISK_CATEGORY: Technical/Business/Operational
+            4. MITIGATION_STRATEGIES: List of mitigation approaches
+            5. CONFIDENCE_LEVEL: 0.0-1.0
+            
+            Format:
+            RISK_PROBABILITY: 0.65
+            RISK_IMPACT: HIGH
+            RISK_CATEGORY: Technical
+            MITIGATION_STRATEGIES: strategy1, strategy2
+            CONFIDENCE_LEVEL: 0.80
+            """.formatted(
+            context.version,
+            String.join(", ", context.changedComponents),
+            context.testPassRate,
+            context.defectDensity,
+            context.historicalFailureRate,
+            context.complexityScore,
+            context.teamExperience,
+            context.timePressure
+        );
+    }
+
+    private String buildBlockingIssuesPrompt(ReleaseContext context) {
+        return """
+            You are a Release Blocking Issue Identification Expert.
+            
+            Identify issues that would block the release from going to production.
+            
+            Release Version: %s
+            Critical Defects: %d
+            Failed Tests: %s
+            Performance Regressions: %s
+            Security Vulnerabilities: %s
+            Compliance Issues: %s
+            
+            Return a comma-separated list of blocking issues with severity.
+            Format: issue_description (severity)
+            """.formatted(
+            context.version,
+            context.criticalDefectCount,
+            context.failedTests,
+            context.performanceRegressions,
+            context.securityVulnerabilities,
+            context.complianceIssues
+        );
+    }
+
+    private String buildReleaseReportPrompt(ReleaseContext context) {
+        return """
+            You are a Release Reporting Expert.
+            
+            Generate a comprehensive release readiness report.
+            
+            Release Version: %s
+            Summary: %s
+            Test Coverage: %.1f%%
+            Test Pass Rate: %.1f%%
+            Total Defects: %d
+            Critical Defects: %d
+            Performance Baseline: %s
+            Security Status: %s
+            
+            Provide a detailed report including:
+            1. Executive Summary
+            2. Test Results Analysis
+            3. Quality Metrics
+            4. Risk Assessment
+            5. Recommendations
+            6. Go/No-Go Decision
+            """.formatted(
+            context.version,
+            context.summary,
+            context.codeCoverage,
+            context.testPassRate,
+            context.defectCount,
+            context.criticalDefectCount,
+            context.performanceMetrics,
+            context.securityScanResults
+        );
+    }
+
+    private ReleaseReadinessAssessment parseReadinessAssessment(String aiResponse) {
+        ReleaseReadinessAssessment assessment = new ReleaseReadinessAssessment();
+        
+        String[] lines = aiResponse.split("\n");
+        for (String line : lines) {
+            if (line.startsWith("READINESS_SCORE:")) {
+                assessment.setReadinessScore(Integer.parseInt(line.split(":")[1].trim()));
+            } else if (line.startsWith("STATUS:")) {
+                assessment.setStatus(line.split(":")[1].trim());
+            } else if (line.startsWith("BLOCKERS:")) {
+                assessment.setBlockers(extractList(line.split(":")[1]));
+            } else if (line.startsWith("RECOMMENDATIONS:")) {
+                assessment.setRecommendations(extractList(line.split(":")[1]));
+            } else if (line.startsWith("RISK_LEVEL:")) {
+                assessment.setRiskLevel(line.split(":")[1].trim());
+            }
+        }
+        
+        return assessment;
+    }
+
+    private RiskPrediction parseRiskPrediction(String aiResponse) {
+        RiskPrediction prediction = new RiskPrediction();
+        
+        String[] lines = aiResponse.split("\n");
+        for (String line : lines) {
+            if (line.startsWith("RISK_PROBABILITY:")) {
+                prediction.setRiskProbability(Double.parseDouble(line.split(":")[1].trim()));
+            } else if (line.startsWith("RISK_IMPACT:")) {
+                prediction.setRiskImpact(line.split(":")[1].trim());
+            } else if (line.startsWith("RISK_CATEGORY:")) {
+                prediction.setRiskCategory(line.split(":")[1].trim());
+            } else if (line.startsWith("MITIGATION_STRATEGIES:")) {
+                prediction.setMitigationStrategies(extractList(line.split(":")[1]));
+            } else if (line.startsWith("CONFIDENCE_LEVEL:")) {
+                prediction.setConfidenceLevel(Double.parseDouble(line.split(":")[1].trim()));
+            }
+        }
+        
+        return prediction;
+    }
+
+    private List<String> parseBlockingIssues(String aiResponse) {
+        String[] issues = aiResponse.split(",");
+        List<String> result = new ArrayList<>();
+        for (String issue : issues) {
+            result.add(issue.trim());
+        }
+        return result;
+    }
+
+    private List<String> extractList(String str) {
+        String[] items = str.trim().split(",");
+        List<String> result = new ArrayList<>();
+        for (String item : items) {
+            result.add(item.trim());
+        }
+        return result;
+    }
+
+    public static class ReleaseReadinessAssessment {
+        private int readinessScore = 0;
+        private String status = "NOT_READY";
+        private List<String> blockers = new ArrayList<>();
+        private List<String> recommendations = new ArrayList<>();
+        private String riskLevel = "HIGH";
+
+        public int getReadinessScore() { return readinessScore; }
+        public void setReadinessScore(int readinessScore) { this.readinessScore = readinessScore; }
+        
+        public String getStatus() { return status; }
+        public void setStatus(String status) { this.status = status; }
+        
+        public List<String> getBlockers() { return blockers; }
+        public void setBlockers(List<String> blockers) { this.blockers = blockers; }
+        
+        public List<String> getRecommendations() { return recommendations; }
+        public void setRecommendations(List<String> recommendations) { this.recommendations = recommendations; }
+        
+        public String getRiskLevel() { return riskLevel; }
+        public void setRiskLevel(String riskLevel) { this.riskLevel = riskLevel; }
+    }
+
+    public static class RiskPrediction {
+        private double riskProbability = 0.0;
+        private String riskImpact = "MEDIUM";
+        private String riskCategory = "Technical";
+        private List<String> mitigationStrategies = new ArrayList<>();
+        private double confidenceLevel = 0.0;
+
+        public double getRiskProbability() { return riskProbability; }
+        public void setRiskProbability(double riskProbability) { this.riskProbability = riskProbability; }
+        
+        public String getRiskImpact() { return riskImpact; }
+        public void setRiskImpact(String riskImpact) { this.riskImpact = riskImpact; }
+        
+        public String getRiskCategory() { return riskCategory; }
+        public void setRiskCategory(String riskCategory) { this.riskCategory = riskCategory; }
+        
+        public List<String> getMitigationStrategies() { return mitigationStrategies; }
+        public void setMitigationStrategies(List<String> mitigationStrategies) { this.mitigationStrategies = mitigationStrategies; }
+        
+        public double getConfidenceLevel() { return confidenceLevel; }
+        public void setConfidenceLevel(double confidenceLevel) { this.confidenceLevel = confidenceLevel; }
+    }
+
+    public static class ReleaseContext {
+        public String version = "";
+        public List<String> changedComponents = new ArrayList<>();
+        public String testResults = "";
+        public int defectCount = 0;
+        public int criticalDefectCount = 0;
+        public double codeCoverage = 0.0;
+        public double testPassRate = 0.0;
+        public double defectDensity = 0.0;
+        public double historicalFailureRate = 0.0;
+        public double complexityScore = 0.0;
+        public String teamExperience = "";
+        public String timePressure = "";
+        public String performanceMetrics = "";
+        public String securityScanResults = "";
+        public String failedTests = "";
+        public String performanceRegressions = "";
+        public String securityVulnerabilities = "";
+        public String complianceIssues = "";
+        public String summary = "";
+    }
+}

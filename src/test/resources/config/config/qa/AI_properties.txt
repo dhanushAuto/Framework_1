@@ -1,0 +1,27 @@
+####################################
+# AI
+####################################
+
+ai.enabled=true
+
+ai.provider=ollama
+
+ai.url=http://localhost:11434
+
+ai.model=qwen3:8b
+
+ai.timeout=60000
+
+ai.retry=3
+
+####################################
+# Reports
+####################################
+
+ai.report.path=reports/AIReport.html
+
+####################################
+# Logs
+####################################
+
+ai.logs.path=logs

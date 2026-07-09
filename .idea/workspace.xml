@@ -7,8 +7,48 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="733aa41d-50dd-4aba-8f9c-54a1c449b9ea" name="Changes" comment="Phase 1 – Advanced Test Automation Framework - done&#10;Phase 2 – Professional Reporting&#10;Phase 3 – Jenkins Pipeline&#10;Phase 4 – Dashboards &amp; Trends&#10;Phase 5 – Code Quality &amp; Security">
-      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+    <list default="true" id="733aa41d-50dd-4aba-8f9c-54a1c449b9ea" name="Changes" comment="AI">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/AIResponseAnalyzer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/APIFailureAnalyzer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/BugClassifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/FailureAnalyzer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/FlakyDetector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/LogSummarizer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/client/AIClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/generator/TestCaseGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/healing/SelfHealingEngine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/impact/TestImpactAnalyzer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/model/OllamaRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/model/OllamaResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/optimizer/TestPrioritizer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/performance/PerformanceRegressionDetector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prediction/DefectPredictor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/AnalysisPromptBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/FailurePromptBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/HealingPromptBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/PerformancePromptBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/PromptBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/ReleasePromptBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/TestPromptBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/release/ReleaseRiskPredictor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/report/TestSummaryGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/service/AIService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/test/AITest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/test/FailureAITest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ai/traceability/RequirementTraceability.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/AIUtils/AIUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/config/config/config.properties.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/config/config/qa/AI_properties.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listeners/TestListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listeners/TestListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/DELETE_Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/DELETE_Pages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/GET_Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/GET_Pages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/POST_Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/POST_Pages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/api/config_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/api/config_utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/common_utils/report_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/report_utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/config/config/properties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/config/config/qa/properties.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +61,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="80" />
+    <option name="cachedIndexableFilesCount" value="107" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -60,65 +100,65 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.1450416199321878" />
-      <entry key="MS500" value="2.75269170023462" />
-      <entry key="S2" value="5.996963085103462" />
-      <entry key="S5" value="10.001198143850951" />
-      <entry key="S10" value="13.462607073403865" />
-      <entry key="S30" value="17.31939643161593" />
-      <entry key="S60" value="18.582942784582023" />
-      <entry key="M2" value="19.27102012542193" />
-      <entry key="M5" value="19.703335775548567" />
-      <entry key="M10" value="19.856905510818997" />
-      <entry key="M15" value="19.95875361881519" />
-      <entry key="M30" value="20.530043322691306" />
-      <entry key="H1" value="21.906569239256086" />
-      <entry key="H2" value="24.045857356833732" />
-      <entry key="H4" value="26.87132028343878" />
-      <entry key="D1" value="33.72237223190716" />
-      <entry key="W1" value="36.44271962538408" />
+      <entry key="MS100" value="1.000000346537494" />
+      <entry key="MS500" value="1.1145695066972097" />
+      <entry key="S2" value="3.2988143906171166" />
+      <entry key="S5" value="7.429740428285468" />
+      <entry key="S10" value="13.42153628006685" />
+      <entry key="S30" value="27.257962276919354" />
+      <entry key="S60" value="34.56193069570264" />
+      <entry key="M2" value="39.306708045224454" />
+      <entry key="M5" value="42.59617053455152" />
+      <entry key="M10" value="43.78172282195149" />
+      <entry key="M15" value="44.23590272963633" />
+      <entry key="M30" value="45.16005412704691" />
+      <entry key="H1" value="46.71300132144085" />
+      <entry key="H2" value="48.94264807833725" />
+      <entry key="H4" value="51.8155187787167" />
+      <entry key="D1" value="58.71138343494053" />
+      <entry key="W1" value="61.44105414564836" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
-      <entry key="S10" value="3.690796824753237E-172" />
-      <entry key="S30" value="7.17309714929072E-58" />
-      <entry key="S60" value="2.678263831158298E-29" />
-      <entry key="M2" value="5.175194525964942E-15" />
-      <entry key="M5" value="1.9305989467767152E-6" />
-      <entry key="M10" value="0.0014124978120913976" />
-      <entry key="M15" value="0.01326702010806248" />
-      <entry key="M30" value="0.14165970965749825" />
-      <entry key="H1" value="0.5467964613167128" />
-      <entry key="H2" value="1.256232321452837" />
-      <entry key="H4" value="2.125109976209347" />
-      <entry key="D1" value="4.058610164548054" />
-      <entry key="W1" value="4.838411737825845" />
+      <entry key="S10" value="4.4157558767372085E-173" />
+      <entry key="S30" value="3.534557234643319E-58" />
+      <entry key="S60" value="1.8800418172592133E-29" />
+      <entry key="M2" value="4.335944905291774E-15" />
+      <entry key="M5" value="1.7986840996020643E-6" />
+      <entry key="M10" value="0.0013633871582922465" />
+      <entry key="M15" value="0.012957692344174704" />
+      <entry key="M30" value="0.1399985332913937" />
+      <entry key="H1" value="0.5435809953076451" />
+      <entry key="H2" value="1.2525332043434776" />
+      <entry key="H4" value="2.1219788570701525" />
+      <entry key="D1" value="4.057612898465945" />
+      <entry key="W1" value="4.838241880519869" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.0915644823175559" />
-      <entry key="MS500" value="2.7273174952696215" />
-      <entry key="S2" value="5.969235512602595" />
-      <entry key="S5" value="9.945397539343672" />
-      <entry key="S10" value="13.408918591554771" />
-      <entry key="S30" value="17.29126281214072" />
-      <entry key="S60" value="18.567168310834674" />
-      <entry key="M2" value="19.262666256886064" />
-      <entry key="M5" value="19.699878688486255" />
-      <entry key="M10" value="19.8565615241994" />
-      <entry key="M15" value="19.970801534954024" />
-      <entry key="M30" value="20.670804230858792" />
-      <entry key="H1" value="22.452329276622336" />
-      <entry key="H2" value="25.300834736482635" />
-      <entry key="H4" value="28.99520118867892" />
-      <entry key="D1" value="37.78055827505439" />
-      <entry key="W1" value="41.28106121132603" />
+      <entry key="MS100" value="0.9592644515208598" />
+      <entry key="MS500" value="1.105185909685824" />
+      <entry key="S2" value="3.29051743387278" />
+      <entry key="S5" value="7.413480517988158" />
+      <entry key="S10" value="13.386825913544406" />
+      <entry key="S30" value="27.217245073444005" />
+      <entry key="S60" value="34.53318122273887" />
+      <entry key="M2" value="39.289553341834456" />
+      <entry key="M5" value="42.58853240399203" />
+      <entry key="M10" value="43.77911945569761" />
+      <entry key="M15" value="44.246141306990864" />
+      <entry key="M30" value="45.29839300730705" />
+      <entry key="H1" value="47.25516448527787" />
+      <entry key="H2" value="50.19373583176267" />
+      <entry key="H4" value="53.936173159973464" />
+      <entry key="D1" value="62.76855609780878" />
+      <entry key="W1" value="66.27922355944455" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="AISelfReview" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4,
@@ -157,6 +197,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.AITest.executor&quot;: &quot;Run&quot;,
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
     &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
@@ -208,7 +249,20 @@
       <recent name="config.prod" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="TestNG.C:/Users/Admin/eclipse-workspace/Framework_1/src/test/resources/TestNg_files/testNG.xml">
+    <configuration name="AITest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ai.test.AITest" />
+      <module name="Framework_1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ai.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="C:/Users/Admin/eclipse-workspace/Framework_1/src/test/resources/TestNg_files/testNG.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Framework_1" />
       <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/resources/TestNg_files/testNG.xml" />
@@ -222,6 +276,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="TestNG.C:/Users/Admin/eclipse-workspace/Framework_1/src/test/resources/TestNg_files/testNG.xml" />
+        <item itemvalue="Application.AITest" />
       </list>
     </recent_temporary>
   </component>
@@ -489,7 +544,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783450998436</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="fixed jenkinsfile">
+      <option name="closed" value="true" />
+      <created>1783451200784</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1783451200784</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,7 +566,9 @@
     <MESSAGE value="Restructured Framework&#10;Added reusable utilities" />
     <MESSAGE value="DELETE API and POST API" />
     <MESSAGE value="Phase 1 – Advanced Test Automation Framework - done&#10;Phase 2 – Professional Reporting&#10;Phase 3 – Jenkins Pipeline&#10;Phase 4 – Dashboards &amp; Trends&#10;Phase 5 – Code Quality &amp; Security" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 1 – Advanced Test Automation Framework - done&#10;Phase 2 – Professional Reporting&#10;Phase 3 – Jenkins Pipeline&#10;Phase 4 – Dashboards &amp; Trends&#10;Phase 5 – Code Quality &amp; Security" />
+    <MESSAGE value="fixed jenkinsfile" />
+    <MESSAGE value="AI" />
+    <option name="LAST_COMMIT_MESSAGE" value="AI" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

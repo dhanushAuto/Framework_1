@@ -1,0 +1,148 @@
+####################################
+# AI
+####################################
+
+    ai.enabled=false
+
+    ai.on.failure.only=true
+
+    ai.provider=ollama
+
+    ai.url=http://localhost:11434/api/generate
+
+    ai.model=qwen3:8b
+
+    ai.timeout=60000
+
+    ai.retry=3
+
+####################################
+# Self-Healing Configuration
+####################################
+
+    ai.self.healing.enabled=true
+
+    ai.self.healing.max.retries=3
+
+    ai.self.healing.retry.delay.seconds=2
+
+    ai.self.healing.confidence.threshold=0.7
+
+####################################
+# Test Impact Analysis Configuration
+####################################
+
+    ai.impact.analysis.enabled=true
+
+    ai.impact.analysis.risk.threshold=0.5
+
+    ai.impact.analysis.history.days=30
+
+####################################
+# Test Case Generation Configuration
+####################################
+
+    ai.test.generation.enabled=true
+
+    ai.test.generation.type=API,UI
+
+    ai.test.generation.edge.cases=true
+
+####################################
+# Performance Regression Configuration
+####################################
+
+    ai.performance.regression.enabled=true
+
+    ai.performance.regression.threshold=0.2
+
+    ai.performance.baseline.path=reports/performance/baseline.json
+
+####################################
+# Release Readiness Configuration
+####################################
+
+    ai.release.readiness.enabled=true
+
+    ai.release.readiness.score.threshold=80
+
+    ai.release.readiness.blocking.defects.allowed=0
+
+####################################
+# Test Prioritization Configuration
+####################################
+
+    ai.test.prioritization.enabled=true
+
+    ai.test.prioritization.time.constraint=30m
+
+    ai.test.prioritization.parallel.execution=true
+
+####################################
+# Requirement Traceability Configuration
+####################################
+
+    ai.traceability.enabled=true
+
+    ai.traceability.coverage.threshold=0.9
+
+    ai.traceability.matrix.path=reports/traceability/matrix.json
+
+####################################
+# Defect Prediction Configuration
+####################################
+
+    ai.defect.prediction.enabled=true
+
+    ai.defect.prediction.probability.threshold=0.6
+
+    ai.defect.prediction.historical.data.days=90
+
+####################################
+# Flaky Test Detection Configuration
+####################################
+
+    ai.flaky.detection.enabled=true
+
+    ai.flaky.detection.pass.rate.threshold=0.95
+
+    ai.flaky.detection.min.executions=5
+
+####################################
+# Bug Classification Configuration
+####################################
+
+    ai.bug.classification.enabled=true
+
+    ai.bug.classification.auto.escalation=true
+
+####################################
+# Log Analysis Configuration
+####################################
+
+    ai.log.analysis.enabled=true
+
+    ai.log.analysis.max.log.size=5000
+
+    ai.log.analysis.pattern.detection=true
+
+####################################
+# Reports
+####################################
+
+    ai.report.path=reports/AIReport.html
+
+    ai.report.include.charts=true
+
+    ai.report.format=HTML
+
+####################################
+# Logs
+####################################
+
+    ai.logs.path=logs
+
+    ai.logs.level=INFO
+
+    ai.logs.retention.days=7
+}

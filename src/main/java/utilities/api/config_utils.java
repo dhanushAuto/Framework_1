@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class config_utils {
     private static Properties properties = new Properties();
-    private static final String DEFAULT_PATH = "src/main/resources/config.properties";
+    private static final String DEFAULT_PATH = "src/test/resources/config/config/config.properties.txt";
     private static String currentPath = DEFAULT_PATH;
 
     public static void loadProperties() {
@@ -38,6 +38,15 @@ public class config_utils {
         String value = properties.getProperty(key);
         if (value == null) {
             log_utils.warn("Property not found for key: " + key);
+        }
+        return value;
+    }
+
+    public static String getProperty(String key, String defaultValue) {
+        String value = properties.getProperty(key);
+        if (value == null) {
+            log_utils.warn("Property not found for key: " + key + ", using default: " + defaultValue);
+            return defaultValue;
         }
         return value;
     }
