@@ -2,8 +2,6 @@ package ai.analyzer;
 
 import ai.service.AIService;
 
-
-
 public class BugClassifier {
 
     private final AIService aiService = new AIService();

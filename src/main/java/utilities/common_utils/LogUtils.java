@@ -3,7 +3,11 @@ package utilities.common_utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class log_utils {
+public class LogUtils {
+    
+    private LogUtils() {
+        throw new IllegalStateException("Utility class");
+    }
 
     private static Logger getLogger() {
         StackTraceElement caller = Thread.currentThread().getStackTrace()[3];

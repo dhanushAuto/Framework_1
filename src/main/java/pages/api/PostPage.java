@@ -5,11 +5,11 @@ import ai.analyzer.APIFailureAnalyzer;
 import constants.APIConstants;
 import factories.APIClientFactory;
 import io.restassured.response.Response;
-import utilities.common_utils.json_utils;
-import utilities.common_utils.report_utils;
+import utilities.common_utils.JsonUtils;
+import utilities.common_utils.ReportUtils;
 import org.json.JSONObject;
 
-public class POST_Pages {
+public class PostPage {
 
     private String payload;
     private Response response;
@@ -17,14 +17,14 @@ public class POST_Pages {
 
     public void setBody(String bodyFile) {
 
-        payload = json_utils.getPayload(bodyFile);
+        payload = JsonUtils.getPayload(bodyFile);
 
-        report_utils.info("Payload loaded");
+        ReportUtils.info("Payload loaded");
     }
 
     public void sendPOSTRequest() {
         JSONObject jsonObject = new JSONObject(payload);
-        report_utils.info("Endpoint : " + APIConstants.BASE_URI + APIConstants.CREATE_POST);
+        ReportUtils.info("Endpoint : " + APIConstants.BASE_URI + APIConstants.CREATE_POST);
 
         for (int i = 0; i <= 1; i++) {
             jsonObject.getJSONObject("POST_API").put("userId", i);
@@ -35,8 +35,8 @@ public class POST_Pages {
                     .body(jsonObject.toString())
                     .post(APIConstants.CREATE_POST);
 
-            report_utils.info("Post " + i + " sent successfully");
-            report_utils.info(response.prettyPrint());
+            ReportUtils.info("Post " + i + " sent successfully");
+            ReportUtils.info(response.prettyPrint());
 
 
         }
@@ -46,7 +46,7 @@ public class POST_Pages {
 
         if (response.getStatusCode() != expected) {
 
-            report_utils.addAIAnalysis(
+            ReportUtils.addAIAnalysis(
                     APIFailureAnalyzer.analyze(response, expected)
             );
         }

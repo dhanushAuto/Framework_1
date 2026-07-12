@@ -19,9 +19,9 @@ public class FlakyDetector {
         return parseFlakinessAnalysis(aiResponse);
     }
 
-    public List<String> identifyFlakyTests(List<String> allTests, Map<String, List<TestExecution>> executionHistory) throws Exception {
+    public List<String> identifyFlakyTests(Map<String, List<TestExecution>> executionHistory) throws Exception {
         
-        String prompt = buildFlakyTestIdentificationPrompt(allTests, executionHistory);
+        String prompt = buildFlakyTestIdentificationPrompt(executionHistory);
         
         String aiResponse = aiService.ask(prompt);
         
@@ -78,14 +78,12 @@ public class FlakyDetector {
             """.formatted(testName, executions.size(), passCount, failCount, passRate, execStr);
     }
 
-    private String buildFlakyTestIdentificationPrompt(List<String> allTests, Map<String, List<TestExecution>> executionHistory) {
+    private String buildFlakyTestIdentificationPrompt(Map<String, List<TestExecution>> executionHistory) {
         StringBuilder historyStr = new StringBuilder();
         executionHistory.forEach((test, executions) -> {
             long passCount = executions.stream().filter(e -> e.status.equals("PASS")).count();
-            long failCount = executions.stream().filter(e -> e.status.equals("FAIL")).count();
-            double passRate = (double) passCount / executions.size() * 100;
             historyStr.append(test).append(" | ")
-                     .append("PassRate: ").append(String.format("%.1f%%", passRate)).append(" | ")
+                     .append("PassRate: ").append(String.format("%.1f%%", (double) passCount / executions.size() * 100)).append(" | ")
                      .append("TotalRuns: ").append(executions.size()).append("\n");
         });
         
@@ -154,14 +152,14 @@ public class FlakyDetector {
     }
 
     public static class FlakinessAnalysis {
-        private boolean isFlaky = false;
+        private boolean flaky = false;
         private double flakinessScore = 0.0;
         private String flakinessType = "Unknown";
         private String stabilizationRecommendation = "";
         private double confidence = 0.0;
 
-        public boolean isFlaky() { return isFlaky; }
-        public void setFlaky(boolean flaky) { isFlaky = flaky; }
+        public boolean isFlaky() { return flaky; }
+        public void setFlaky(boolean flaky) { this.flaky = flaky; }
         
         public double getFlakinessScore() { return flakinessScore; }
         public void setFlakinessScore(double flakinessScore) { this.flakinessScore = flakinessScore; }

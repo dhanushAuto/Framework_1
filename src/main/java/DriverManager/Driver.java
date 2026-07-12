@@ -1,4 +1,4 @@
-package DriverManager;
+package drivermanager;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Alert;
@@ -11,7 +11,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
 
-public class driver {
+public class Driver {
+
+    private Driver() {
+        throw new IllegalStateException("Utility class");
+    }
 
     private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 

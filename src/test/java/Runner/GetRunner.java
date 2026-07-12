@@ -14,7 +14,7 @@ import org.testng.annotations.DataProvider;
                 "json:target/cucumber.json"
         }
 )
-public class GETRunner extends AbstractTestNGCucumberTests {
+public class GetRunner extends AbstractTestNGCucumberTests {
 
     @Override
     @DataProvider(parallel = false)

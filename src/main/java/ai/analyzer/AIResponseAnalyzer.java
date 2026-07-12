@@ -2,9 +2,13 @@ package ai.analyzer;
 
 import ai.service.AIService;
 import io.restassured.response.Response;
-import utilities.api.config_utils;
+import utilities.api.ConfigUtils;
 
 public class AIResponseAnalyzer {
+    
+    private AIResponseAnalyzer() {
+        throw new IllegalStateException("Utility class");
+    }
 
     private static final AIService aiService = new AIService();
 
@@ -17,7 +21,7 @@ public class AIResponseAnalyzer {
     public static String analyze(Response response) {
 
         try {
-            config_utils.loadProperties();
+            ConfigUtils.loadProperties();
             String prompt = """
                     Analyze the following REST API response.
 

@@ -18,4 +18,3 @@ public class RetryListener implements IRetryAnalyzer {
             return false;
         }
     }
-

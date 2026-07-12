@@ -4,37 +4,40 @@ import ai.analyzer.FailureAnalyzer;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import utilities.common_utils.report_utils;
+import utilities.common_utils.LogUtils;
+import utilities.common_utils.ReportUtils;
 import utilities.ui.ScreenshotUtils;
-import DriverManager.driver;
+import drivermanager.Driver;
 
 public class TestListener implements ITestListener {
+
+    private static final String RUN_SCENARIO = "runScenario";
 
     @Override
     public void onTestStart(ITestResult result) {
         // Skip Cucumber tests - they are handled by Hooks.java
-        if (result.getMethod().getMethodName().equals("runScenario")) {
+        if (result.getMethod().getMethodName().equals(RUN_SCENARIO)) {
             return;
         }
         // Create a test entry in the extent report for TestNG tests
-        report_utils.createTest(result.getMethod().getMethodName());
-        report_utils.info("Test started: " + result.getMethod().getMethodName());
+        ReportUtils.createTest(result.getMethod().getMethodName());
+        ReportUtils.info("Test started: " + result.getMethod().getMethodName());
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
         // Skip Cucumber tests - they are handled by Hooks.java
-        if (result.getMethod().getMethodName().equals("runScenario")) {
+        if (result.getMethod().getMethodName().equals(RUN_SCENARIO)) {
             return;
         }
-        report_utils.pass("Test passed: " + result.getMethod().getMethodName());
+        ReportUtils.pass("Test passed: " + result.getMethod().getMethodName());
         // Capture and attach screenshot on pass
         try {
-            ScreenshotUtils screenshotUtils = new ScreenshotUtils(driver.getDriver());
+            ScreenshotUtils screenshotUtils = new ScreenshotUtils(Driver.getDriver());
             String screenshotPath = screenshotUtils.captureScreenshot(result.getMethod().getMethodName() + "_PASS");
-            report_utils.attachScreenshot(screenshotPath);
+            ReportUtils.attachScreenshot(screenshotPath);
         } catch (Exception e) {
-            report_utils.info("Could not capture screenshot on pass: " + e.getMessage());
+            ReportUtils.info("Could not capture screenshot on pass: " + e.getMessage());
         }
     }
 
@@ -42,7 +45,7 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
 
         // Skip Cucumber tests
-        if (result.getMethod().getMethodName().equals("runScenario")) {
+        if (result.getMethod().getMethodName().equals(RUN_SCENARIO)) {
             return;
         }
 
@@ -58,21 +61,21 @@ public class TestListener implements ITestListener {
                         getShortStackTrace(result.getThrowable()));
 
                 // Display AI analysis in Extent Report
-                report_utils.addAIAnalysis(aiAnalysis);
+                ReportUtils.addAIAnalysis(aiAnalysis);
 
-                // Optional: Print in console
-                System.out.println(aiAnalysis);
+                // Optional: Log AI analysis
+                LogUtils.info(aiAnalysis);
 
             }
 
         } catch (Exception e) {
 
-            System.out.println("AI Analysis failed: " + e.getMessage());
+            LogUtils.error("AI Analysis failed: " + e.getMessage());
 
         }
 
         // Log failure in Extent Report
-        report_utils.fail(
+        ReportUtils.fail(
                 "Test Failed : "
                         + result.getMethod().getMethodName()
                         + "<br><br>"
@@ -85,17 +88,17 @@ public class TestListener implements ITestListener {
         try {
 
             ScreenshotUtils screenshotUtils =
-                    new ScreenshotUtils(driver.getDriver());
+                    new ScreenshotUtils(Driver.getDriver());
 
             String screenshotPath =
                     screenshotUtils.captureScreenshot(
                             result.getMethod().getMethodName() + "_FAILURE");
 
-            report_utils.attachScreenshot(screenshotPath);
+            ReportUtils.attachScreenshot(screenshotPath);
 
         } catch (Exception e) {
 
-            report_utils.info(
+            ReportUtils.info(
                     "Could not capture screenshot on failure: "
                             + e.getMessage());
 
@@ -105,7 +108,8 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext context) {
-        report_utils.flushReport();
+        ReportUtils.flushReport();
+        ReportUtils.cleanup();
     }
 
     private String getShortStackTrace(Throwable throwable) {

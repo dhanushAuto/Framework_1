@@ -5,23 +5,21 @@ import ai.analyzer.APIFailureAnalyzer;
 import constants.APIConstants;
 import factories.APIClientFactory;
 import io.restassured.response.Response;
-import utilities.common_utils.report_utils;
+import utilities.common_utils.ReportUtils;
 
 
-public class GET_Pages {
-    private static final String API_DATA_FILE = "src/test/resources/Payloads/api_data.json";
-    private static final String GET_API_NODE = "GET_API";
+public class GetPage {
 
     private Response response;
 
     public void createTestLog(String testName) {
-        report_utils.createTest(testName);
-        report_utils.info("GET API CALL: " + testName);
+        ReportUtils.createTest(testName);
+        ReportUtils.info("GET API CALL: " + testName);
     }
 
     public void iSendGETRequest() {
         try {
-            report_utils.info("Endpoint : " + APIConstants.BASE_URI + APIConstants.USERS);
+            ReportUtils.info("Endpoint : " + APIConstants.BASE_URI + APIConstants.USERS);
 
             response = APIClientFactory.APIRequest(APIConstants.BASE_URI)
                     .get(APIConstants.USERS)
@@ -29,10 +27,10 @@ public class GET_Pages {
                     .extract()
                     .response();
 
-            report_utils.info(response.prettyPrint());
+            ReportUtils.info(response.prettyPrint());
 
         } catch (Exception e) {
-            report_utils.fail("Failed to send GET request: " + e.getMessage());
+            ReportUtils.fail("Failed to send GET request: " + e.getMessage());
             throw e;
         }
     }
@@ -41,7 +39,7 @@ public class GET_Pages {
 
         if (response.getStatusCode() != expected) {
 
-            report_utils.addAIAnalysis(
+            ReportUtils.addAIAnalysis(
                     APIFailureAnalyzer.analyze(response, expected)
             );
         }

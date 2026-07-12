@@ -2,25 +2,23 @@ package listeners;
 
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
+import utilities.common_utils.LogUtils;
 
-    public class SuiteListener implements ISuiteListener {
+public class SuiteListener implements ISuiteListener {
+
+    private static final String SEPARATOR = "==================================";
 
         @Override
         public void onStart(ISuite suite) {
-
-            System.out.println("==================================");
-            System.out.println("Suite Started : " + suite.getName());
-            System.out.println("==================================");
-
+            LogUtils.info(SEPARATOR);
+            LogUtils.info("Suite Started : " + suite.getName());
+            LogUtils.info(SEPARATOR);
         }
 
         @Override
         public void onFinish(ISuite suite) {
-
-            System.out.println("==================================");
-            System.out.println("Suite Finished : " + suite.getName());
-            System.out.println("==================================");
-
+            LogUtils.info(SEPARATOR);
+            LogUtils.info("Suite Finished : " + suite.getName());
+            LogUtils.info(SEPARATOR);
         }
     }
-

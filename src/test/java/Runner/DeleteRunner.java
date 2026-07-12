@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-        features = "src/test/resources/API_Features/regression/POST/POST.feature",
+        features = "src/test/resources/API_Features/regression/DELETE/DELETE.feature",
         glue = {"StepDef", "Hooks"},
         tags = "@Regression",
         plugin = {
@@ -14,7 +14,7 @@ import org.testng.annotations.DataProvider;
                 "json:target/cucumber.json"
         }
 )
-public class POSTRunner extends AbstractTestNGCucumberTests {
+public class DeleteRunner extends AbstractTestNGCucumberTests {
 
     @Override
     @DataProvider(parallel = false)

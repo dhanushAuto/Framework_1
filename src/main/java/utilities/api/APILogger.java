@@ -3,35 +3,35 @@ package utilities.api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import utilities.allure.AllureAttachment;
-import utilities.common_utils.log_utils;
-import utilities.common_utils.report_utils;
-
-import java.util.Map;
+import utilities.common_utils.LogUtils;
+import utilities.common_utils.ReportUtils;
 
 public class APILogger {
+    
+    private APILogger() {
+        throw new IllegalStateException("Utility class");
+    }
 
     private static long startTime;
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     /**
      * Logs the complete API request details including method, URL, headers, and payload
-     * @param requestSpec RequestSpecification containing the request details
      * @param method HTTP method (GET, POST, PUT, DELETE, etc.)
      * @param endpoint API endpoint URL
      */
-    public static void logRequest(RequestSpecification requestSpec, String method, String endpoint) {
+    public static void logRequest(String method, String endpoint) {
         startTime = System.currentTimeMillis();
         
         String requestDetails = "Method: " + method + "\nEndpoint: " + endpoint;
         
-        report_utils.info("API Request");
-        report_utils.info("Method: " + method);
-        report_utils.info("Endpoint: " + endpoint);
+        ReportUtils.info("API Request");
+        ReportUtils.info("Method: " + method);
+        ReportUtils.info("Endpoint: " + endpoint);
         
         AllureAttachment.attachApiRequest(requestDetails);
-        log_utils.info("API Request - " + method + " " + endpoint);
+        LogUtils.info("API Request - " + method + " " + endpoint);
         
         // Note: Headers cannot be retrieved from RequestSpecification
         // Log headers separately using logRequestHeaders(Map<String, String> headers) if needed
@@ -44,11 +44,11 @@ public class APILogger {
     public static void logPayload(String payload) {
         if (payload != null && !payload.isEmpty()) {
             String formattedJson = formatJson(payload);
-            report_utils.info("<pre>" + formattedJson + "</pre>");
+            ReportUtils.info("<pre>" + formattedJson + "</pre>");
             AllureAttachment.attachApiPayload(formattedJson);
-            log_utils.info("Request Payload: " + payload);
+            LogUtils.info("Request Payload: " + payload);
         } else {
-            report_utils.info("Payload: No payload present");
+            ReportUtils.info("Payload: No payload present");
         }
     }
 
@@ -63,21 +63,21 @@ public class APILogger {
         int statusCode = response.getStatusCode();
         String responseBody = response.getBody().asString();
         
-        report_utils.info("Status Code: " + statusCode);
+        ReportUtils.info("Status Code: " + statusCode);
         String formattedJson = formatJson(responseBody);
-        report_utils.info("<pre>" + formattedJson + "</pre>");
-        report_utils.info("Execution Time: " + executionTime + " ms");
+        ReportUtils.info("<pre>" + formattedJson + "</pre>");
+        ReportUtils.info("Execution Time: " + executionTime + " ms");
         
         String responseDetails = "Status Code: " + statusCode + "\nExecution Time: " + executionTime + " ms\nResponse:\n" + formattedJson;
         AllureAttachment.attachApiResponse(responseDetails);
         
-        log_utils.info("API Response - Status: " + statusCode + ", Time: " + executionTime + "ms");
+        LogUtils.info("API Response - Status: " + statusCode + ", Time: " + executionTime + "ms");
         
         // Log pass/fail based on status code
         if (statusCode >= 200 && statusCode < 300) {
-            report_utils.pass("API call successful - Status: " + statusCode);
+            ReportUtils.pass("API call successful - Status: " + statusCode);
         } else {
-            report_utils.fail("API call failed - Status: " + statusCode);
+            ReportUtils.fail("API call failed - Status: " + statusCode);
         }
     }
 
@@ -96,7 +96,7 @@ public class APILogger {
             Object jsonObject = gson.fromJson(json, Object.class);
             return gson.toJson(jsonObject);
         } catch (Exception e) {
-            log_utils.error("Failed to format JSON: " + e.getMessage());
+            LogUtils.error("Failed to format JSON: " + e.getMessage());
             return json;
         }
     }
@@ -113,11 +113,11 @@ public class APILogger {
                 for (io.restassured.http.Header header : headers) {
                     headerLog.append("  ").append(header.getName()).append(": ").append(header.getValue()).append("\n");
                 }
-                report_utils.info(headerLog.toString().trim());
-                log_utils.info("Response Headers: " + headers);
+                ReportUtils.info(headerLog.toString().trim());
+                LogUtils.info("Response Headers: " + headers);
             }
         } catch (Exception e) {
-            log_utils.error("Failed to log response headers: " + e.getMessage());
+            LogUtils.error("Failed to log response headers: " + e.getMessage());
         }
     }
 }

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utilities.common_utils.log_utils;
+import utilities.common_utils.LogUtils;
 
 import java.time.Duration;
 import java.util.NoSuchElementException;
@@ -24,7 +24,7 @@ public class WaitUtils {
 
     public void implicitWait(int seconds) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
-        log_utils.info("Set implicit wait: " + seconds + "s");
+        LogUtils.info("Set implicit wait: " + seconds + "s");
     }
 
     public WebDriverWait explicitWait(int seconds) {

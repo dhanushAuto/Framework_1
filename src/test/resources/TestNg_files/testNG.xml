@@ -15,9 +15,9 @@
     <!-- API Tests - POST -> GET -> DELETE -->
     <test name="API Tests" enabled="true">
         <classes>
-            <class name="Runner.POSTRunner" />
-            <class name="Runner.GETRunner" />
-            <class name="Runner.DELETERunner" />
+            <class name="Runner.PostRunner" />
+            <class name="Runner.GetRunner" />
+            <class name="Runner.DeleteRunner" />
         </classes>
     </test>
 

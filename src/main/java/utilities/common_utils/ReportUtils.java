@@ -5,21 +5,24 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-import config.EnvironmentManager;
 import utilities.ui.BrowserUtils;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
-public class report_utils {
+public class ReportUtils {
 
+    private static final String UNKNOWN = "unknown";
     private static ExtentReports extent;
-    private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
-    private static EnvironmentManager getEnvironment;
-    static BrowserUtils browserUtils = new BrowserUtils();
+    private static final ThreadLocal<ExtentTest> test = new ThreadLocal<>();
     private static String testType;
     private static String environment;
     
+    private ReportUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static void setTestType(String type) {
         testType = type;
     }
@@ -32,13 +35,13 @@ public class report_utils {
 
         if (extent == null) {
             // Generate timestamp for filename
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
-            String timestamp = dateFormat.format(new Date());
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
+            String timestamp = dateFormat.format(LocalDateTime.now(ZoneId.systemDefault()));
             
             // Format report name: env_testType_date_time
             String reportFileName = String.format("reports/%s_%s_%s.html", 
-                environment != null ? environment : "unknown",
-                testType != null ? testType : "unknown",
+                environment != null ? environment : UNKNOWN,
+                testType != null ? testType : UNKNOWN,
                 timestamp);
 
             ExtentSparkReporter spark = new ExtentSparkReporter(reportFileName);
@@ -53,8 +56,8 @@ public class report_utils {
             extent.attachReporter(spark);
 
             extent.setSystemInfo("Tester", "Dhanush");
-            extent.setSystemInfo("Environment", environment != null ? environment : "unknown");
-            extent.setSystemInfo("Test Type", testType != null ? testType : "unknown");
+            extent.setSystemInfo("Environment", environment != null ? environment : UNKNOWN);
+            extent.setSystemInfo("Test Type", testType != null ? testType : UNKNOWN);
             extent.setSystemInfo("Browser", BrowserUtils.getBrowser());
             extent.setSystemInfo("Operating System", System.getProperty("os.name"));
             extent.setSystemInfo("Java Version", System.getProperty("java.version"));
@@ -103,7 +106,7 @@ public class report_utils {
         ExtentTest extentTest = test.get();
         if (extentTest != null) {
             // 'Status.ERROR' is not available in this ExtentReports version - use FAIL
-            extentTest.log(Status.FAIL, message);
+            extentTest.log(Status.FAIL, "ERROR: " + message);
         }
     }
 
@@ -112,9 +115,9 @@ public class report_utils {
         if (extentTest != null && screenshotPath != null) {
             try {
                 extentTest.addScreenCaptureFromPath(screenshotPath);
-                log_utils.info("Screenshot attached to report: " + screenshotPath);
+                LogUtils.info("Screenshot attached to report: " + screenshotPath);
             } catch (Exception e) {
-                log_utils.error("Failed to attach screenshot: " + e.getMessage());
+                LogUtils.error("Failed to attach screenshot: " + e.getMessage());
             }
         }
     }
@@ -146,6 +149,10 @@ public class report_utils {
         if (extent != null) {
             extent.flush();
         }
+    }
+
+    public static void cleanup() {
+        test.remove();
     }
 
 }

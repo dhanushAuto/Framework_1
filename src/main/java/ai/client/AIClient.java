@@ -13,7 +13,7 @@ import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.core5.util.Timeout;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import utilities.api.config_utils;
+import utilities.api.ConfigUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,9 +28,9 @@ public class AIClient {
     private final long timeoutMs;
 
     public AIClient() {
-        this.maxRetries = Integer.parseInt(config_utils.getProperty("ai.retry", "3"));
+        this.maxRetries = Integer.parseInt(ConfigUtils.getProperty("ai.retry", "3"));
         this.retryDelayMs = 1000;
-        this.timeoutMs = Long.parseLong(config_utils.getProperty("ai.timeout", "60000"));
+        this.timeoutMs = Long.parseLong(ConfigUtils.getProperty("ai.timeout", "60000"));
         
         PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
         connectionManager.setMaxTotal(20);
@@ -49,23 +49,28 @@ public class AIClient {
         logger.info("AIClient initialized with maxRetries={}, timeout={}ms", maxRetries, timeoutMs);
     }
 
-    public String askAI(String prompt) throws Exception {
-        return askAIWithRetry(prompt, maxRetries);
+    public String askAI(String prompt) {
+        try {
+            return askAIWithRetry(prompt, maxRetries);
+        } catch (Exception e) {
+            logger.error("AI request failed: {}", e.getMessage());
+            return "AI Analysis Failed: " + e.getMessage();
+        }
     }
 
     private String askAIWithRetry(String prompt, int retriesLeft) throws Exception {
         if (retriesLeft <= 0) {
-            throw new RuntimeException("Max retries exceeded for AI request");
+            throw new AIException("Max retries exceeded for AI request");
         }
 
         OllamaRequest request = new OllamaRequest();
-        request.setModel(config_utils.getProperty("ai.model"));
+        request.setModel(ConfigUtils.getProperty("ai.model"));
         request.setPrompt(prompt);
         request.setStream(false);
         request.setThink(false);
 
         String json = mapper.writeValueAsString(request);
-        HttpPost post = new HttpPost(config_utils.getProperty("ai.url"));
+        HttpPost post = new HttpPost(ConfigUtils.getProperty("ai.url"));
         post.setEntity(new StringEntity(json, ContentType.APPLICATION_JSON));
 
         try {
@@ -73,12 +78,13 @@ public class AIClient {
             
             String body = httpClient.execute(post, httpResponse -> {
                 int statusCode = httpResponse.getCode();
-                String responseBody = new String(
-                    httpResponse.getEntity().getContent().readAllBytes());
+                byte[] responseBytes = httpResponse.getEntity().getContent().readAllBytes();
+                String responseBody = new String(responseBytes);
 
                 if (statusCode != 200) {
                     logger.warn("AI request failed with status {}: {}", statusCode, responseBody);
-                    throw new RuntimeException("Ollama Error: " + statusCode + "\n" + responseBody);
+                    // Throwing RuntimeException here because it's inside a lambda for HttpClient
+                    throw new AIRequestException("Ollama Error: " + statusCode + "\n" + responseBody);
                 }
 
                 logger.debug("AI request successful");
@@ -96,12 +102,27 @@ public class AIClient {
                     TimeUnit.MILLISECONDS.sleep(retryDelayMs);
                 } catch (InterruptedException ie) {
                     Thread.currentThread().interrupt();
-                    throw new RuntimeException("Retry interrupted", ie);
+                    throw new AIException("Retry interrupted", ie);
                 }
                 return askAIWithRetry(prompt, retriesLeft - 1);
             }
             
-            throw new RuntimeException("AI request failed after " + maxRetries + " retries: " + e.getMessage(), e);
+            throw new AIException("AI request failed after " + maxRetries + " retries: " + e.getMessage(), e);
+        }
+    }
+
+    public static class AIException extends Exception {
+        public AIException(String message) {
+            super(message);
+        }
+        public AIException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+
+    public static class AIRequestException extends RuntimeException {
+        public AIRequestException(String message) {
+            super(message);
         }
     }
 

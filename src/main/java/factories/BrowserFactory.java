@@ -6,6 +6,10 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
     public class BrowserFactory {
+        
+        private BrowserFactory() {
+            throw new IllegalStateException("Utility class");
+        }
 
         public static WebDriver createBrowser(String browser) {
 
@@ -21,8 +25,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
                     return new EdgeDriver();
 
                 default:
-                    throw new RuntimeException("Invalid Browser : " + browser);
+                    throw new IllegalArgumentException("Invalid Browser : " + browser);
             }
         }
     }
-

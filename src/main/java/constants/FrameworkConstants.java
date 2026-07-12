@@ -1,9 +1,12 @@
 package constants;
 
 public class FrameworkConstants {
+    
+    private FrameworkConstants() {
+        throw new IllegalStateException("Utility class");
+    }
 
-
-        public static final String QA = "qa";
+    public static final String QA = "qa";
 
         public static final String UAT = "uat";
 
@@ -14,6 +17,5 @@ public class FrameworkConstants {
         public static final String EDGE = "edge";
 
         public static final String FIREFOX = "firefox";
-
 
 }

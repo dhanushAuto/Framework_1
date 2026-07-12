@@ -1,14 +1,19 @@
 package utilities.api;
 
 
-import utilities.common_utils.log_utils;
+import utilities.common_utils.LogUtils;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class config_utils {
+public class ConfigUtils {
+    
+    private ConfigUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     private static Properties properties = new Properties();
     private static final String DEFAULT_PATH = "src/test/resources/config/config/config.properties.txt";
     private static String currentPath = DEFAULT_PATH;
@@ -21,9 +26,9 @@ public class config_utils {
         currentPath = path;
         try (FileInputStream fis = new FileInputStream(path)) {
             properties.load(fis);
-            log_utils.info("Loaded properties from: " + path);
+            LogUtils.info("Loaded properties from: " + path);
         } catch (IOException e) {
-            log_utils.error("Failed to load properties from: " + path + " - " + e.getMessage());
+            LogUtils.error("Failed to load properties from: " + path + " - " + e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -31,13 +36,13 @@ public class config_utils {
     public static void reloadProperties() {
         properties = new Properties();
         loadProperties(currentPath);
-        log_utils.info("Reloaded properties from: " + currentPath);
+        LogUtils.info("Reloaded properties from: " + currentPath);
     }
 
     public static String getProperty(String key) {
         String value = properties.getProperty(key);
         if (value == null) {
-            log_utils.warn("Property not found for key: " + key);
+            LogUtils.warn("Property not found for key: " + key);
         }
         return value;
     }
@@ -45,7 +50,7 @@ public class config_utils {
     public static String getProperty(String key, String defaultValue) {
         String value = properties.getProperty(key);
         if (value == null) {
-            log_utils.warn("Property not found for key: " + key + ", using default: " + defaultValue);
+            LogUtils.warn("Property not found for key: " + key + ", using default: " + defaultValue);
             return defaultValue;
         }
         return value;
@@ -55,9 +60,9 @@ public class config_utils {
         properties.setProperty(key, value);
         try (FileOutputStream fos = new FileOutputStream(currentPath)) {
             properties.store(fos, "Updated by ConfigUtils");
-            log_utils.info("Set property " + key + " = " + value);
+            LogUtils.info("Set property " + key + " = " + value);
         } catch (IOException e) {
-            log_utils.error("Failed to persist property: " + key + " - " + e.getMessage());
+            LogUtils.error("Failed to persist property: " + key + " - " + e.getMessage());
             throw new RuntimeException(e);
         }
     }

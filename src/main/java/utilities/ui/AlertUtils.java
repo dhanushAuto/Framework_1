@@ -2,7 +2,7 @@ package utilities.ui;
 
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
-import utilities.common_utils.log_utils;
+import utilities.common_utils.LogUtils;
 
 
 public class AlertUtils {
@@ -15,23 +15,23 @@ public class AlertUtils {
 
     public void acceptAlert() {
         driver.switchTo().alert().accept();
-        log_utils.info("Accepted alert");
+        LogUtils.info("Accepted alert");
     }
 
     public void dismissAlert() {
         driver.switchTo().alert().dismiss();
-        log_utils.info("Dismissed alert");
+        LogUtils.info("Dismissed alert");
     }
 
     public String getAlertText() {
         String text = driver.switchTo().alert().getText();
-        log_utils.info("Alert text: " + text);
+        LogUtils.info("Alert text: " + text);
         return text;
     }
 
     public void sendKeysToAlert(String text) {
         driver.switchTo().alert().sendKeys(text);
-        log_utils.info("Sent keys to alert: " + text);
+        LogUtils.info("Sent keys to alert: " + text);
     }
 
     public boolean isAlertPresent() {

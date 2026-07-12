@@ -4,8 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.Browser;
-import utilities.common_utils.log_utils;
+import utilities.common_utils.LogUtils;
 
 public class BrowserUtils {
 
@@ -26,7 +25,7 @@ public class BrowserUtils {
             default:
                 throw new IllegalArgumentException("Unsupported browser: " + browserName);
         }
-        log_utils.info("Launched browser: " + browserName);
+        LogUtils.info("Launched browser: " + browserName);
         return driver;
     }
     public static String getBrowser() {
@@ -34,62 +33,62 @@ public class BrowserUtils {
     }
     public void maximize() {
         driver.manage().window().maximize();
-        log_utils.info("Window maximized");
+        LogUtils.info("Window maximized");
     }
 
     public void minimize() {
         driver.manage().window().minimize();
-        log_utils.info("Window minimized");
+        LogUtils.info("Window minimized");
     }
 
     public void fullscreen() {
         driver.manage().window().fullscreen();
-        log_utils.info("Window set to fullscreen");
+        LogUtils.info("Window set to fullscreen");
     }
 
     public void refresh() {
         driver.navigate().refresh();
-        log_utils.info("Page refreshed");
+        LogUtils.info("Page refreshed");
     }
 
     public void back() {
         driver.navigate().back();
-        log_utils.info("Navigated back");
+        LogUtils.info("Navigated back");
     }
 
     public void forward() {
         driver.navigate().forward();
-        log_utils.info("Navigated forward");
+        LogUtils.info("Navigated forward");
     }
 
     public void navigateTo(String url) {
         driver.navigate().to(url);
-        log_utils.info("Navigated to URL: " + url);
+        LogUtils.info("Navigated to URL: " + url);
     }
 
     public String getCurrentUrl() {
         String url = driver.getCurrentUrl();
-        log_utils.info("Current URL: " + url);
+        LogUtils.info("Current URL: " + url);
         return url;
     }
 
     public String getTitle() {
         String title = driver.getTitle();
-        log_utils.info("Page title: " + title);
+        LogUtils.info("Page title: " + title);
         return title;
     }
 
     public void closeBrowser() {
         if (driver != null) {
             driver.close();
-            log_utils.info("Closed current browser window");
+            LogUtils.info("Closed current browser window");
         }
     }
 
     public void quitBrowser() {
         if (driver != null) {
             driver.quit();
-            log_utils.info("Quit browser session");
+            LogUtils.info("Quit browser session");
         }
     }
 }

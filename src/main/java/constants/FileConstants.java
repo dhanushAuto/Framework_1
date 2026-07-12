@@ -1,8 +1,12 @@
 package constants;
 
 public class FileConstants {
+    
+    private FileConstants() {
+        throw new IllegalStateException("Utility class");
+    }
 
-        public static final String CONFIG = "src/test/resources/config/";
+    public static final String CONFIG = "src/test/resources/config/";
 
         public static final String FEATURES = "src/test/resources/features/";
 
@@ -13,4 +17,3 @@ public class FileConstants {
         public static final String EXTENT_REPORT = "target/extent_report/";
 
     }
-

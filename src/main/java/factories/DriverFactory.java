@@ -3,6 +3,10 @@ package factories;
 import org.openqa.selenium.WebDriver;
 
 public class DriverFactory {
+    
+    private DriverFactory() {
+        throw new IllegalStateException("Utility class");
+    }
 
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
@@ -22,4 +26,3 @@ public class DriverFactory {
         }
     }
 }
-

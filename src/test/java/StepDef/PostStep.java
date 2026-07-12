@@ -1,11 +1,10 @@
 package StepDef;
 
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
-import pages.api.POST_Pages;
+import pages.api.PostPage;
 
-public class POST_Steps {
-    POST_Pages postPages = new POST_Pages();
+public class PostStep {
+    PostPage postPages = new PostPage();
 
     @When("I set POST request with body {string}")
         public void iSetPOSTRequestWithBody(String bodyFile) {

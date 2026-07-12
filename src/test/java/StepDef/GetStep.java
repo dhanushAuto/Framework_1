@@ -1,10 +1,10 @@
 package StepDef;
 
-import pages.api.GET_Pages;
+import pages.api.GetPage;
 import io.cucumber.java.en.*;
 
-public class GET_Steps {
-    GET_Pages getPages = new GET_Pages();
+public class GetStep {
+    GetPage getPages = new GetPage();
 
 
     @When("I send GET request")

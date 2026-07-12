@@ -1,15 +1,14 @@
 package StepDef;
 
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
-import pages.api.DELETE_Pages;
+import pages.api.DeletePage;
 
-public class DELETE_Steps {
-    DELETE_Pages delete = new DELETE_Pages();
+public class DeleteStep {
+    DeletePage delete = new DeletePage();
 
     @When("send a DELETE request")
-    public void Delete_Request() {
-        delete.Delete_Request();
+    public void deleteRequestStep() {
+        delete.deleteRequest();
     }
 
     @Then("Response code should be {int}")
