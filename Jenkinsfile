@@ -78,7 +78,7 @@ stage('SonarQube Analysis') {
 //             waitForQualityGate abortPipeline: true
 //         }
 //     }
-}//         stage('Publish Allure') {
+//}//         stage('Publish Allure') {
 //
 //             steps {
 //
