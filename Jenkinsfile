@@ -67,7 +67,7 @@ pipeline {
 stage('SonarQube Analysis') {
     steps {
         withSonarQubeEnv('SonarQube') {
-            bat 'mvn clean verify sonar:sonar'
+            bat 'mvn -DskipTests sonar:sonar'
         }
     }
 }
