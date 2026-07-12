@@ -8,47 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="733aa41d-50dd-4aba-8f9c-54a1c449b9ea" name="Changes" comment="AI">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/AIResponseAnalyzer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/APIFailureAnalyzer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/BugClassifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/FailureAnalyzer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/FlakyDetector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/LogSummarizer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/client/AIClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/generator/TestCaseGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/healing/SelfHealingEngine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/impact/TestImpactAnalyzer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/model/OllamaRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/model/OllamaResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/optimizer/TestPrioritizer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/performance/PerformanceRegressionDetector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prediction/DefectPredictor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/AnalysisPromptBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/FailurePromptBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/HealingPromptBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/PerformancePromptBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/PromptBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/ReleasePromptBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/TestPromptBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/release/ReleaseRiskPredictor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/report/TestSummaryGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/service/AIService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/test/AITest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/test/FailureAITest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/traceability/RequirementTraceability.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/AIUtils/AIUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/config/config/config.properties.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/config/config/qa/AI_properties.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/DBUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/MongoUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/db/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listeners/TestListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listeners/TestListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/DELETE_Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/DELETE_Pages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/GET_Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/GET_Pages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/POST_Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/POST_Pages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/api/config_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/api/config_utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/common_utils/report_utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/report_utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/config/config/properties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/config/config/qa/properties.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/config/ConfigLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/config/ConfigLoader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +27,8 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="107" />
+    <option name="cachedIndexableFilesCount" value="132" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -211,9 +178,15 @@
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;TestNG.C:/Users/Admin/eclipse-workspace/Framework_1/src/test/resources/TestNg_files/testNG.xml.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.DBConnectionTest.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.DBConnectionTest.testConnections.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.DBValidationTest.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.DatabaseListTest.executor&quot;: &quot;Run&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
     &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/eclipse-workspace/Framework_1/src/main/java/config/config/prod&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -224,7 +197,8 @@
     &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -249,7 +223,7 @@
       <recent name="config.prod" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.C:/Users/Admin/eclipse-workspace/Framework_1/src/test/resources/TestNg_files/testNG.xml">
+  <component name="RunManager" selected="TestNG.DBConnectionTest.testConnections">
     <configuration name="AITest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ai.test.AITest" />
       <module name="Framework_1" />
@@ -273,8 +247,45 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DBConnectionTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Framework_1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.DBConnectionTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DBConnectionTest.testConnections" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Framework_1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.DBConnectionTest" />
+      <option name="METHOD_NAME" value="testConnections" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.DBConnectionTest.testConnections" />
+        <item itemvalue="TestNG.DBConnectionTest" />
         <item itemvalue="TestNG.C:/Users/Admin/eclipse-workspace/Framework_1/src/test/resources/TestNg_files/testNG.xml" />
         <item itemvalue="Application.AITest" />
       </list>
@@ -552,7 +563,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783451200784</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="AI">
+      <option name="closed" value="true" />
+      <created>1783596790104</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1783596790105</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
