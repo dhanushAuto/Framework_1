@@ -10,43 +10,18 @@ public class FlakyDetector {
 
     private final AIService aiService = new AIService();
 
-    public FlakinessAnalysis detectFlakiness(String testName, List<TestExecution> executions) throws Exception {
-        
-        String prompt = buildFlakinessPrompt(testName, executions);
-        
-        String aiResponse = aiService.ask(prompt);
-        
-        return parseFlakinessAnalysis(aiResponse);
-    }
-
-    public List<String> identifyFlakyTests(Map<String, List<TestExecution>> executionHistory) throws Exception {
-        
-        String prompt = buildFlakyTestIdentificationPrompt(executionHistory);
-        
-        String aiResponse = aiService.ask(prompt);
-        
-        return parseFlakyTests(aiResponse);
-    }
-
-    public String suggestStabilizationFix(String testName, String flakinessPattern) throws Exception {
-        
-        String prompt = buildStabilizationPrompt(testName, flakinessPattern);
-        
+    public String ask(String prompt) throws Exception {
         return aiService.ask(prompt);
     }
 
     private String buildFlakinessPrompt(String testName, List<TestExecution> executions) {
-        StringBuilder execStr = new StringBuilder();
-        for (TestExecution exec : executions) {
-            execStr.append("Run ").append(exec.runNumber).append(": ")
-                   .append(exec.status).append(" | ")
-                   .append("Duration: ").append(exec.duration).append("ms | ")
-                   .append("Error: ").append(exec.error != null ? exec.error : "None").append("\n");
-        }
-        
         long passCount = executions.stream().filter(e -> e.status.equals("PASS")).count();
         long failCount = executions.stream().filter(e -> e.status.equals("FAIL")).count();
         double passRate = (double) passCount / executions.size() * 100;
+        
+        String execStr = executions.stream()
+            .map(e -> "Run " + e.runNumber + ": " + e.status + " (" + e.duration + "ms)" + (e.error != null ? " - " + e.error : ""))
+            .collect(java.util.stream.Collectors.joining("\n"));
         
         return """
             You are a Test Flakiness Detection Expert.

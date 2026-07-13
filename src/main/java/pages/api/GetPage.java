@@ -21,7 +21,7 @@ public class GetPage {
         try {
             ReportUtils.info("Endpoint : " + APIConstants.BASE_URI + APIConstants.USERS);
 
-            response = APIClientFactory.APIRequest(APIConstants.BASE_URI)
+            response = APIClientFactory.getRequestSpec(APIConstants.BASE_URI)
                     .get(APIConstants.USERS)
                     .then()
                     .extract()

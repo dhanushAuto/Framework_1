@@ -109,7 +109,6 @@ public class TestListener implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
         ReportUtils.flushReport();
-        ReportUtils.cleanup();
     }
 
     private String getShortStackTrace(Throwable throwable) {

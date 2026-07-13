@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "e1ef62d5-84ac-4c41-b4ae-ea9cc1ddc9c0",
+    "rule" : "java:S5361",
+    "severity" : "CRITICAL",
+    "component" : "Framework_1:src/main/java/ai/healing/SelfHealingEngine.java",
+    "filePath" : "Framework_1:src/main/java/ai/healing/SelfHealingEngine.java",
+    "project" : "Framework_1",
+    "message" : "Replace this call to \"replaceAll()\" by a call to the \"replace()\" method.",
+    "type" : "CODE_SMELL",
+    "line" : 223
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "    private List<By> generateFallbackLocators(String originalLocator, String elementDescription) {\n        List<By> fallbacks = new ArrayList<>();\n        \n        String lowerDesc = elementDescription.toLowerCase();\n        \n        if (lowerDesc.contains(\"button\") || lowerDesc.contains(\"submit\")) {\n            fallbacks.add(By.xpath(\"//button[contains(text(), '\" + elementDescription + \"')]\"));\n            fallbacks.add(By.xpath(\"//input[@type='submit' or @type='button']\"));\n            fallbacks.add(By.cssSelector(\"button[type='submit'], button[type='button']\"));\n        }\n        \n        if (lowerDesc.contains(\"input\") || lowerDesc.contains(\"field\") || lowerDesc.contains(\"text\")) {\n            fallbacks.add(By.xpath(\"//input[@placeholder='\" + elementDescription + \"']\"));\n            fallbacks.add(By.xpath(\"//input[contains(@placeholder, '\" + elementDescription + \"')]\"));\n            fallbacks.add(By.cssSelector(\"input[placeholder*='\" + elementDescription + \"']\"));\n        }\n        \n        if (lowerDesc.contains(\"link\") || lowerDesc.contains(\"anchor\")) {\n            fallbacks.add(By.linkText(elementDescription));\n            fallbacks.add(By.partialLinkText(elementDescription));\n            fallbacks.add(By.xpath(\"//a[contains(text(), '\" + elementDescription + \"')]\"));\n        }\n        \n        String[] words = elementDescription.split(\"\\\\s+\");\n        if (words.length > 0) {\n            String idCandidate = words[0].toLowerCase().replace(\"[^a-zA-Z0-9]\", \"\");\n            fallbacks.add(By.id(idCandidate));\n            fallbacks.add(By.name(idCandidate));\n        }\n        \n        fallbacks.add(By.xpath(\"//*[contains(text(), '\" + elementDescription + \"')]\"));\n        fallbacks.add(By.xpath(\"//*[contains(@class, '\" + elementDescription + \"')]\"));\n        \n        return fallbacks;\n    }",
+  "fixed" : true
+}

@@ -1,0 +1,17 @@
+{
+  "issue" : {
+    "key" : "bcf18acb-8b9b-4881-bf33-e7b0ad048982",
+    "rule" : "java:S2094",
+    "severity" : "MINOR",
+    "component" : "Framework_1:src/main/java/ai/analyzer/SonarIssueAnalyzer.java",
+    "filePath" : "Framework_1:src/main/java/ai/analyzer/SonarIssueAnalyzer.java",
+    "project" : "Framework_1",
+    "message" : "Remove this empty class, write its code or make it an \"interface\".",
+    "type" : "CODE_SMELL",
+    "line" : 3
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "package ai.analyzer;\n\npublic class SonarIssueAnalyzer {\n    // This class is empty and should be removed or made an interface\n    // If it's intended to be a utility class, add a private constructor\n    private SonarIssueAnalyzer() {\n        // Prevent instantiation\n    }\n}",
+  "patchPath" : null,
+  "fixed" : true
+}

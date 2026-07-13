@@ -1,0 +1,21 @@
+package ai.test;
+
+import ai.service.AIService;
+import utilities.api.ConfigUtils;
+
+import utilities.common_utils.LogUtils;
+
+public class AITest {
+
+    public static void main(String[] args) throws Exception {
+
+        ConfigUtils.loadProperties();
+        AIService ai = new AIService();
+
+        String answer = ai.ask("Explain Selenium in one sentence.");
+
+        LogUtils.info(answer);
+
+    }
+
+}

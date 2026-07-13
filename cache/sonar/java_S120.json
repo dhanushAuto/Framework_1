@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "fb3b908b-0047-4733-80c4-2b7a65c123d9",
+    "rule" : "java:S120",
+    "severity" : "MINOR",
+    "component" : "Framework_1:src/main/java/utilities/AIUtils/AIUtils.java",
+    "filePath" : "Framework_1:src/main/java/utilities/AIUtils/AIUtils.java",
+    "project" : "Framework_1",
+    "message" : "Rename this package name to match the regular expression '^[a-z_]+(\\.[a-z_][a-z0-9_]*)*$'.",
+    "type" : "CODE_SMELL",
+    "line" : 1
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "package utilities.ai_utils;\n\nimport ai.service.AIService;\n\npublic class AIUtils {\n\n    private static final AIService ai = new AIService();\n\n    public static String ask(String prompt) {\n        try {\n            return ai.ask(prompt);\n        } catch (Exception e) {\n            return \"AI Error : \" + e.getMessage();\n        }\n    }\n}",
+  "fixed" : true
+}

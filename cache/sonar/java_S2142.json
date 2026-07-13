@@ -1,0 +1,17 @@
+{
+  "issue" : {
+    "key" : "1fd6e4eb-b9fc-46b8-9a87-081586fe34bb",
+    "rule" : "java:S2142",
+    "severity" : "MAJOR",
+    "component" : "Framework_1:src/main/java/ai/test/SonarAITest.java",
+    "filePath" : "Framework_1:src/main/java/ai/test/SonarAITest.java",
+    "project" : "Framework_1",
+    "message" : "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+    "type" : "BUG",
+    "line" : 79
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "    public void execute() {\n\n        try (ExecutorService executor = Executors.newFixedThreadPool(2)) {\n\n            ReportUtils.createTest(\"🤖 AI Sonar Review\");\n\n            LogUtils.info(\"Fetching SonarQube issues...\");\n\n            List<SonarIssue> issues = sonarService.getIssues();\n\n            if (issues == null || issues.isEmpty()) {\n\n                ReportUtils.info(\"No Sonar issues found.\");\n\n                Log,info(\"No Sonar issues found.\");\n\n                return;\n            }\n\n            ReportUtils.info(\"Total Sonar Issues : \" + issues.size());\n\n            List<SonarFix> allFixes = java.util.Collections.synchronizedList(new ArrayList<>());\n\n            // Group issues by file (component)\n            Map<String, List<SonarIssue>> groupedIssues = new HashMap<>();\n            for (SonarIssue issue : issues) {\n                groupedIssues.computeIfAbsent(issue.getComponent(), k -> new ArrayList<>()).add(issue);\n            }\n\n            List<Future<List<SonarFix>>> futures = new ArrayList<>();\n\n            for (List<SonarIssue> fileIssues : groupedIssues.values()) {\n                futures.add(executor.submit(new SonarTask(fileIssues)));\n            }\n\n            for (Future<List<SonarFix>> future : futures) {\n                try {\n                    allFixes.addAll(future.get());\n                } catch (InterruptedException e) {\n                    Thread.currentThread().interrupt();\n                    throw new RuntimeException(\"Interrupted during future.get()\", e);\n                } catch (ExecutionException e) {\n                    e.printStackTrace();\n                }\n            }\n\n            // Auto Sonar Recheck (Simulation)\n            SonarAutoFixVerifier verifier = new SonarAutoFixVerifier();\n            verifier.applyAndVerify(allFixes);\n\n            ReportUtils.addSonarAIAnalysis(allFixes);\n\n            LogUtils.info(\"AI Sonar Review Completed.\");\n\n        } catch (InterruptedException e) {\n            Thread.currentThread().interrupt();\n            ReportUtils.fail(\"Interrupted during execution: \" + e.getMessage());\n            LogUtils.error(\"Interrupted during execution: \" + e.getMessage());\n        } catch (Exception e) {\n            ReportUtils.fail(e.getMessage());\n            LogUtils.error(e.getMessage());\n        }\n\n    }",
+  "patchPath" : null,
+  "fixed" : true
+}

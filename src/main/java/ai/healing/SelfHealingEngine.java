@@ -1,24 +1,28 @@
 package ai.healing;
 
 import ai.service.AIService;
+import drivermanager.Driver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.common_utils.LogUtils;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SelfHealingEngine {
 
     private final AIService aiService = new AIService();
     private WebDriver driver;
-    private Duration validationTimeout = Duration.ofSeconds(5);
 
     public SelfHealingEngine() {
+        this.driver = Driver.getDriver();
     }
 
     public SelfHealingEngine(WebDriver driver) {
@@ -29,216 +33,88 @@ public class SelfHealingEngine {
         this.driver = driver;
     }
 
-    public By healLocator(String originalLocator, String elementDescription, String pageContext, String errorMessage) throws Exception {
-        
-        if (driver == null) {
-            return parseHealedLocator(buildHealingPrompt(originalLocator, elementDescription, pageContext, errorMessage), originalLocator);
-        }
-        
-        String prompt = buildHealingPrompt(originalLocator, elementDescription, pageContext, errorMessage);
+    public By healAndUpdate(String elementDescription, String pageContext, String errorMessage, String filePath) throws Exception {
+        LogUtils.info("Starting self-healing for: " + elementDescription);
+        String pageSource = driver.getPageSource();
+        String prompt = buildHealingPromptWithSource(elementDescription, pageContext, errorMessage, pageSource);
         String aiResponse = aiService.ask(prompt);
-        
-        By aiSuggestedLocator = parseHealedLocator(aiResponse, originalLocator);
-        
-        return validateAndHealLocator(aiSuggestedLocator, originalLocator, elementDescription);
+        By newLocator = parseHealedLocator(aiResponse);
+
+        if (newLocator != null && filePath != null) {
+            updateLocatorInFile(filePath, elementDescription, aiResponse.trim());
+        }
+
+        return newLocator;
     }
 
-    private By validateAndHealLocator(By suggestedLocator, String originalLocator, String elementDescription) {
-        List<By> fallbackLocators = generateFallbackLocators(originalLocator, elementDescription);
-        
-        if (validateLocator(suggestedLocator)) {
-            return suggestedLocator;
-        }
-        
-        for (By fallback : fallbackLocators) {
-            if (validateLocator(fallback)) {
-                return fallback;
-            }
-        }
-        
-        return parseHealedLocator(originalLocator, originalLocator);
+    private String buildHealingPromptWithSource(String elementDescription, String pageContext, String errorMessage, String pageSource) {
+        return """
+            You are a Selenium Self-Healing Expert.
+            The element described as '%s' failed to be located on page '%s'.
+            Error: %s
+            
+            Current Page Source (truncated):
+            %s
+            
+            Suggest a new robust Selenium locator (id, name, css, or xpath).
+            Return ONLY the locator string in format: type=value (e.g., xpath=//button[@id='login'])
+            """.formatted(elementDescription, pageContext, errorMessage, 
+                pageSource.substring(0, Math.min(pageSource.length(), 2000)));
     }
 
-    private boolean validateLocator(By locator) {
-        if (driver == null) {
-            return true;
-        }
-        
+    private void updateLocatorInFile(String filePath, String elementDescription, String newLocator) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, validationTimeout);
-            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-            return element != null && element.isDisplayed();
-        } catch (NoSuchElementException | org.openqa.selenium.TimeoutException e) {
-            return false;
+            Path path = Path.of(filePath);
+            String content = Files.readString(path);
+            
+            // Heuristic to find the variable name or description in the file
+            // This is a simplified version; in a real scenario, we might use a more robust AST-based approach
+            String patternString = "(?i)By\\s+\\w+\\s*=\\s*By\\.\\w+\\(.*?\\);\\s*//\\s*" + Pattern.quote(elementDescription);
+            Pattern pattern = Pattern.compile(patternString);
+            Matcher matcher = pattern.matcher(content);
+            
+            if (matcher.find()) {
+                String oldLine = matcher.group();
+                String locatorType = newLocator.split("=")[0];
+                String locatorValue = newLocator.split("=")[1];
+                
+                String newBy;
+                if (locatorType.equalsIgnoreCase("xpath")) newBy = "By.xpath(\"" + locatorValue + "\")";
+                else if (locatorType.equalsIgnoreCase("id")) newBy = "By.id(\"" + locatorValue + "\")";
+                else if (locatorType.equalsIgnoreCase("css")) newBy = "By.cssSelector(\"" + locatorValue + "\")";
+                else if (locatorType.equalsIgnoreCase("name")) newBy = "By.name(\"" + locatorValue + "\")";
+                else newBy = "By.cssSelector(\"" + locatorValue + "\")";
+                
+                String newLine = oldLine.replaceAll("By\\.\\w+\\(.*?\\)", newBy);
+                String newContent = content.replace(oldLine, newLine);
+                Files.writeString(path, newContent);
+                LogUtils.info("Automatically updated locator in file: " + filePath);
+            }
+        } catch (IOException e) {
+            LogUtils.error("Failed to update locator in file: " + e.getMessage());
         }
     }
 
-    private List<By> generateFallbackLocators(String originalLocator, String elementDescription) {
+    private By parseHealedLocator(String aiResponse) {
+        String locator = aiResponse.trim();
+        if (locator.startsWith("xpath=")) return By.xpath(locator.substring(6));
+        if (locator.startsWith("//")) return By.xpath(locator);
+        if (locator.startsWith("id=")) return By.id(locator.substring(3));
+        if (locator.startsWith("name=")) return By.name(locator.substring(5));
+        if (locator.startsWith("css=")) return By.cssSelector(locator.substring(4));
+        return By.cssSelector(locator);
+    }
+
+    public List<By> getFallbackLocators(String elementDescription) {
         List<By> fallbacks = new ArrayList<>();
-        
         String lowerDesc = elementDescription.toLowerCase();
-        
         if (lowerDesc.contains("button") || lowerDesc.contains("submit")) {
             fallbacks.add(By.xpath("//button[contains(text(), '" + elementDescription + "')]"));
-            fallbacks.add(By.xpath("//input[@type='submit' or @type='button']"));
-            fallbacks.add(By.cssSelector("button[type='submit'], button[type='button']"));
+            fallbacks.add(By.cssSelector("button[type='submit']"));
         }
-        
-        if (lowerDesc.contains("input") || lowerDesc.contains("field") || lowerDesc.contains("text")) {
+        if (lowerDesc.contains("input") || lowerDesc.contains("field")) {
             fallbacks.add(By.xpath("//input[@placeholder='" + elementDescription + "']"));
-            fallbacks.add(By.xpath("//input[contains(@placeholder, '" + elementDescription + "')]"));
-            fallbacks.add(By.cssSelector("input[placeholder*='" + elementDescription + "']"));
         }
-        
-        if (lowerDesc.contains("link") || lowerDesc.contains("anchor")) {
-            fallbacks.add(By.linkText(elementDescription));
-            fallbacks.add(By.partialLinkText(elementDescription));
-            fallbacks.add(By.xpath("//a[contains(text(), '" + elementDescription + "')]"));
-        }
-        
-        String[] words = elementDescription.split("\\s+");
-        if (words.length > 0) {
-            String idCandidate = words[0].toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
-            fallbacks.add(By.id(idCandidate));
-            fallbacks.add(By.name(idCandidate));
-        }
-        
-        fallbacks.add(By.xpath("//*[contains(text(), '" + elementDescription + "')]"));
-        fallbacks.add(By.xpath("//*[contains(@class, '" + elementDescription + "')]"));
-        
         return fallbacks;
-    }
-
-    public WebElement healElement(WebElement originalElement, String elementDescription, String pageContext) throws Exception {
-        
-        String prompt = buildElementHealingPrompt(elementDescription, pageContext);
-        
-        String aiResponse = aiService.ask(prompt);
-        
-        return applyHealingStrategy(aiResponse, originalElement);
-    }
-
-    public String healAssertion(String expectedValue, String actualValue, String assertionContext) throws Exception {
-        
-        String prompt = buildAssertionHealingPrompt(expectedValue, actualValue, assertionContext);
-        
-        String aiResponse = aiService.ask(prompt);
-        
-        return aiResponse;
-    }
-
-    private String buildHealingPrompt(String originalLocator, String elementDescription, String pageContext, String errorMessage) {
-        return """
-            You are a Test Automation Healing Expert.
-            
-            The following element locator failed during test execution. Analyze the failure and suggest a healed locator.
-            
-            Original Locator: %s
-            Element Description: %s
-            Page Context: %s
-            Error Message: %s
-            
-            Provide a healed locator in the format: By.<strategy>("<value>")
-            Strategies: id, name, xpath, cssSelector, className, tagName, linkText, partialLinkText
-            
-            Return only the locator string, nothing else.
-            """.formatted(originalLocator, elementDescription, pageContext, errorMessage);
-    }
-
-    private String buildElementHealingPrompt(String elementDescription, String pageContext) {
-        return """
-            You are a Test Automation Healing Expert.
-            
-            An element interaction failed. Suggest alternative strategies to interact with this element.
-            
-            Element Description: %s
-            Page Context: %s
-            
-            Suggest healing strategies:
-            1. Wait strategies
-            2. Alternative locators
-            3. JavaScript execution
-            4. Action class usage
-            
-            Provide specific code snippets for each strategy.
-            """.formatted(elementDescription, pageContext);
-    }
-
-    private String buildAssertionHealingPrompt(String expectedValue, String actualValue, String assertionContext) {
-        return """
-            You are a Test Automation Healing Expert.
-            
-            An assertion failed. Analyze if this is a data mismatch, timing issue, or actual defect.
-            
-            Expected Value: %s
-            Actual Value: %s
-            Assertion Context: %s
-            
-            Provide:
-            1. Analysis of the mismatch
-            2. Suggested healing approach (wait, retry, data normalization, or actual defect)
-            3. Corrected assertion if applicable
-            """.formatted(expectedValue, actualValue, assertionContext);
-    }
-
-    private By parseHealedLocator(String aiResponse, String fallbackLocator) {
-        try {
-            String response = aiResponse.trim();
-            
-            if (response.startsWith("By.id(")) {
-                String value = extractValue(response);
-                return By.id(value);
-            } else if (response.startsWith("By.name(")) {
-                String value = extractValue(response);
-                return By.name(value);
-            } else if (response.startsWith("By.xpath(")) {
-                String value = extractValue(response);
-                return By.xpath(value);
-            } else if (response.startsWith("By.cssSelector(")) {
-                String value = extractValue(response);
-                return By.cssSelector(value);
-            } else if (response.startsWith("By.className(")) {
-                String value = extractValue(response);
-                return By.className(value);
-            } else if (response.startsWith("By.tagName(")) {
-                String value = extractValue(response);
-                return By.tagName(value);
-            } else if (response.startsWith("By.linkText(")) {
-                String value = extractValue(response);
-                return By.linkText(value);
-            } else if (response.startsWith("By.partialLinkText(")) {
-                String value = extractValue(response);
-                return By.partialLinkText(value);
-            }
-            
-            return By.xpath(fallbackLocator);
-        } catch (Exception e) {
-            return By.xpath(fallbackLocator);
-        }
-    }
-
-    private String extractValue(String response) {
-        int start = response.indexOf("(") + 1;
-        int end = response.lastIndexOf(")");
-        return response.substring(start, end).replaceAll("\"", "").replaceAll("'", "");
-    }
-
-    private WebElement applyHealingStrategy(String aiResponse, WebElement originalElement) {
-        return originalElement;
-    }
-
-    public boolean shouldRetry(String errorMessage) {
-        return errorMessage.contains("NoSuchElementException") ||
-               errorMessage.contains("StaleElementReferenceException") ||
-               errorMessage.contains("TimeoutException") ||
-               errorMessage.contains("ElementClickInterceptedException");
-    }
-
-    public int getMaxRetries() {
-        return 3;
-    }
-
-    public Duration getRetryDelay() {
-        return Duration.ofSeconds(2);
     }
 }

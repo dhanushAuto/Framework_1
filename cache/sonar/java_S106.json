@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "0b8534ac-5f96-443d-b00d-0a9e78a63408",
+    "rule" : "java:S106",
+    "severity" : "MAJOR",
+    "component" : "Framework_1:src/main/java/ai/test/FailureAITest.java",
+    "filePath" : "Framework_1:src/main/java/ai/test/FailureAITest.java",
+    "project" : "Framework_1",
+    "message" : "Replace this use of System.out by a logger.",
+    "type" : "CODE_SMELL",
+    "line" : 32
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "    public static void main(String[] args)\n            throws Exception {\n\n        FailureAnalyzer analyzer =\n                new FailureAnalyzer();\n\n        String result =\n                analyzer.analyze(\n\n                        \"Login Test\",\n\n                        new RuntimeException(\n\n                                \"TimeoutException\"),\n\n\n                        \"\"\"\norg.openqa.selenium.TimeoutException\n\nat LoginPage.clickLogin()\n\nat LoginTest.testLogin()\n\n\"\"\");\n\n        System.out.println(result);\n\n    }",
+  "fixed" : true
+}

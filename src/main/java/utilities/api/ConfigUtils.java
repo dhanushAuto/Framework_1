@@ -17,6 +17,9 @@ public class ConfigUtils {
     private static Properties properties = new Properties();
     private static final String DEFAULT_PATH = "src/test/resources/config/config/config.properties.txt";
     private static String currentPath = DEFAULT_PATH;
+    static {
+        loadProperties();
+    }
 
     public static void loadProperties() {
         loadProperties(DEFAULT_PATH);

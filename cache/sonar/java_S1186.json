@@ -1,0 +1,17 @@
+{
+  "issue" : {
+    "key" : "11d58f70-17e9-4229-afee-b15a651a3416",
+    "rule" : "java:S1186",
+    "severity" : "CRITICAL",
+    "component" : "Framework_1:src/main/java/ai/model/SonarIssue.java",
+    "filePath" : "Framework_1:src/main/java/ai/model/SonarIssue.java",
+    "project" : "Framework_1",
+    "message" : "Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.",
+    "type" : "CODE_SMELL",
+    "line" : 15
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "    public SonarIssue() {\n        // This constructor is intentionally left empty as this class is designed to be instantiated via\n        // the builder pattern. Attempting to instantiate this class directly will result in an empty object.\n        // UnsupportedOperationException is thrown to enforce this design.\n        throw new UnsupportedOperationException(\"This class should not be instantiated directly.\");\n    }",
+  "patchPath" : null,
+  "fixed" : true
+}

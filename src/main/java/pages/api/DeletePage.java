@@ -14,7 +14,7 @@ public class DeletePage {
         ReportUtils.info("Endpoint : " + APIConstants.BASE_URI + DELETE_POST);
 
         for (int i = 0; i <= 1; i++) {
-            response = APIClientFactory.APIRequest(APIConstants.BASE_URI)
+            response = APIClientFactory.getRequestSpec(APIConstants.BASE_URI)
                     .pathParam("id", i)
                     .when().delete(DELETE_POST);
             ReportUtils.info("Delete " + i + " sent successfully");

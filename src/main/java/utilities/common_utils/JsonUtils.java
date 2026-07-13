@@ -16,15 +16,17 @@ public class JsonUtils {
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    public static JsonNode readJson(String filePath) {
+    public static JsonNode readJsonString(String json) {
         try {
-            JsonNode node = mapper.readTree(new File(filePath));
-            LogUtils.info("Read JSON from: " + filePath);
-            return node;
+            return mapper.readTree(json);
         } catch (IOException e) {
-            LogUtils.error("Failed to read JSON from: " + filePath + " - " + e.getMessage());
+            LogUtils.error("Failed to parse JSON string - " + e.getMessage());
             throw new RuntimeException(e);
         }
+    }
+
+    public static ObjectMapper getMapper() {
+        return mapper;
     }
 
     public static void writeJson(String filePath, Object data) {
@@ -38,7 +40,7 @@ public class JsonUtils {
     }
 
     public static String getValue(String filePath, String fieldPath) {
-        JsonNode node = readJson(filePath).at(fieldPath); // e.g. "/user/name"
+        JsonNode node = readJsonString(filePath).at(fieldPath); // e.g. "/user/name"
         String value = node.asText();
         LogUtils.info("Got JSON value at " + fieldPath + ": " + value);
         return value;

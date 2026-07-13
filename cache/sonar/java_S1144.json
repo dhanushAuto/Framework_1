@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "fcc5d489-3af6-4969-aa19-22f4d62025fc",
+    "rule" : "java:S1144",
+    "severity" : "MAJOR",
+    "component" : "Framework_1:src/main/java/ai/generator/TestCaseGenerator.java",
+    "filePath" : "Framework_1:src/main/java/ai/generator/TestCaseGenerator.java",
+    "project" : "Framework_1",
+    "message" : "Remove this unused private \"buildRequirementPrompt\" method.",
+    "type" : "CODE_SMELL",
+    "line" : 151
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "    public String generateTestData(String testCaseDescription, String dataType) throws Exception {\n        \n        String prompt = buildTestDataPrompt(testCaseDescription, dataType);\n        \n        return aiService.ask(prompt);\n    }",
+  "fixed" : true
+}

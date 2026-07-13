@@ -1,0 +1,17 @@
+{
+  "issue" : {
+    "key" : "c8fa9daa-7a90-4cb9-8408-1454d5f443d8",
+    "rule" : "java:S8688",
+    "severity" : "INFO",
+    "component" : "Framework_1:src/main/java/utilities/common_utils/PatchUtils.java",
+    "filePath" : "Framework_1:src/main/java/utilities/common_utils/PatchUtils.java",
+    "project" : "Framework_1",
+    "message" : "Explicitly specify the time zone by passing a ZoneId or a Clock to the .now() method.",
+    "type" : "CODE_SMELL",
+    "line" : 52
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "AI Analysis Failed: Request timed out. Read timed out",
+  "patchPath" : null,
+  "fixed" : true
+}

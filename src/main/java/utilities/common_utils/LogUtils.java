@@ -10,8 +10,14 @@ public class LogUtils {
     }
 
     private static Logger getLogger() {
-        StackTraceElement caller = Thread.currentThread().getStackTrace()[3];
-        return LogManager.getLogger(caller.getClassName());
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        String className = LogUtils.class.getName();
+        for (int i = 1; i < stackTrace.length; i++) {
+            if (!stackTrace[i].getClassName().equals(className)) {
+                return LogManager.getLogger(stackTrace[i].getClassName());
+            }
+        }
+        return LogManager.getLogger(LogUtils.class);
     }
 
     public static void info(String message) {
@@ -34,4 +40,3 @@ public class LogUtils {
         getLogger().fatal(message);
     }
 }
-

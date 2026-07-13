@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "22190482-e1bc-4d13-b2aa-7405a2176e4b",
+    "rule" : "java:S1118",
+    "severity" : "MAJOR",
+    "component" : "Framework_1:src/main/java/ai/prompt/AnalysisPromptBuilder.java",
+    "filePath" : "Framework_1:src/main/java/ai/prompt/AnalysisPromptBuilder.java",
+    "project" : "Framework_1",
+    "message" : "Add a private constructor to hide the implicit public one.",
+    "type" : "CODE_SMELL",
+    "line" : 3
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "package ai.prompt;\n\npublic class AnalysisPromptBuilder {\n\n    private AnalysisPromptBuilder() {\n        // Prevent instantiation of utility class\n    }\n\n    public static String buildFlakinessDetectionPrompt(String testName, String executionHistory) {\n        return \"\"\"\n            You are a Test Flakiness Detection Expert.\n            \n            Analyze the test execution history to determine if the test is flaky.\n            \n            Test Name: %s\n            \n            Execution History:\n            %s\n            \n            Provide:\n            1. IS_FLAKY: true/false\n            2. FLAKINESS_SCORE: 0.0-1.0\n            3. FLAKINESS_TYPE: Timing/Dependency/Environment/Data/Concurrency\n            4. STABILIZATION_RECOMMENDATION: Specific fix recommendation\n            5. CONFIDENCE: 0.0-1.0\n            \n            Format:\n        \"\"\";\n    }\n}",
+  "fixed" : true
+}

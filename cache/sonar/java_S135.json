@@ -1,0 +1,17 @@
+{
+  "issue" : {
+    "key" : "d708039d-f57d-4026-8066-55837bedeec9",
+    "rule" : "java:S135",
+    "severity" : "MINOR",
+    "component" : "Framework_1:src/main/java/ai/test/AIChatRunner.java",
+    "filePath" : "Framework_1:src/main/java/ai/test/AIChatRunner.java",
+    "project" : "Framework_1",
+    "message" : "Reduce the total number of break and continue statements in this loop to use at most one.",
+    "type" : "CODE_SMELL",
+    "line" : 38
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "    public static void main(String[] args) {\n        AIChatAssistant assistant = new AIChatAssistant();\n        \n        // Load initial context from Sonar\n        try {\n            SonarService sonarService = new SonarService();\n            List<SonarIssue> issues = sonarService.getIssues();\n            if (!issues.isEmpty()) {\n                String context = issues.stream()\n                    .limit(10)\n                    .map(i -> String.format(\"- %s: %s (Rule: %s, Severity: %s)\", i.getComponent(), i.getMessage(), i.getRule(), i.getSeverity()))\n                    .collect(Collectors.joining(\"\\n\"));\n                assistant.setContext(\"Top 10 Sonar Issues:\\n\" + context);\n            }\n        } catch (Exception e) {\n            System.err.println(\"Warning: Could not load Son\n            System.err.println(\"Warning: Could not load Sonar context: \" + e.getMessage());\n        }\n\n        Scanner scanner = new Scanner(System.in);\n        \n        System.out.println(\"========================================\");\n        System.out.println(\"   🤖 Automation AI Chat Assistant   \");\n        System.out.println(\"========================================\");\n        System.out.println(\"Type 'exit' to quit, 'clear' to reset history.\");\n        System.out.println(\"Ask me anything about your framework!\");\n        \n        while (true) {\n            System.out.print(\"\\nYou: \");\n            String input = scanner.nextLine();\n            \n            if (input.equalsIgnoreCase(\"exit\")) {\n                break;\n            }\n            \n            if (input.equalsIgnoreCase(\"clear\")) {\n                assistant.clearHistory();\n                System.out.println(\"History cleared.\");\n                continue;\n            }\n            \n            System.out.println(\"\\nThinking...\");\n            try {\n                String response = assistant.ask(input);\n                System.out.println(\"\\nAI Assistant: \" + response);\n            } catch (Exception e) {\n                System.err.println(\"\\nError: \" + e.getMessage());\n            }\n        }\n        \n        System.out.println(\"Goodbye!\");\n        scanner.close();\n    }",
+  "patchPath" : null,
+  "fixed" : true
+}

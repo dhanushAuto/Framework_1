@@ -1,0 +1,112 @@
+package utilities.common_utils;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public class LogUtils {
+    
+    private LogUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    private static Logger getLogger() {
+        StackTraceElement caller = Thread.currentThread().getStackTrace()[3];
+        return LogManager.getLogger(caller.getClassName());
+    }
+
+    public static void main(String[] args)
+            throws Exception {
+
+        FailureAnalyzer analyzer =
+                new FailureAnalyzer();
+
+        String result =
+                analyzer.analyze(
+
+                        "Login Test",
+
+                        new RuntimeException(
+
+                                "TimeoutException"),
+
+
+                        """
+org.openqa.selenium.TimeoutException
+
+at LoginPage.clickLogin()
+
+at LoginTest.testLogin()
+
+""");
+
+        System.out.println(result);
+
+    }
+                new FailureAnalyzer();
+
+        String result =
+                analyzer.analyze(
+
+                        "Login Test",
+
+                        new RuntimeException(
+
+                                "TimeoutException"),
+
+
+                        """
+org.openqa.selenium.TimeoutException
+
+at LoginPage.clickLogin()
+
+at LoginTest.testLogin()
+
+""");
+
+        System.out.println(result);
+
+    }
+                new FailureAnalyzer();
+
+        String result =
+                analyzer.analyze(
+
+                        "Login Test",
+
+                        new RuntimeException(
+
+                                "TimeoutException"),
+
+
+                        """
+org.openqa.selenium.TimeoutException
+
+at LoginPage.clickLogin()
+
+at LoginTest.testLogin()
+
+""");
+
+        System.out.println(result);
+
+    }
+
+    public static void warn(String message) {
+        System.out.println("[WARN] " + message);
+        getLogger().warn(message);
+    }
+
+    public static void error(String message) {
+        System.err.println("[ERROR] " + message);
+        getLogger().error(message);
+    }
+
+    public static void debug(String message) {
+        System.out.println("[DEBUG] " + message);
+        getLogger().debug(message);
+    }
+
+    public static void fatal(String message) {
+        getLogger().fatal(message);
+    }
+}

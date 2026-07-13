@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "d10ce0fc-e489-4648-9b06-a92996dc52cd",
+    "rule" : "java:S1128",
+    "severity" : "MINOR",
+    "component" : "Framework_1:src/main/java/utilities/allure/AllureAttachment.java",
+    "filePath" : "Framework_1:src/main/java/utilities/allure/AllureAttachment.java",
+    "project" : "Framework_1",
+    "message" : "Remove this unused import 'java.io.IOException'.",
+    "type" : "CODE_SMELL",
+    "line" : 8
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "AI Analysis Failed: Request timed out. Read timed out",
+  "fixed" : true
+}

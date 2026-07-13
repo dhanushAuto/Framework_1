@@ -6,9 +6,9 @@ public class AIService {
 
     private final AIClient client = new AIClient();
 
-    public String ask(String prompt) throws Exception {
+    public String ask(String prompt){
 
-        return client.askAI(prompt);
+        return client.generateResponse(prompt);
 
     }
 

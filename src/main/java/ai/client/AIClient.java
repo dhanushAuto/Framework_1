@@ -20,45 +20,103 @@ import java.util.concurrent.TimeUnit;
 public class AIClient {
 
     private static final Logger logger = LogManager.getLogger(AIClient.class);
-    
+
     private final ObjectMapper mapper = new ObjectMapper();
     private final CloseableHttpClient httpClient;
     private final int maxRetries;
     private final long retryDelayMs;
     private final long timeoutMs;
+    private final String aiUrl;
 
     public AIClient() {
         this.maxRetries = Integer.parseInt(ConfigUtils.getProperty("ai.retry", "3"));
         this.retryDelayMs = 1000;
-        this.timeoutMs = Long.parseLong(ConfigUtils.getProperty("ai.timeout", "60000"));
-        
+        this.timeoutMs = Long.parseLong(ConfigUtils.getProperty("ai.timeout", "300000"));
+        this.aiUrl = ConfigUtils.getProperty("ai.url");
+
+        if (aiUrl == null) {
+            logger.error("ai.url property is missing! AI requests will fail.");
+        } else if (!aiUrl.contains("/api/generate")) {
+            logger.warn("ai.url does not look like a full Ollama generate endpoint: '{}'. " +
+                    "Expected something like http://localhost:11434/api/generate", aiUrl);
+        }
+
         PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
         connectionManager.setMaxTotal(20);
         connectionManager.setDefaultMaxPerRoute(10);
-        
+
         RequestConfig config = RequestConfig.custom()
                 .setConnectionRequestTimeout(Timeout.ofMilliseconds(30000))
+                // Fail fast if the host/port isn't reachable at all, instead of hanging
+                // for the full response timeout. This is the most common cause of a
+                // call that appears "stuck" right after httpClient.execute(...).
                 .setResponseTimeout(Timeout.ofMilliseconds(this.timeoutMs))
                 .build();
-        
+
         this.httpClient = HttpClients.custom()
                 .setConnectionManager(connectionManager)
                 .setDefaultRequestConfig(config)
+                .evictExpiredConnections()
+                .evictIdleConnections(Timeout.ofMinutes(1))
+                .disableAutomaticRetries() // We handle retries manually in generateWithRetry
                 .build();
-        
-        logger.info("AIClient initialized with maxRetries={}, timeout={}ms", maxRetries, timeoutMs);
+
+        checkServiceAvailability();
+        logger.info("AIClient initialized with maxRetries={}, timeout={}ms, url={}", maxRetries, timeoutMs, aiUrl);
     }
 
-    public String askAI(String prompt) {
+    private void checkServiceAvailability() {
+        if (aiUrl == null) return;
+        
+        // Quick check to see if the port is open
         try {
-            return askAIWithRetry(prompt, maxRetries);
+            java.net.URL url = new java.net.URL(aiUrl);
+            String host = url.getHost();
+            int port = url.getPort() == -1 ? url.getDefaultPort() : url.getPort();
+            
+            try (java.net.Socket socket = new java.net.Socket()) {
+                socket.connect(new java.net.InetSocketAddress(host, port), 2000);
+                logger.info("AI service is available at {}:{}", host, port);
+            }
         } catch (Exception e) {
-            logger.error("AI request failed: {}", e.getMessage());
-            return "AI Analysis Failed: " + e.getMessage();
+            logger.error("AI service is NOT reachable at {}. AI features will be disabled or fail. " +
+                         "Please ensure Ollama is running.", aiUrl);
         }
     }
 
-    private String askAIWithRetry(String prompt, int retriesLeft) throws Exception {
+    /** Convenience wrapper returning just the response text. */
+    public String generateResponse(String prompt) {
+        return generateFullResponse(prompt).getResponse();
+    }
+
+    public OllamaResponse generateFullResponse(String prompt) {
+        try {
+            return generateWithRetry(prompt, maxRetries);
+        } catch (java.net.ConnectException e) {
+            logger.error("AI service is unreachable at {}. Please ensure Ollama is running and accessible. Error: {}", aiUrl, e.getMessage());
+            OllamaResponse errorResponse = new OllamaResponse();
+            errorResponse.setResponse("AI Analysis Failed: AI service unreachable. " + e.getMessage());
+            return errorResponse;
+        } catch (java.net.SocketTimeoutException e) {
+            logger.error("AI request timed out after {}ms for URL: {}. The prompt might be too large or the model is slow.", timeoutMs, aiUrl);
+            OllamaResponse errorResponse = new OllamaResponse();
+            errorResponse.setResponse("AI Analysis Failed: Request timed out. " + e.getMessage());
+            return errorResponse;
+        } catch (Exception e) {
+            // Log the full exception (not just getMessage()) so the real stack trace
+            // isn't lost when something other than AIRequestException/AIException occurs.
+            logger.error("AI request failed", e);
+            OllamaResponse errorResponse = new OllamaResponse();
+            errorResponse.setResponse("AI Analysis Failed: " + e.getMessage());
+            return errorResponse;
+        }
+    }
+
+    public String generateText(String prompt) {
+        return generateFullResponse(prompt).getResponse();
+    }
+
+    private OllamaResponse generateWithRetry(String prompt, int retriesLeft) throws Exception {
         if (retriesLeft <= 0) {
             throw new AIException("Max retries exceeded for AI request");
         }
@@ -67,36 +125,53 @@ public class AIClient {
         request.setModel(ConfigUtils.getProperty("ai.model"));
         request.setPrompt(prompt);
         request.setStream(false);
-        request.setThink(false);
+        // request.setThink(false); // Removed as it might not be supported by all models
+
+        // Increase response length for batch file fixes
+        OllamaRequest.Options options = new OllamaRequest.Options();
+        options.setNum_predict(4000); 
+        request.setOptions(options);
 
         String json = mapper.writeValueAsString(request);
-        HttpPost post = new HttpPost(ConfigUtils.getProperty("ai.url"));
+        logger.debug("Ollama request payload: {}", json);
+
+        HttpPost post = new HttpPost(aiUrl);
         post.setEntity(new StringEntity(json, ContentType.APPLICATION_JSON));
 
         try {
-            logger.debug("Sending AI request (retries left: {})", retriesLeft);
-            
+            logger.debug("Sending AI request to {} (retries left: {})", aiUrl, retriesLeft);
+
             String body = httpClient.execute(post, httpResponse -> {
                 int statusCode = httpResponse.getCode();
+                
+                // Using a buffered input stream or similar might be better for very large responses,
+                // but for non-streaming it should be fine.
+                // We ensure we don't hang by checking if the entity is actually there.
+                if (httpResponse.getEntity() == null) {
+                    throw new AIRequestException("Empty response from AI service (status " + statusCode + ")");
+                }
+
                 byte[] responseBytes = httpResponse.getEntity().getContent().readAllBytes();
-                String responseBody = new String(responseBytes);
+                String responseBody = new String(responseBytes, java.nio.charset.StandardCharsets.UTF_8);
+
+                logger.debug("Ollama raw response ({}): {}", statusCode, responseBody);
 
                 if (statusCode != 200) {
                     logger.warn("AI request failed with status {}: {}", statusCode, responseBody);
-                    // Throwing RuntimeException here because it's inside a lambda for HttpClient
                     throw new AIRequestException("Ollama Error: " + statusCode + "\n" + responseBody);
                 }
 
-                logger.debug("AI request successful");
                 return responseBody;
             });
 
-            OllamaResponse aiResponse = mapper.readValue(body, OllamaResponse.class);
-            return aiResponse.getResponse();
+            return mapper.readValue(body, OllamaResponse.class);
 
+        } catch (java.net.ConnectException | java.net.SocketTimeoutException e) {
+            // Re-throw these so generateFullResponse can handle them specially
+            throw e;
         } catch (Exception e) {
-            logger.warn("AI request failed: {}. Retrying... ({})", e.getMessage(), retriesLeft - 1);
-            
+            logger.warn("AI request failed: {}. Retrying... ({} left)", e.getMessage(), retriesLeft - 1);
+
             if (retriesLeft > 1) {
                 try {
                     TimeUnit.MILLISECONDS.sleep(retryDelayMs);
@@ -104,9 +179,9 @@ public class AIClient {
                     Thread.currentThread().interrupt();
                     throw new AIException("Retry interrupted", ie);
                 }
-                return askAIWithRetry(prompt, retriesLeft - 1);
+                return generateWithRetry(prompt, retriesLeft - 1);
             }
-            
+
             throw new AIException("AI request failed after " + maxRetries + " retries: " + e.getMessage(), e);
         }
     }

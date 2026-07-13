@@ -48,12 +48,14 @@ Analyze the following failed automation test.
         prompt.append("""
 You are a Senior Automation Architect.
 
-Analyze the following failed automation test with full context.
+Analyze the following failed automation test with full context (Logs, Screenshot info, API data).
 
                 Provide:
-                1. Root Cause
-                2. Suggested Fix
-                3. Prevention Strategy
+                1. Root Cause: Detailed explanation of why the test failed.
+                2. Suggested Fix: Code or configuration change to fix it.
+                3. Screenshot Analysis: Analyze the screenshot context (e.g., if a button is missing or a popup is covering it).
+                4. Log Correlation: Correlate application logs with test failure.
+                5. Prevention Strategy: How to avoid this in the future.
 
 ----------------------------------------""");
 

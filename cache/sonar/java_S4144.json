@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "4f47d199-43cf-4f4d-944f-3a26aac8b85b",
+    "rule" : "java:S4144",
+    "severity" : "MAJOR",
+    "component" : "Framework_1:src/main/java/ai/traceability/RequirementTraceability.java",
+    "filePath" : "Framework_1:src/main/java/ai/traceability/RequirementTraceability.java",
+    "project" : "Framework_1",
+    "message" : "Update this method so that its implementation is not identical to \"parseMappedTests\" on line 200.",
+    "type" : "CODE_SMELL",
+    "line" : 239
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "    private TraceabilityMatrix parseTraceabilityMatrix(String aiResponse, List<String> requirements, List<String> testCases) {\n        TraceabilityMatrix matrix = new TraceabilityMatrix();\n        \n        String[] lines = aiResponse.split(\"\\n\");\n        for (String line : lines) {\n            if (line.contains(\":\")) {\n                String[] parts = line.split(\":\");\n                if (parts.length == 2) {\n                    String requirement = parts[0].trim();\n                    if (!requirements.contains(requirement)) {\n                        continue;\n                    }\n                    String[] tests = parts[1].trim().split(\",\");\n                    List<String> testList = new ArrayList<>();\n                    for (String test : tests) {\n                        String trimmed = test.trim();\n                        if (testCases.contains(trimmed)) {\n                            testList.add(trimmed);\n                        }\n                    }\n                    matrix.addMapping(requirement, testList);\n                }\n            }\n        }\n        \n        return matrix;\n    }",
+  "fixed" : true
+}

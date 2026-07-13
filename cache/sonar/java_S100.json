@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "efc72a0a-d818-4e72-9813-f405c1d26dce",
+    "rule" : "java:S100",
+    "severity" : "MINOR",
+    "component" : "Framework_1:src/main/java/factories/APIClientFactory.java",
+    "filePath" : "Framework_1:src/main/java/factories/APIClientFactory.java",
+    "project" : "Framework_1",
+    "message" : "Rename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.",
+    "type" : "CODE_SMELL",
+    "line" : 8
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "AI Analysis Failed: Request timed out. Read timed out",
+  "fixed" : true
+}

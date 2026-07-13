@@ -1,0 +1,17 @@
+{
+  "issue" : {
+    "key" : "95ad3d79-e246-4e28-bdc0-32a860e39293",
+    "rule" : "java:S8786",
+    "severity" : "MAJOR",
+    "component" : "Framework_1:src/main/java/ai/service/CodeExtractor.java",
+    "filePath" : "Framework_1:src/main/java/ai/service/CodeExtractor.java",
+    "project" : "Framework_1",
+    "message" : "Simplify this regular expression to reduce its runtime, as it has super-linear performance due to backtracking.",
+    "type" : "CODE_SMELL",
+    "line" : 45
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "package ai.service;\n\nimport java.io.IOException;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\nimport java.util.List;\n\npublic class CodeExtractor {\n\n    private static final int CONTEXT_LINES = 20;\n\n    public static String extractCode(String filePath, int issueLine) throws IOException {\n\n        List<String> lines = Files.readAllLines(Paths.get(filePath));\n\n        if (lines.isEmpty()) {\n            return \"\";\n        }\n\n        int lineIndex = Math.max(0, issueLine - 1);\n\n        int methodStart = findMethodStart(lines, lineIndex);\n        int methodEnd = findMethodEnd(lines, methodStart);\n\n        if (methodStart != -1 && methodEnd != 1) {\n\n            StringBuilder builder = new StringBuilder();\n\n            int start = Math.max(0, methodStart - CONTEXT_LINES);\n            int end = Math.min(lines.size() - 1, methodEnd + CONTEXT_LINES);\n\n            for (int i = start; i < end; i++) {\n                builder.append(lines.get(i)).append(\"\\n\");\n            }\n\n            return builder.toString();\n        }\n\n        return \"\";\n    }\n\n    private static int findMethodStart(List<String> lines, int lineIndex) {\n        for (int i = lineIndex; i >= 0; i--) {\n            String line = lines.get(i);\n            if (line.trim().matches(\"^[\\\\s\\\\t]*public static void main\\\\(String\\\\[] args\\\\)$\")) {\n                return i;\n            }\n            if (line.trim().matches(\"^[\\\\s\\\\t]*public void\")) {\n                return i;\n            }\n            if (line.trim().matches(\"^[\\\\s\\\\t]*private void\")) {\n                return i;\n            }\n            if (line.trim().matches(\"^[\\\\s\\\\t]*void\")) {\n                return i;\n            }\n            if (line.trim().matches(\"^[\\\\s\\\\t]*public static\")) {\n                return i;\n            }\n            if (line.trim().matches(\"^[\\\\s\\\\t]*public\")) {\n                return i;\n            }\n            if (line.trim().matches(\"^[\\\\s\\\\t]*private\")) {\n                return i;\n            }\n        }\n        return -1;\n    }\n\n    private static int findMethodEnd(List<String> lines, int methodStart) {\n        int end = methodStart;\n        while (end < lines.size()) {\n            String line = lines.get(end);\n            if (line.trim().endsWith(\"}\")) {\n                return end;\n            }\n            end++;\n        }\n        return 1;\n    }\n}",
+  "patchPath" : null,
+  "fixed" : true
+}

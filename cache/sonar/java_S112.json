@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "d966ed70-68da-4e4b-b4ce-2249def2e97d",
+    "rule" : "java:S112",
+    "severity" : "MAJOR",
+    "component" : "Framework_1:src/main/java/ai/service/AIService.java",
+    "filePath" : "Framework_1:src/main/java/ai/service/AIService.java",
+    "project" : "Framework_1",
+    "message" : "Replace generic exceptions with specific library exceptions or a custom exception.",
+    "type" : "CODE_SMELL",
+    "line" : 9
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "    public String ask(String prompt) throws Exception {\n        return client.generateResponse(prompt);\n    }",
+  "fixed" : true
+}

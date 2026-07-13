@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "2d058a37-4be2-4472-a3d3-7eb71dd93d99",
+    "rule" : "java:S1598",
+    "severity" : "CRITICAL",
+    "component" : "Framework_1:src/main/java/DriverManager/Driver.java",
+    "filePath" : "Framework_1:src/main/java/DriverManager/Driver.java",
+    "project" : "Framework_1",
+    "message" : "File path \"\\Users\\Admin\\.jenkins\\workspace\\UI-API-Automation-Pipeline\\src\\main\\java\\DriverManager\" should match package name \"drivermanager\". Move the file or change the package name.",
+    "type" : "CODE_SMELL",
+    "line" : 1
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "package drivermanager;\n\nimport io.github.bonigarcia.wdm.WebDriverManager;\nimport org.openqa.selenium.Alert;\nimport org.openqa.selenium.WebDriver;\nimport org.openqa.selenium.WebElement;\nimport org.openqa.selenium.WindowType;\nimport org.openqa.selenium.chrome.ChromeDriver;\nimport org.openqa.selenium.edge.EdgeDriver;\nimport org.openqa.selenium.firefox.FirefoxDriver;\n\nimport java.time.Duration;\n\npublic class Driver {\n\n    private Driver() {\n        throw new IllegalStateException(\"Utility class\");\n    }\n\n    private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();\n\n}",
+  "fixed" : true
+}

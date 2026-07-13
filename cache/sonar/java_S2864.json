@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "d2dafdd7-b287-4371-9bb3-1defa34fd476",
+    "rule" : "java:S2864",
+    "severity" : "MAJOR",
+    "component" : "Framework_1:src/main/java/ai/performance/PerformanceRegressionDetector.java",
+    "filePath" : "Framework_1:src/main/java/ai/performance/PerformanceRegressionDetector.java",
+    "project" : "Framework_1",
+    "message" : "Iterate over the \"entrySet\" instead of the \"keySet\".",
+    "type" : "CODE_SMELL",
+    "line" : 100
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "    public List<PerformanceRecommendation> getOptimizationRecommendations(Map<String, PerformanceMetrics> metrics) throws Exception {\n        \n        String prompt = buildOptimizationPrompt(metrics);\n        \n        String aiResponse = aiService.ask(prompt);\n        \n        return parseRecommendations(aiResponse);\n    }",
+  "fixed" : true
+}

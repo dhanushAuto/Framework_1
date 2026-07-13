@@ -9,7 +9,7 @@ public class FailureAnalyzer {
 
     public String analyze(
             String testName,
-            @org.jetbrains.annotations.UnknownNullability Throwable exception,
+            Throwable exception,
             String stackTrace) throws Exception {
 
         String prompt = FailurePromptBuilder.buildFailurePrompt(
@@ -22,7 +22,7 @@ public class FailureAnalyzer {
 
     public String analyzeWithContext(
             String testName,
-            @org.jetbrains.annotations.UnknownNullability Throwable exception,
+            Throwable exception,
             String stackTrace,
             String screenshotPath,
             String currentUrl,

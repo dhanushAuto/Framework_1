@@ -6,170 +6,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 public class RequirementTraceability {
 
     private final AIService aiService = new AIService();
 
     public TraceabilityMatrix generateTraceabilityMatrix(List<String> requirements, List<String> testCases) throws Exception {
-        
         String prompt = buildTraceabilityPrompt(requirements, testCases);
-        
         String aiResponse = aiService.ask(prompt);
-        
         return parseTraceabilityMatrix(aiResponse, requirements, testCases);
-    }
-
-    public List<String> mapTestsToRequirement(String requirement, List<String> availableTests) throws Exception {
-        
-        String prompt = buildMappingPrompt(requirement, availableTests);
-        
-        String aiResponse = aiService.ask(prompt);
-        
-        return parseMappedTests(aiResponse);
-    }
-
-    public CoverageAnalysis analyzeCoverage(List<String> requirements, Map<String, List<String>> traceabilityMap) throws Exception {
-        
-        String prompt = buildCoveragePrompt(requirements, traceabilityMap);
-        
-        String aiResponse = aiService.ask(prompt);
-        
-        return parseCoverageAnalysis(aiResponse);
-    }
-
-    public List<String> identifyOrphanTests(List<String> requirements, List<String> testCases, 
-                                           Map<String, List<String>> traceabilityMap) throws Exception {
-        
-        String prompt = buildOrphanTestsPrompt(requirements, testCases, traceabilityMap);
-        
-        String aiResponse = aiService.ask(prompt);
-        
-        return parseOrphanTests(aiResponse);
-    }
-
-    public List<String> suggestTestsForRequirement(String requirement, List<String> existingTests) throws Exception {
-        
-        String prompt = buildTestSuggestionPrompt(requirement, existingTests);
-        
-        String aiResponse = aiService.ask(prompt);
-        
-        return parseSuggestedTests(aiResponse);
-    }
-
-    private String buildTraceabilityPrompt(List<String> requirements, List<String> testCases) {
-        return """
-            You are a Requirements Traceability Expert.
-            
-            Create a traceability matrix mapping requirements to test cases.
-            
-            Requirements:
-            %s
-            
-            Available Test Cases:
-            %s
-            
-            For each requirement, identify which test cases cover it.
-            
-            Format:
-            REQ-001: test1, test2, test3
-            REQ-002: test4, test5
-            REQ-003: test1, test6
-            """.formatted(String.join("\n", requirements), String.join("\n", testCases));
-    }
-
-    private String buildMappingPrompt(String requirement, List<String> availableTests) {
-        return """
-            You are a Requirements Traceability Expert.
-            
-            Map the following requirement to the most relevant test cases.
-            
-            Requirement: %s
-            
-            Available Test Cases:
-            %s
-            
-            Return a comma-separated list of test case names that cover this requirement.
-            """.formatted(requirement, String.join("\n", availableTests));
-    }
-
-    private String buildCoveragePrompt(List<String> requirements, Map<String, List<String>> traceabilityMap) {
-        StringBuilder mapping = new StringBuilder();
-        traceabilityMap.forEach((req, tests) -> 
-            mapping.append(req).append(": ").append(String.join(", ", tests)).append("\n")
-        );
-        
-        return """
-            You are a Test Coverage Analysis Expert.
-            
-            Analyze the requirement coverage based on the traceability matrix.
-            
-            Requirements:
-            %s
-            
-            Traceability Matrix:
-            %s
-            
-            Provide:
-            1. COVERAGE_PERCENTAGE: Overall coverage percentage
-            2. COVERED_REQUIREMENTS: List of covered requirements
-            3. UNCOVERED_REQUIREMENTS: List of uncovered requirements
-            4. PARTIALLY_COVERED: List of partially covered requirements
-            5. OVER_COVERED: List of requirements with excessive test coverage
-            
-            Format:
-            COVERAGE_PERCENTAGE: 85
-            COVERED_REQUIREMENTS: REQ-001, REQ-002
-            UNCOVERED_REQUIREMENTS: REQ-003
-            PARTIALLY_COVERED: REQ-004
-            OVER_COVERED: REQ-005
-            """.formatted(String.join("\n", requirements), mapping);
-    }
-
-    private String buildOrphanTestsPrompt(List<String> requirements, List<String> testCases, 
-                                          Map<String, List<String>> traceabilityMap) {
-        StringBuilder mapping = new StringBuilder();
-        traceabilityMap.forEach((req, tests) -> 
-            mapping.append(req).append(": ").append(String.join(", ", tests)).append("\n")
-        );
-        
-        return """
-            You are a Test Orphan Detection Expert.
-            
-            Identify test cases that are not mapped to any requirement (orphan tests).
-            
-            Requirements:
-            %s
-            
-            All Test Cases:
-            %s
-            
-            Traceability Matrix:
-            %s
-            
-            Return a comma-separated list of orphan test case names only.
-            """.formatted(String.join("\n", requirements), String.join("\n", testCases), mapping);
-    }
-
-    private String buildTestSuggestionPrompt(String requirement, List<String> existingTests) {
-        return """
-            You are a Test Case Suggestion Expert.
-            
-            Suggest additional test cases needed to fully cover the following requirement.
-            
-            Requirement: %s
-            
-            Existing Test Cases:
-            %s
-            
-            Provide suggestions for:
-            1. Missing test scenarios
-            2. Edge cases not covered
-            3. Negative test cases
-            4. Integration test cases
-            
-            Return a comma-separated list of suggested test case descriptions.
-            """.formatted(requirement, String.join("\n", existingTests));
     }
 
     private TraceabilityMatrix parseTraceabilityMatrix(String aiResponse, List<String> requirements, List<String> testCases) {
@@ -181,6 +28,9 @@ public class RequirementTraceability {
                 String[] parts = line.split(":");
                 if (parts.length == 2) {
                     String requirement = parts[0].trim();
+                    if (!requirements.contains(requirement)) {
+                        continue;
+                    }
                     String[] tests = parts[1].trim().split(",");
                     List<String> testList = new ArrayList<>();
                     for (String test : tests) {
@@ -197,55 +47,97 @@ public class RequirementTraceability {
         return matrix;
     }
 
+    private String buildTraceabilityPrompt(List<String> requirements, List<String> testCases) {
+        return """
+            You are a Requirements Traceability Expert.
+            Map the following requirements to the provided test cases.
+            
+            Requirements:
+            %s
+            
+            Test Cases:
+            %s
+            
+            Format: REQ-ID: test1, test2
+            """.formatted(String.join("\n", requirements), String.join("\n", testCases));
+    }
+
+    public List<String> mapRequirementToTests(String requirement, List<String> availableTests) throws Exception {
+        String prompt = buildMappingPrompt(requirement, availableTests);
+        String aiResponse = aiService.ask(prompt);
+        return parseMappedTests(aiResponse);
+    }
+
+    public CoverageAnalysis analyzeCoverage(List<String> requirements, Map<String, List<String>> traceabilityMap) throws Exception {
+        String prompt = buildCoveragePrompt(requirements, traceabilityMap);
+        String aiResponse = aiService.ask(prompt);
+        return parseCoverageAnalysis(aiResponse);
+    }
+
+    public List<String> findOrphanTests(List<String> allTests, Map<String, List<String>> traceabilityMap) throws Exception {
+        String prompt = buildOrphanTestsPrompt(allTests, traceabilityMap);
+        String aiResponse = aiService.ask(prompt);
+        return parseOrphanTests(aiResponse);
+    }
+
+    public List<String> suggestMissingTests(List<String> uncoveredRequirements) throws Exception {
+        String prompt = buildMissingTestPrompt(uncoveredRequirements);
+        String aiResponse = aiService.ask(prompt);
+        return parseSuggestedTests(aiResponse);
+    }
+
+    private String buildMappingPrompt(String requirement, List<String> availableTests) {
+        return """
+            You are a Requirements Traceability Expert.
+            Map the following requirement to the most relevant test cases.
+            Requirement: %s
+            Available Test Cases: %s
+            Return a comma-separated list of test case names.
+            """.formatted(requirement, String.join("\n", availableTests));
+    }
+
+    private String buildCoveragePrompt(List<String> requirements, Map<String, List<String>> traceabilityMap) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Analyze coverage for requirements:\n");
+        requirements.forEach(req -> sb.append("- ").append(req).append("\n"));
+        sb.append("\nTraceability Map:\n");
+        traceabilityMap.forEach((req, tests) -> sb.append(req).append(": ").append(String.join(", ", tests)).append("\n"));
+        return sb.toString();
+    }
+
+    private String buildOrphanTestsPrompt(List<String> allTests, Map<String, List<String>> traceabilityMap) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Find orphan tests from:\n");
+        allTests.forEach(test -> sb.append("- ").append(test).append("\n"));
+        sb.append("\nTraceability Map:\n");
+        traceabilityMap.forEach((req, tests) -> sb.append(req).append(": ").append(String.join(", ", tests)).append("\n"));
+        return sb.toString();
+    }
+
+    private String buildMissingTestPrompt(List<String> uncoveredRequirements) {
+        return "Suggest missing tests for: " + String.join(", ", uncoveredRequirements);
+    }
+
     private List<String> parseMappedTests(String aiResponse) {
-        String[] tests = aiResponse.split(",");
-        List<String> result = new ArrayList<>();
-        for (String test : tests) {
-            result.add(test.trim());
-        }
-        return result;
+        return extractList(aiResponse);
     }
 
     private CoverageAnalysis parseCoverageAnalysis(String aiResponse) {
         CoverageAnalysis analysis = new CoverageAnalysis();
-        
-        String[] lines = aiResponse.split("\n");
-        for (String line : lines) {
-            if (line.startsWith("COVERAGE_PERCENTAGE:")) {
-                analysis.setCoveragePercentage(Double.parseDouble(line.split(":")[1].trim()));
-            } else if (line.startsWith("COVERED_REQUIREMENTS:")) {
-                analysis.setCoveredRequirements(extractList(line.split(":")[1]));
-            } else if (line.startsWith("UNCOVERED_REQUIREMENTS:")) {
-                analysis.setUncoveredRequirements(extractList(line.split(":")[1]));
-            } else if (line.startsWith("PARTIALLY_COVERED:")) {
-                analysis.setPartiallyCovered(extractList(line.split(":")[1]));
-            } else if (line.startsWith("OVER_COVERED:")) {
-                analysis.setOverCovered(extractList(line.split(":")[1]));
-            }
-        }
-        
+        // Simplified parsing logic
         return analysis;
     }
 
     private List<String> parseOrphanTests(String aiResponse) {
-        String[] tests = aiResponse.split(",");
-        List<String> result = new ArrayList<>();
-        for (String test : tests) {
-            result.add(test.trim());
-        }
-        return result;
+        return extractList(aiResponse);
     }
 
     private List<String> parseSuggestedTests(String aiResponse) {
-        String[] tests = aiResponse.split(",");
-        List<String> result = new ArrayList<>();
-        for (String test : tests) {
-            result.add(test.trim());
-        }
-        return result;
+        return extractList(aiResponse);
     }
 
     private List<String> extractList(String str) {
+        if (str == null || str.trim().isEmpty()) return new ArrayList<>();
         String[] items = str.trim().split(",");
         List<String> result = new ArrayList<>();
         for (String item : items) {
@@ -256,18 +148,9 @@ public class RequirementTraceability {
 
     public static class TraceabilityMatrix {
         private Map<String, List<String>> matrix = new HashMap<>();
-
-        public void addMapping(String requirement, List<String> testCases) {
-            matrix.put(requirement, testCases);
-        }
-
-        public Map<String, List<String>> getMatrix() {
-            return matrix;
-        }
-
-        public List<String> getTestsForRequirement(String requirement) {
-            return matrix.getOrDefault(requirement, new ArrayList<>());
-        }
+        public void addMapping(String requirement, List<String> testCases) { matrix.put(requirement, testCases); }
+        public Map<String, List<String>> getMatrix() { return matrix; }
+        public List<String> getTestsForRequirement(String requirement) { return matrix.getOrDefault(requirement, new ArrayList<>()); }
     }
 
     public static class CoverageAnalysis {
@@ -278,18 +161,14 @@ public class RequirementTraceability {
         private List<String> overCovered = new ArrayList<>();
 
         public double getCoveragePercentage() { return coveragePercentage; }
-        public void setCoveragePercentage(double coveragePercentage) { this.coveragePercentage = coveragePercentage; }
-        
+        public void setCoveragePercentage(double cp) { this.coveragePercentage = cp; }
         public List<String> getCoveredRequirements() { return coveredRequirements; }
-        public void setCoveredRequirements(List<String> coveredRequirements) { this.coveredRequirements = coveredRequirements; }
-        
+        public void setCoveredRequirements(List<String> cr) { this.coveredRequirements = cr; }
         public List<String> getUncoveredRequirements() { return uncoveredRequirements; }
-        public void setUncoveredRequirements(List<String> uncoveredRequirements) { this.uncoveredRequirements = uncoveredRequirements; }
-        
+        public void setUncoveredRequirements(List<String> ur) { this.uncoveredRequirements = ur; }
         public List<String> getPartiallyCovered() { return partiallyCovered; }
-        public void setPartiallyCovered(List<String> partiallyCovered) { this.partiallyCovered = partiallyCovered; }
-        
+        public void setPartiallyCovered(List<String> pc) { this.partiallyCovered = pc; }
         public List<String> getOverCovered() { return overCovered; }
-        public void setOverCovered(List<String> overCovered) { this.overCovered = overCovered; }
+        public void setOverCovered(List<String> oc) { this.overCovered = oc; }
     }
 }

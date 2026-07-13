@@ -1,0 +1,17 @@
+{
+  "issue" : {
+    "key" : "02912c84-d84e-4046-abf0-99f0b8ee4d52",
+    "rule" : "java:S1481",
+    "severity" : "MINOR",
+    "component" : "Framework_1:src/main/java/utilities/common_utils/PatchUtils.java",
+    "filePath" : "Framework_1:src/main/java/utilities/common_utils/PatchUtils.java",
+    "project" : "Framework_1",
+    "message" : "Remove this unused \"newLines\" local variable.",
+    "type" : "CODE_SMELL",
+    "line" : 66
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "AI Analysis Failed: Request timed out. Read timed out",
+  "patchPath" : null,
+  "fixed" : true
+}

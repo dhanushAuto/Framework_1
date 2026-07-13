@@ -1,0 +1,17 @@
+{
+  "issue" : {
+    "key" : "61eea79a-aead-4f86-a7c9-371670ba5b79",
+    "rule" : "java:S117",
+    "severity" : "MINOR",
+    "component" : "Framework_1:src/main/java/ai/model/OllamaRequest.java",
+    "filePath" : "Framework_1:src/main/java/ai/model/OllamaRequest.java",
+    "project" : "Framework_1",
+    "message" : "Rename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.",
+    "type" : "CODE_SMELL",
+    "line" : 21
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "package ai.model;\n\npublic class OllamaRequest {\n\n    private String model;\n\n    private boolean think;\n\n    private String prompt;\n\n    private boolean stream;\n    private Options options;\n\n    public static class Options {\n        private int num_predict;\n\n        public int getNum_predict() {\n            return num_predict;\n        }\n\n        public void setNum_predict(int num_predict) {\n            this.num_predict = num_predict;\n        }\n    }\n\n    public Options getOptions() {\n        return options;\n    }\n\n    public void setOptions(Options options) {\n        this.options = options;\n    }\n\n    public String getModel() {\n        return model;\n    }\n\n    public void setModel(String model) {\n        this.model = model;\n    }\n\n    public boolean isThink() {\n        return think;\n    }\n\n    public void setThink(boolean think) {\n        this.think = think;\n    }\n\n    public String getPrompt() {\n        return prompt;\n    }\n\n    public void setPrompt(String prompt) {\n        this.prompt = prompt;\n    }\n\n    public boolean isStream() {\n        return stream;\n    }\n\n    public void setStream(boolean stream) {\n        this.stream = stream;\n    }\n}",
+  "patchPath" : null,
+  "fixed" : true
+}

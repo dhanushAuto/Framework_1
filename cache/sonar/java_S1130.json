@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "5ec90546-440f-4471-91f0-c528e94c9d04",
+    "rule" : "java:S1130",
+    "severity" : "MINOR",
+    "component" : "Framework_1:src/main/java/ai/service/AIService.java",
+    "filePath" : "Framework_1:src/main/java/ai/service/AIService.java",
+    "project" : "Framework_1",
+    "message" : "Remove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.",
+    "type" : "CODE_SMELL",
+    "line" : 9
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "    public String ask(String prompt) throws Exception {\n        return client.generateResponse(prompt);\n    }",
+  "fixed" : true
+}

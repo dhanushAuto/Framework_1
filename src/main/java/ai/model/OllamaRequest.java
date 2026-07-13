@@ -9,6 +9,27 @@ public class OllamaRequest {
     private String prompt;
 
     private boolean stream;
+    private Options options;
+
+    public static class Options {
+        private int num_predict;
+
+        public int getNum_predict() {
+            return num_predict;
+        }
+
+        public void setNum_predict(int num_predict) {
+            this.num_predict = num_predict;
+        }
+    }
+
+    public Options getOptions() {
+        return options;
+    }
+
+    public void setOptions(Options options) {
+        this.options = options;
+    }
 
     public String getModel() {
         return model;

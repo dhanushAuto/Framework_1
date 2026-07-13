@@ -1,0 +1,17 @@
+{
+  "issue" : {
+    "key" : "8a581b42-51db-400b-9b0c-cef25689152f",
+    "rule" : "java:S125",
+    "severity" : "MAJOR",
+    "component" : "Framework_1:src/main/java/ai/client/AIClientbackup.java",
+    "filePath" : "Framework_1:src/main/java/ai/client/AIClientbackup.java",
+    "project" : "Framework_1",
+    "message" : "This block of commented-out lines of code should be removed.",
+    "type" : "CODE_SMELL",
+    "line" : 86
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "    public String generateResponse(String prompt) {\n        System.out.println(\">>> generateFullResponse()\");\n        try {\n            return askAIWithRetry(prompt, maxRetries);\n        } catch (Exception e) {\n            logger.error(\"AI request failed: {}\", e.getMessage());\n            return \"AI Analysis Failed: \" + e.getMessage();\n        }\n    }",
+  "patchPath" : null,
+  "fixed" : true
+}

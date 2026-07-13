@@ -7,15 +7,10 @@ import utilities.common_utils.LogUtils;
 
 public class AITest {
 
-    public static void main(String[] args) throws Exception {
+    private final AIService aiService = new AIService();
 
-        ConfigUtils.loadProperties();
-        AIService ai = new AIService();
-
-        String answer = ai.ask("Explain Selenium in one sentence.");
-
-        LogUtils.info(answer);
-
+    public String ask(String prompt) throws Exception {
+        return aiService.ask(prompt);
     }
 
 }

@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "e342be54-3106-40eb-9834-943990d12e1a",
+    "rule" : "java:S107",
+    "severity" : "MAJOR",
+    "component" : "Framework_1:src/main/java/ai/prompt/FailurePromptBuilder.java",
+    "filePath" : "Framework_1:src/main/java/ai/prompt/FailurePromptBuilder.java",
+    "project" : "Framework_1",
+    "message" : "Method has 10 parameters, which is greater than 7 authorized.",
+    "type" : "CODE_SMELL",
+    "line" : 34
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "package ai.prompt;\n\npublic class FailurePromptBuilder {\n\n    public static String buildFailurePrompt(String testName, String exception, String stackTrace) {\n        StringBuilder prompt = new StringBuilder();\n\n        prompt.append(\"\"\"\nYou are a Senior Automation Architect.\n\nAnalyze the following failed automation test.\n\n                Provide:\n                1. Root Cause\n                \n                2. Suggested Fix\n\n----------------------------------------\"\"\");\n\n        prompt.append(\"Test Name : \")\n                .append(testName)\n                .append(\"\\n\\n\");\n    }\n}",
+  "fixed" : true
+}

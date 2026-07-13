@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "3700001b-e178-4b26-ad84-168b7f4deb31",
+    "rule" : "java:S1192",
+    "severity" : "CRITICAL",
+    "component" : "Framework_1:src/main/java/ai/performance/PerformanceRegressionDetector.java",
+    "filePath" : "Framework_1:src/main/java/ai/performance/PerformanceRegressionDetector.java",
+    "project" : "Framework_1",
+    "message" : "Define a constant instead of duplicating this literal \"%.1f%%\" 3 times.",
+    "type" : "CODE_SMELL",
+    "line" : 109
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "    public List<PerformanceRecommendation> getOptimizationRecommendations(Map<String, PerformanceMetrics> metrics) throws Exception {\n        \n        String prompt = buildOptimizationPrompt(metrics);\n        \n        String aiResponse = aiService.ask(prompt);\n        \n        return parseRecommendations(aiResponse);\n    }",
+  "fixed" : true
+}

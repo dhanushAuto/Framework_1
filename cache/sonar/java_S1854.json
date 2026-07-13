@@ -1,0 +1,17 @@
+{
+  "issue" : {
+    "key" : "91b78dba-2b34-497f-a49a-1010b9d8fcfe",
+    "rule" : "java:S1854",
+    "severity" : "MAJOR",
+    "component" : "Framework_1:src/main/java/utilities/common_utils/PatchUtils.java",
+    "filePath" : "Framework_1:src/main/java/utilities/common_utils/PatchUtils.java",
+    "project" : "Framework_1",
+    "message" : "Remove this useless assignment to local variable \"newLines\".",
+    "type" : "CODE_SMELL",
+    "line" : 66
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "AI Analysis Failed: Request timed out. Read timed out",
+  "patchPath" : null,
+  "fixed" : true
+}

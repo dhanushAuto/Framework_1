@@ -1,0 +1,17 @@
+{
+  "issue" : {
+    "key" : "35e2bc2d-9cf1-4792-8c0e-f9d6a8f5628b",
+    "rule" : "java:S1066",
+    "severity" : "MAJOR",
+    "component" : "Framework_1:src/main/java/ai/generator/SonarFixGenerator.java",
+    "filePath" : "Framework_1:src/main/java/ai/generator/SonarFixGenerator.java",
+    "project" : "Framework_1",
+    "message" : "Merge this if statement with the enclosing one.",
+    "type" : "CODE_SMELL",
+    "line" : 54
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "AI Analysis Failed: Request timed out. Read timed out",
+  "patchPath" : null,
+  "fixed" : true
+}

@@ -31,7 +31,7 @@ public class PostPage {
             jsonObject.getJSONObject("POST_API").put("id", i);
 
             response = APIClientFactory
-                    .APIRequest(APIConstants.BASE_URI)
+                    .getRequestSpec(APIConstants.BASE_URI)
                     .body(jsonObject.toString())
                     .post(APIConstants.CREATE_POST);
 

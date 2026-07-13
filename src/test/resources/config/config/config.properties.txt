@@ -2,7 +2,7 @@
 # AI
 ####################################
 
-    ai.enabled=false
+    ai.enabled=true
 
     ai.on.failure.only=true
 
@@ -12,9 +12,8 @@
 
     ai.model=qwen3:8b
 
-    ai.timeout=60000
-
-    ai.retry=3
+    ai.timeout=300000
+    ai.retry=1
 
 ####################################
 # Self-Healing Configuration
@@ -145,4 +144,12 @@
     ai.logs.level=INFO
 
     ai.logs.retention.days=7
+
+####################################
+    # SonarQube
+####################################
+
+    sonar.url=http://localhost:9000
+    sonar.token=squ_7b3b9d887821ec21cd12b8ae23aa5f3390300b57
+    sonar.projectKey=Framework_1
 }

@@ -1,0 +1,16 @@
+{
+  "issue" : {
+    "key" : "af490d80-d6c6-4a70-86a3-08dcdc33436e",
+    "rule" : "java:S3358",
+    "severity" : "MAJOR",
+    "component" : "Framework_1:src/main/java/ai/optimizer/TestPrioritizer.java",
+    "filePath" : "Framework_1:src/main/java/ai/optimizer/TestPrioritizer.java",
+    "project" : "Framework_1",
+    "message" : "Extract this nested ternary operation into an independent statement.",
+    "type" : "CODE_SMELL",
+    "line" : 220
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "    public List<String> getParallelizableTests(List<String> tests, Map<String, TestMetadata> testMetadata) throws Exception {\n        \n        String prompt = buildParallelizationPrompt(tests, testMetadata);\n        \n        String aiResponse = aiService.ask(prompt);\n        \n        return parseParallelizableTests(aiResponse);\n    }",
+  "fixed" : true
+}

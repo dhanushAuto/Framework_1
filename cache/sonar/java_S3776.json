@@ -1,0 +1,17 @@
+{
+  "issue" : {
+    "key" : "a7b39ac3-df82-4ac9-b978-992bb20688c6",
+    "rule" : "java:S3776",
+    "severity" : "CRITICAL",
+    "component" : "Framework_1:src/main/java/ai/generator/SonarFixGenerator.java",
+    "filePath" : "Framework_1:src/main/java/ai/generator/SonarFixGenerator.java",
+    "project" : "Framework_1",
+    "message" : "Refactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.",
+    "type" : "CODE_SMELL",
+    "line" : 27
+  },
+  "aiExplanation" : "Batch generated using Ollama",
+  "fixedCode" : "AI Analysis Failed: Request timed out. Read timed out",
+  "patchPath" : null,
+  "fixed" : true
+}

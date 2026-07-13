@@ -1,0 +1,9 @@
+package factories;
+
+import io.restassured.RestAssured;
+import io.restassured.specification.RequestSpecification;
+
+public class APIClientFactory {
+
+AI Analysis Failed: Request timed out. Read timed out
+}
