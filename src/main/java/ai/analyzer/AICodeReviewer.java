@@ -9,8 +9,13 @@ public class AICodeReviewer {
     private final AIService aiService = new AIService();
 
     public String ask(String prompt) throws Exception {
+        return aiService.ask(prompt);
+    }
+
+    public String ask(String prompt) throws Exception {
         return client.generateResponse(prompt);
     }
+    private String buildReviewPrompt(String filePath, String sourceCode) {
         return """
             You are a Senior Java Code Reviewer.
             Analyze the following code from file: %s
@@ -33,6 +38,11 @@ public class AICodeReviewer {
             CODE:
             %s
             """.formatted(filePath, sourceCode);
+    }
+
+    public List<CodeReviewFinding> getFindings(String filePath, String sourceCode) throws Exception {
+        String response = reviewCode(filePath, sourceCode);
+        return parseFindings(response, filePath);
     }
 
     private List<CodeReviewFinding> parseFindings(String aiResponse, String filePath) {

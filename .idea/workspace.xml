@@ -8,48 +8,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="733aa41d-50dd-4aba-8f9c-54a1c449b9ea" name="Changes" comment="Sonarqube">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/SonarIssueAnalyzer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/generator/SonarFixGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/healing/SonarAutoFix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/model/SonarFix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/model/SonarIssue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/SonarPromptBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/service/SonarService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/test/SonarAITest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ai/test/SonarAITestRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/FileUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/d342cd1b-878d-474c-b388-f40e9eda0aee.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sonar_new.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ai.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ai/analyzer/AICodeReviewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/AICodeReviewer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ai/analyzer/BugClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/BugClassifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/analyzer/FailureAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/FailureAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/analyzer/FlakyDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/FlakyDetector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/analyzer/LogSummarizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/LogSummarizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/client/AIClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/client/AIClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/generator/TestCaseGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/generator/TestCaseGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ai/healing/SelfHealingEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/healing/SelfHealingEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/impact/TestImpactAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/impact/TestImpactAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/model/OllamaRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/model/OllamaRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/optimizer/TestPrioritizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/optimizer/TestPrioritizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/performance/PerformanceRegressionDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/performance/PerformanceRegressionDetector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/prediction/DefectPredictor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/prediction/DefectPredictor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/prompt/FailurePromptBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/prompt/FailurePromptBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/release/ReleaseRiskPredictor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/release/ReleaseRiskPredictor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/service/AIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/service/AIService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/test/AITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/test/AITest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/test/FailureAITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/test/FailureAITest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/traceability/RequirementTraceability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/traceability/RequirementTraceability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/factories/APIClientFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/factories/APIClientFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/factories/BrowserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/factories/BrowserFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listeners/RetryListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listeners/RetryListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listeners/TestListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listeners/TestListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/DeletePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/DeletePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/GetPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/GetPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pages/api/PostPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pages/api/PostPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/api/ConfigUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/api/ConfigUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/common_utils/JsonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/JsonUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/common_utils/LogUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/LogUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ai/service/CodeExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/service/CodeExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ai/service/SonarAutoFixVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/service/SonarAutoFixVerifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ai/test/AICodeReviewRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/test/AICodeReviewRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ai/test/SonarAITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/test/SonarAITest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/common_utils/GitUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/GitUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utilities/common_utils/ReportUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/ReportUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/config/config/config.properties.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config/config/config.properties.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +34,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="231" />
+    <option name="cachedIndexableFilesCount" value="252" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -224,7 +196,7 @@
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
     &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ai-sonar-fix-1783969549748&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;junie.plugin.stays.banner.dismissed&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,

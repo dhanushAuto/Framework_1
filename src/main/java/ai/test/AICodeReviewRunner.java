@@ -19,7 +19,7 @@ public class AICodeReviewRunner {
         String sourceCode = Files.readString(Paths.get(filePath));
         AICodeReviewer reviewer = new AICodeReviewer();
 
-        List<AICodeReviewer.CodeReviewFinding> findings = reviewer.reviewCode(filePath, sourceCode);
+        List<AICodeReviewer.CodeReviewFinding> findings = reviewer.getFindings(filePath, sourceCode);
 
         LogUtils.info("Findings Found: " + findings.size());
         for (AICodeReviewer.CodeReviewFinding finding : findings) {

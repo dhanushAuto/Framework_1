@@ -131,5 +131,6 @@ public class ReportUtils {
 
     public static void flushReport() {
         if (extent != null) extent.flush();
+        test.remove();
     }
 }

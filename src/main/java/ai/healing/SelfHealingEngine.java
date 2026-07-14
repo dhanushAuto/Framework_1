@@ -35,7 +35,14 @@ public class SelfHealingEngine {
 
     public By healAndUpdate(String elementDescription, String pageContext, String errorMessage, String filePath) throws Exception {
         LogUtils.info("Starting self-healing for: " + elementDescription);
-        String pageSource = driver.getPageSource();
+        String pageSource = "";
+        if (driver != null) {
+            try {
+                pageSource = driver.getPageSource();
+            } catch (Exception e) {
+                LogUtils.warn("Could not get page source: " + e.getMessage());
+            }
+        }
         String prompt = buildHealingPromptWithSource(elementDescription, pageContext, errorMessage, pageSource);
         String aiResponse = aiService.ask(prompt);
         By newLocator = parseHealedLocator(aiResponse);
@@ -48,6 +55,7 @@ public class SelfHealingEngine {
     }
 
     private String buildHealingPromptWithSource(String elementDescription, String pageContext, String errorMessage, String pageSource) {
+        String safeSource = (pageSource != null) ? pageSource : "";
         return """
             You are a Selenium Self-Healing Expert.
             The element described as '%s' failed to be located on page '%s'.
@@ -59,7 +67,7 @@ public class SelfHealingEngine {
             Suggest a new robust Selenium locator (id, name, css, or xpath).
             Return ONLY the locator string in format: type=value (e.g., xpath=//button[@id='login'])
             """.formatted(elementDescription, pageContext, errorMessage, 
-                pageSource.substring(0, Math.min(pageSource.length(), 2000)));
+                safeSource.substring(0, Math.min(safeSource.length(), 2000)));
     }
 
     private void updateLocatorInFile(String filePath, String elementDescription, String newLocator) {

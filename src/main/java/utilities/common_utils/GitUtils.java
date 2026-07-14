@@ -40,7 +40,8 @@ public class GitUtils {
     private static int executeCommand(String command, List<String> output) {
         try {
             LogUtils.info("Executing command: " + command);
-            ProcessBuilder pb = new ProcessBuilder("cmd", "/c", command);
+            String[] cmdArray = command.split(" ");
+            ProcessBuilder pb = new ProcessBuilder(cmdArray);
             pb.directory(new File(System.getProperty("user.dir")));
             pb.redirectErrorStream(true);
             Process p = pb.start();
@@ -54,6 +55,10 @@ public class GitUtils {
             }
 
             return p.waitFor();
+        } catch (InterruptedException e) {
+            LogUtils.error("Git command interrupted: " + command);
+            Thread.currentThread().interrupt();
+            return -1;
         } catch (Exception e) {
             LogUtils.error("Git command failed: " + command + " - " + e.getMessage());
             return -1;

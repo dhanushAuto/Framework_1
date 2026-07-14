@@ -54,7 +54,8 @@ public class SonarAutoFixVerifier {
     private void runSonarAnalysis() {
         LogUtils.info("Triggering new SonarQube analysis...");
         try {
-            ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "mvn sonar:sonar");
+            String mvnPath = System.getProperty("os.name").toLowerCase().contains("win") ? "mvn.cmd" : "mvn";
+            ProcessBuilder pb = new ProcessBuilder(mvnPath, "sonar:sonar");
             pb.directory(new java.io.File(System.getProperty("user.dir")));
             pb.inheritIO();
             Process p = pb.start();
@@ -64,6 +65,9 @@ public class SonarAutoFixVerifier {
             } else {
                 LogUtils.warn("Sonar analysis failed with exit code: " + exitCode);
             }
+        } catch (InterruptedException e) {
+            LogUtils.error("Sonar analysis interrupted: " + e.getMessage());
+            Thread.currentThread().interrupt();
         } catch (Exception e) {
             LogUtils.error("Error during Sonar analysis: " + e.getMessage());
         }
@@ -89,12 +93,11 @@ public class SonarAutoFixVerifier {
     private boolean verifyBuild() {
         LogUtils.info("Verifying build status...");
         try {
-            // Check if mvn is available. Using 'cmd /c mvn compile' on Windows.
-            ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "mvn compile -DskipTests");
+            String mvnPath = System.getProperty("os.name").toLowerCase().contains("win") ? "mvn.cmd" : "mvn";
+            ProcessBuilder pb = new ProcessBuilder(mvnPath, "compile", "-DskipTests");
             pb.directory(new java.io.File(System.getProperty("user.dir")));
             Process p = pb.start();
 
-            // We should ideally read the output but for now let's just wait
             int exitCode = p.waitFor();
 
             if (exitCode == 0) {
@@ -104,9 +107,12 @@ public class SonarAutoFixVerifier {
                 LogUtils.error("Build FAILED with exit code: " + exitCode);
                 return false;
             }
+        } catch (InterruptedException e) {
+            LogUtils.error("Build verification interrupted: " + e.getMessage());
+            Thread.currentThread().interrupt();
+            return false;
         } catch (Exception e) {
             LogUtils.error("Error during build verification: " + e.getMessage());
-            // If we can't run maven, let's not break everything, but log it.
             return false;
         }
     }

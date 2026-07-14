@@ -60,7 +60,11 @@ public class CodeExtractor {
 
             String line = lines.get(i).trim();
 
-AI Analysis Failed: Request timed out. Read timed out
+            if (line.contains("public ") || line.contains("private ") || line.contains("protected ")) {
+                if (line.contains("(") && line.contains(")")) {
+                    return i;
+                }
+            }
         }
 
         return -1;
