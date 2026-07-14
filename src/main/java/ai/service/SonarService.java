@@ -10,7 +10,6 @@ import utilities.api.ConfigUtils;
 import utilities.common_utils.JsonUtils;
 import utilities.common_utils.LogUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,70 +24,82 @@ public class SonarService {
     public List<SonarIssue> getOpenIssues(String projectKey) {
 
         List<SonarIssue> issues = new ArrayList<>();
+        int pageSize = 100;
+        int pageIndex = 1;
+        boolean hasMore = true;
 
-        String api = sonarUrl +
-                "/api/issues/search?componentKeys=" +
-                projectKey +
-                "&resolved=false&ps=5";
+        while (hasMore) {
+            String api = sonarUrl +
+                    "/api/issues/search?componentKeys=" +
+                    projectKey +
+                    "&resolved=false&ps=" + pageSize +
+                    "&p=" + pageIndex;
 
-        try (CloseableHttpClient client = HttpClients.createDefault()) {
+            try (CloseableHttpClient client = HttpClients.createDefault()) {
 
-            HttpGet get = new HttpGet(api);
+                HttpGet get = new HttpGet(api);
 
-            get.addHeader(
-                    "Authorization",
-                    "Basic " + java.util.Base64.getEncoder()
-                            .encodeToString((token + ":").getBytes())
-            );
+                get.addHeader(
+                        "Authorization",
+                        "Basic " + java.util.Base64.getEncoder()
+                                .encodeToString((token + ":").getBytes())
+                );
 
-            ClassicHttpResponse response =
-                    client.executeOpen(null, get, null);
+                ClassicHttpResponse response =
+                        client.executeOpen(null, get, null);
 
-            JsonNode root =
-                    JsonUtils.readJsonString(
-                            new String(
-                                    response.getEntity().getContent().readAllBytes()
-                            )
-                    );
+                JsonNode root =
+                        JsonUtils.readJsonString(
+                                new String(
+                                        response.getEntity().getContent().readAllBytes()
+                                )
+                        );
 
-            JsonNode array = root.get("issues");
+                JsonNode array = root.get("issues");
 
-            if (array != null) {
+                if (array != null && array.isArray() && array.size() > 0) {
 
-                for (JsonNode node : array) {
+                    for (JsonNode node : array) {
 
-                    SonarIssue issue = new SonarIssue();
+                        SonarIssue issue = new SonarIssue();
 
-                    issue.setKey(node.path("key").asText());
+                        issue.setKey(node.path("key").asText());
 
-                    issue.setRule(node.path("rule").asText());
+                        issue.setRule(node.path("rule").asText());
 
-                    issue.setSeverity(node.path("severity").asText());
+                        issue.setSeverity(node.path("severity").asText());
 
-                    issue.setMessage(node.path("message").asText());
+                        issue.setMessage(node.path("message").asText());
 
-                    issue.setComponent(node.path("component").asText());
+                        issue.setComponent(node.path("component").asText());
 
-                    issue.setFilePath(node.path("component").asText());
+                        issue.setFilePath(node.path("component").asText());
 
-                    issue.setProject(node.path("project").asText());
+                        issue.setProject(node.path("project").asText());
 
-                    issue.setType(node.path("type").asText());
+                        issue.setType(node.path("type").asText());
 
-                    issue.setLine(node.path("line").asInt());
+                        issue.setLine(node.path("line").asInt());
 
-                    issues.add(issue);
+                        issues.add(issue);
+                    }
+                    
+                    if (array.size() < pageSize) {
+                        hasMore = false;
+                    } else {
+                        pageIndex++;
+                    }
+                } else {
+                    hasMore = false;
                 }
+
+            } catch (Exception e) {
+                LogUtils.error("Unable to fetch Sonar Issues: " + e.getMessage());
+                hasMore = false;
             }
-
-            LogUtils.info("Fetched " + issues.size() + " Sonar Issues");
-
-        } catch (Exception e) {
-
-            LogUtils.error("Unable to fetch Sonar Issues: " + e.getMessage());
-
         }
-
+        
+        LogUtils.info("Fetched " + issues.size() + " Sonar Issues total.");
         return issues;
     }
 

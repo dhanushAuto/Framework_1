@@ -6,12 +6,13 @@ public class BugClassifier {
 
     private final AIService aiService = new AIService();
 
-    public String ask(String prompt) throws Exception {
+    public String ask(String prompt) {
         return aiService.ask(prompt);
     }
 
-    public String ask(String prompt) throws Exception {
-        return client.generateResponse(prompt);
+    public String classifyBug(String errorMessage, String impact) {
+        String prompt = buildSeverityPrompt(errorMessage, impact);
+        return aiService.ask(prompt);
     }
 
     private String buildSeverityPrompt(String errorMessage, String impact) {
@@ -27,7 +28,7 @@ public class BugClassifier {
             """.formatted(errorMessage, impact);
     }
 
-    public String generateTestData(String testCaseDescription, String dataType) throws Exception {
+    public String generateTestData(String testCaseDescription, String dataType) {
         String prompt = buildTestDataPrompt(testCaseDescription, dataType);
         return aiService.ask(prompt);
     }

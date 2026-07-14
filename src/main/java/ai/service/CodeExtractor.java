@@ -9,6 +9,10 @@ public class CodeExtractor {
 
     private static final int CONTEXT_LINES = 20;
 
+    private CodeExtractor() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static String extractCode(String filePath, int issueLine) throws IOException {
 
         List<String> lines = Files.readAllLines(Paths.get(filePath));
@@ -42,7 +46,7 @@ public class CodeExtractor {
 
     public static int[] getMethodRange(String filePath, int issueLine) throws IOException {
         List<String> lines = Files.readAllLines(Paths.get(filePath));
-        if (lines.isEmpty()) return null;
+        if (lines.isEmpty()) return new int[0];
 
         int lineIndex = Math.max(0, issueLine - 1);
         int methodStart = findMethodStart(lines, lineIndex);
@@ -51,7 +55,7 @@ public class CodeExtractor {
         if (methodStart != -1 && methodEnd != -1) {
             return new int[]{methodStart, methodEnd};
         }
-        return null;
+        return new int[0];
     }
 
     private static int findMethodStart(List<String> lines, int issueLine) {
@@ -60,7 +64,10 @@ public class CodeExtractor {
 
             String line = lines.get(i).trim();
 
-AI Analysis Failed: Request timed out. Read timed out
+            if ((line.endsWith("{") || (i < lines.size() - 1 && lines.get(i+1).trim().startsWith("{")))
+                    && (line.contains("public ") || line.contains("private ") || line.contains("protected ") || line.contains("void ") || line.contains("static "))) {
+                return i;
+            }
         }
 
         return -1;

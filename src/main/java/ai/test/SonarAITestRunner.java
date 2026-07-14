@@ -1,5 +1,6 @@
 package ai.test;
 
+import ai.healing.SonarAutoFix;
 import org.testng.annotations.Test;
 import utilities.common_utils.LogUtils;
 
@@ -8,7 +9,7 @@ public class SonarAITestRunner {
     @Test
     public void runSonarAI() {
 
-        new SonarAITest().execute();
+        new SonarAutoFix().execute();
 
     }
 

@@ -14,6 +14,25 @@ public class SonarFix {
     
     private int startLine = -1;
     private int endLine = -1;
+    
+    private int confidence = 0;
+    private String riskRating = "Medium";
+
+    public int getConfidence() {
+        return confidence;
+    }
+
+    public void setConfidence(int confidence) {
+        this.confidence = confidence;
+    }
+
+    public String getRiskRating() {
+        return riskRating;
+    }
+
+    public void setRiskRating(String riskRating) {
+        this.riskRating = riskRating;
+    }
 
     public SonarIssue getIssue() {
         return issue;

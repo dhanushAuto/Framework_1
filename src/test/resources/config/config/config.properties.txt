@@ -10,9 +10,9 @@
 
     ai.url=http://localhost:11434/api/generate
 
-    ai.model=qwen3:8b
+    ai.model=llama3.2:3b
 
-    ai.timeout=300000
+    ai.timeout=120000
     ai.retry=1
 
 ####################################
@@ -152,4 +152,40 @@
     sonar.url=http://localhost:9000
     sonar.token=squ_7b3b9d887821ec21cd12b8ae23aa5f3390300b57
     sonar.projectKey=Framework_1
+
+####################################
+    # AI Sonar Auto-Fix Pipeline
+####################################
+
+    # Whether SonarAutoFix triggers its own local Sonar analysis
+    # (before generating fixes, and again after applying them) instead of
+    # relying on a separate CI job having already run Sonar.
+    sonar.autofix.run.local.scan=true
+
+    # Command used for the local Sonar scan/compile steps. Leave unset to
+    # use the built-in Maven defaults (mvn / mvn.cmd sonar:sonar, compile).
+    # sonar.scanner.command=mvn -q -DskipTests sonar:sonar
+    # sonar.autofix.compile.command=mvn -q -DskipTests compile
+
+    # How long to poll SonarQube's background task API after a scan.
+    sonar.wait.max.attempts=30
+    sonar.wait.poll.interval.ms=2000
+
+    # Minimum AI confidence (%) required before a fix is applied to disk.
+    sonar.autofix.min.confidence=70
+
+    # Number of files processed in parallel when generating AI fixes.
+    # Defaults to 1 - a single local Ollama instance on CPU serializes
+    # concurrent generation requests anyway, so higher values here just
+    # cause requests to queue and time out rather than run faster. Raise
+    # this only if your Ollama setup has GPU headroom to serve multiple
+    # generations truly in parallel.
+    sonar.autofix.thread.pool.size=1
+
+    # Extra Sonar rule keys (comma separated) allowed for auto-fix, on top
+    # of the built-in conservative whitelist in ai.util.SafeFixFilter.
+    sonar.autofix.extra.safe.rules=
+
+    # Output path for the standalone AI Sonar Auto-Fix HTML report.
+    sonar.report.path=reports/AISonarReport.html
 }

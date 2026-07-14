@@ -125,7 +125,11 @@ public class AIClient {
         request.setModel(ConfigUtils.getProperty("ai.model"));
         request.setPrompt(prompt);
         request.setStream(false);
-        // request.setThink(false); // Removed as it might not be supported by all models
+        // Disable "thinking" mode: reasoning models (qwen3, etc.) otherwise emit a
+        // full internal reasoning block before the actual answer, which roughly
+        // doubles/triples generation time on CPU-bound Ollama installs and was
+        // the main cause of AI requests timing out during Sonar auto-fix runs.
+        request.setThink(false);
 
         // Increase response length for batch file fixes
         OllamaRequest.Options options = new OllamaRequest.Options();

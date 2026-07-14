@@ -8,12 +8,13 @@ public class AICodeReviewer {
 
     private final AIService aiService = new AIService();
 
-    public String ask(String prompt) throws Exception {
+    public String ask(String prompt) {
         return aiService.ask(prompt);
     }
 
-    public String ask(String prompt) throws Exception {
-        return client.generateResponse(prompt);
+    public String reviewCode(String filePath, String sourceCode) {
+        String prompt = buildReviewPrompt(filePath, sourceCode);
+        return aiService.ask(prompt);
     }
     private String buildReviewPrompt(String filePath, String sourceCode) {
         return """
@@ -40,7 +41,7 @@ public class AICodeReviewer {
             """.formatted(filePath, sourceCode);
     }
 
-    public List<CodeReviewFinding> getFindings(String filePath, String sourceCode) throws Exception {
+    public List<CodeReviewFinding> getFindings(String filePath, String sourceCode) {
         String response = reviewCode(filePath, sourceCode);
         return parseFindings(response, filePath);
     }
@@ -52,32 +53,46 @@ public class AICodeReviewer {
         String[] blocks = aiResponse.split("---");
 
         for (String block : blocks) {
-            if (block.trim().isEmpty()) continue;
-            
-            CodeReviewFinding finding = new CodeReviewFinding();
-            finding.setFilePath(filePath);
-            
-            String[] lines = block.trim().split("\n");
-            for (String line : lines) {
-                if (line.startsWith("LINE:")) {
-                    try {
-                        finding.setLine(Integer.parseInt(line.split(":")[1].trim()));
-                    } catch (Exception e) {
-                        finding.setLine(0);
-                    }
-                } else if (line.startsWith("SEVERITY:")) {
-                    finding.setSeverity(line.split(":")[1].trim());
-                } else if (line.startsWith("CATEGORY:")) {
-                    finding.setCategory(line.split(":")[1].trim());
-                } else if (line.startsWith("MESSAGE:")) {
-                    finding.setMessage(line.substring(line.indexOf(":") + 1).trim());
-                }
-            }
-            if (finding.getMessage() != null) {
+            CodeReviewFinding finding = parseBlock(block, filePath);
+            if (finding != null) {
                 findings.add(finding);
             }
         }
         return findings;
+    }
+
+    private CodeReviewFinding parseBlock(String block, String filePath) {
+        if (block.trim().isEmpty()) return null;
+        
+        CodeReviewFinding finding = new CodeReviewFinding();
+        finding.setFilePath(filePath);
+        
+        String[] lines = block.trim().split("\n");
+        for (String line : lines) {
+            parseLine(line, finding);
+        }
+        
+        return finding.getMessage() != null ? finding : null;
+    }
+
+    private void parseLine(String line, CodeReviewFinding finding) {
+        if (line.startsWith("LINE:")) {
+            parseLineField(line, finding);
+        } else if (line.startsWith("SEVERITY:")) {
+            finding.setSeverity(line.split(":")[1].trim());
+        } else if (line.startsWith("CATEGORY:")) {
+            finding.setCategory(line.split(":")[1].trim());
+        } else if (line.startsWith("MESSAGE:")) {
+            finding.setMessage(line.substring(line.indexOf(":") + 1).trim());
+        }
+    }
+
+    private void parseLineField(String line, CodeReviewFinding finding) {
+        try {
+            finding.setLine(Integer.parseInt(line.split(":")[1].trim()));
+        } catch (NumberFormatException e) {
+            finding.setLine(0);
+        }
     }
 
     public static class CodeReviewFinding {

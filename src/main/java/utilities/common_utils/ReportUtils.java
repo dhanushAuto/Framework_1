@@ -16,6 +16,7 @@ import java.util.List;
 public class ReportUtils {
 
     private static final String UNKNOWN = "unknown";
+    private static final String EMPTY_STRING = "";
     private static ExtentReports extent;
     private static final ThreadLocal<ExtentTest> test = new ThreadLocal<>();
     private static String testType;
@@ -105,32 +106,59 @@ public class ReportUtils {
 
     public static void addSonarAIAnalysis(List<SonarFix> fixes) {
         if (test.get() != null && fixes != null && !fixes.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("<div style='background:#1E1E1E; border-left:5px solid #00BCD4; padding:10px; border-radius:5px;'>");
-            sb.append("<h3>🤖 Sonar AI Analysis</h3>");
-            sb.append("<table style='width:100%; border-collapse:collapse; color:#E0E0E0;'>");
-            sb.append("<tr style='background:#2D2D2D;'><th style='padding:8px; text-align:left;'>File</th><th style='padding:8px; text-align:left;'>Issue</th><th style='padding:8px; text-align:left;'>Status</th></tr>");
-            
-            for (SonarFix fix : fixes) {
-                String file = fix.getIssue() != null ? fix.getIssue().getComponent() : "Unknown";
-                String message = fix.getIssue() != null ? fix.getIssue().getMessage() : "Unknown";
-                String status = fix.isFixed() ? "<span style='color:#4CAF50;'>✓ Fixed</span>" : "<span style='color:#F44336;'>✗ Not Fixed</span>";
-                
-                sb.append("<tr style='border-bottom:1px solid #3D3D3D;'>");
-                sb.append("<td style='padding:8px;'>").append(file).append("</td>");
-                sb.append("<td style='padding:8px;'>").append(message).append("</td>");
-                sb.append("<td style='padding:8px;'>").append(status).append("</td>");
-                sb.append("</tr>");
-            }
-            
-            sb.append("</table>");
-            sb.append("</div>");
-            test.get().info(sb.toString());
+            String tableHtml = buildSonarAnalysisTable(fixes);
+            test.get().info(tableHtml);
         }
+    }
+
+    private static String buildSonarAnalysisTable(List<SonarFix> fixes) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<div style='background:#1E1E1E; border-left:5px solid #00BCD4; padding:10px; border-radius:5px;'>");
+        sb.append(EMPTY_STRING).append("<h3>🤖 Sonar AI Analysis</h3>");
+        sb.append(EMPTY_STRING).append("<table style='width:100%; border-collapse:collapse; color:#E0E0E0;'>");
+        sb.append(EMPTY_STRING).append("<tr style='background:#2D2D2D;'><th style='padding:8px; text-align:left;'>File</th><th style='padding:8px; text-align:left;'>Issue</th><th style='padding:8px; text-align:left;'>Status</th><th style='padding:8px; text-align:left;'>Confidence</th><th style='padding:8px; text-align:left;'>Risk</th></tr>");
+
+        for (SonarFix fix : fixes) {
+            appendFixRow(sb, fix);
+        }
+
+        sb.append(EMPTY_STRING).append("</table>");
+        sb.append(EMPTY_STRING).append("</div>");
+        return sb.toString();
+    }
+
+    private static void appendFixRow(StringBuilder sb, SonarFix fix) {
+        String file = fix.getIssue() != null ? fix.getIssue().getComponent() : "Unknown";
+        String message = fix.getIssue() != null ? fix.getIssue().getMessage() : "Unknown";
+        String status = fix.isFixed() ? "<span style='color:#4CAF50;'>✓ Fixed</span>" : "<span style='color:#F44336;'>✗ Not Fixed</span>";
+        int confidence = fix.getConfidence();
+        String risk = fix.getRiskRating();
+        String riskColor = getRiskColor(risk);
+
+        sb.append(EMPTY_STRING).append("<tr style='border-bottom:1px solid #3D3D3D;'>");
+        sb.append(EMPTY_STRING).append("<td style='padding:8px;'>").append(file).append("</td>");
+        sb.append(EMPTY_STRING).append("<td style='padding:8px;'>").append(message).append("</td>");
+        sb.append(EMPTY_STRING).append("<td style='padding:8px;'>").append(status).append("</td>");
+        sb.append(EMPTY_STRING).append("<td style='padding:8px;'>").append(confidence).append("%</td>");
+        sb.append(EMPTY_STRING).append("<td style='padding:8px; color:").append(riskColor).append(";'>").append(risk).append("</td>");
+        sb.append(EMPTY_STRING).append("</tr>");
     }
 
     public static void flushReport() {
         if (extent != null) extent.flush();
         test.remove();
+    }
+
+    private static String getRiskColor(String risk) {
+        if (risk == null) {
+            return "#4CAF50";
+        }
+        if (risk.equalsIgnoreCase("High")) {
+            return "#F44336";
+        }
+        if (risk.equalsIgnoreCase("Medium")) {
+            return "#FF9800";
+        }
+        return "#4CAF50";
     }
 }
