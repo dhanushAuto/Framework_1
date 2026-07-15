@@ -160,7 +160,7 @@
     # Whether SonarAutoFix triggers its own local Sonar analysis
     # (before generating fixes, and again after applying them) instead of
     # relying on a separate CI job having already run Sonar.
-    sonar.autofix.run.local.scan=true
+    sonar.autofix.run.local.scan=false
 
     # Command used for the local Sonar scan/compile steps. Leave unset to
     # use the built-in Maven defaults (mvn / mvn.cmd sonar:sonar, compile).
