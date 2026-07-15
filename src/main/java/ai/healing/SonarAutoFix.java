@@ -67,6 +67,7 @@ public class SonarAutoFix {
     private final boolean runLocalScan =
             Boolean.parseBoolean(ConfigUtils.getProperty("sonar.autofix.run.local.scan", "true"));
 
+    @SuppressWarnings("unchecked")
     public void execute() {
         ExecutionTimer timer = ExecutionTimer.start();
         AISonarSummary summary = new AISonarSummary();
@@ -76,8 +77,8 @@ public class SonarAutoFix {
         ReportUtils.createTest("AI Sonar Auto-Fix Pipeline");
 
         try {
-            List<SonarIssue> issues = handleInitialScan(summary, reportResults, timer);
-            if (issues == null || issues.isEmpty()) {
+            List<SonarIssue> issues = handleInitialScan(summary, timer);
+            if (issues.isEmpty()) {
                 return;
             }
 
@@ -99,14 +100,14 @@ public class SonarAutoFix {
             handleGitIntegration(finalFixedFixes);
             handleFinalReporting(summary, reportResults, finalFixedFixes, timer);
 
-            finishRun(summary, reportResults);
+            finishRun(summary);
 
         } catch (Exception e) {
             handleOrchestrationError(e, summary, reportResults, timer);
         }
     }
 
-    private List<SonarIssue> handleInitialScan(AISonarSummary summary, List<AISonarResult> reportResults, ExecutionTimer timer) {
+    private List<SonarIssue> handleInitialScan(AISonarSummary summary, ExecutionTimer timer) {
         LogUtils.info("Step 1: Scanning project with local Sonar analysis...");
         if (runLocalScan) {
             boolean scanOk = localSonarRunner.runOnce();
@@ -122,12 +123,12 @@ public class SonarAutoFix {
         LogUtils.info("Step 2: Fetching SonarQube issues...");
         List<SonarIssue> issues = sonarService.getIssues();
 
-        if (issues == null || issues.isEmpty()) {
+        if (issues.isEmpty()) {
             ReportUtils.info("No Sonar issues found.");
             LogUtils.info("No Sonar issues found. Nothing to do.");
             summary.setExecutionTimeMillis(timer.stop());
-            finishRun(summary, reportResults);
-            return null;
+            finishRun(summary);
+            return new ArrayList<>();
         }
 
         ReportUtils.info("Total Sonar Issues Found: " + issues.size());
@@ -157,7 +158,7 @@ public class SonarAutoFix {
         summary.setCompileSuccess(true);
         summary.setExecutionTimeMillis(timer.stop());
         generateReport(summary, reportResults);
-        finishRun(summary, reportResults);
+        finishRun(summary);
     }
 
     private List<SonarFix> handleFixGeneration(SonarIssueAnalyzer.AnalysisResult analysis) {
@@ -175,13 +176,13 @@ public class SonarAutoFix {
         
         LogUtils.info("Step 6: Compiling project once to verify the applied batch...");
         CompilationVerifier.CompileResult compileResult = CompilationVerifier.compile();
-        summary.setCompileSuccess(compileResult.isSuccess());
+        summary.setCompileSuccess(compileResult.success());
 
         List<SonarFix> finalFixedFixes;
-        if (!compileResult.isSuccess()) {
+        if (!compileResult.success()) {
             LogUtils.error("Compilation failed after applying fixes. Rolling back all changes.");
             ReportUtils.fail("Compilation failed after applying AI fixes - all changes rolled back.\n"
-                    + trimForReport(compileResult.getOutput()));
+                    + trimForReport(compileResult.output()));
             verifier.rollback(applyResult.getTouchedFilePaths());
             finalFixedFixes = new ArrayList<>();
             summary.setRolledBackCount(applyResult.getAppliedFixes().size());
@@ -191,7 +192,7 @@ public class SonarAutoFix {
             finalFixedFixes = applyResult.getAppliedFixes();
         }
 
-        reportResults.addAll(buildFixResults(applyResult, compileResult.isSuccess()));
+        reportResults.addAll(buildFixResults(applyResult, compileResult.success()));
         summary.setFixedCount(finalFixedFixes.size());
         summary.setFailedCount(applyResult.getFailedToApplyFixes().size()
                 + (int) allFixes.stream().filter(f -> !f.isFixed()).count());
@@ -202,7 +203,7 @@ public class SonarAutoFix {
     private int handleRescan(List<SonarIssue> issues, List<SonarFix> finalFixedFixes, AISonarSummary summary, CompilationVerifier.CompileResult compileResult) {
         LogUtils.info("Step 7: Re-running Sonar once to confirm remaining issues...");
         int remaining = -1;
-        if (compileResult.isSuccess() && !finalFixedFixes.isEmpty() && runLocalScan) {
+        if (compileResult.success() && !finalFixedFixes.isEmpty() && runLocalScan) {
             boolean rescanOk = localSonarRunner.runOnce();
             summary.setSonarRescanPerformed(rescanOk);
             if (rescanOk) {
@@ -211,7 +212,7 @@ public class SonarAutoFix {
             } else {
                 LogUtils.warn("Re-scan did not complete cleanly; remaining issue count is unknown.");
             }
-        } else if (compileResult.isSuccess()) {
+        } else if (compileResult.success()) {
             remaining = issues.size();
         }
         return remaining;
@@ -234,7 +235,7 @@ public class SonarAutoFix {
         generateReport(summary, reportResults);
     }
 
-    private void finishRun(AISonarSummary summary, List<AISonarResult> results) {
+    private void finishRun(AISonarSummary summary) {
         if (summary.isReadyForJenkins()) {
             LogUtils.info("AI Sonar Auto-Fix Pipeline Completed. Remaining issues: 0. READY FOR JENKINS.");
             ReportUtils.pass("AI Sonar Auto-Fix Pipeline Completed - Ready for Jenkins.");

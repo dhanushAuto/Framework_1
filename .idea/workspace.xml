@@ -5,51 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5133b940-0cb5-4781-a904-902d4f8d27fa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/analyzer/AICodeReviewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/AICodeReviewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/analyzer/AICodeReviewer.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/analyzer/BugClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/BugClassifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/analyzer/BugClassifier.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/analyzer/FailureAnalyzer.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/analyzer/FlakyDetector.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/analyzer/LogSummarizer.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/analyzer/SonarIssueAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/analyzer/SonarIssueAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/client/AIClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/client/AIClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/client/AIClientbackup.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/generator/SonarFixGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/generator/SonarFixGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/generator/SonarFixGenerator.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/generator/TestCaseGenerator.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/healing/SelfHealingEngine.java.bak" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ai/healing/SonarAutoFix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/healing/SonarAutoFix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/impact/TestImpactAnalyzer.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/model/SonarFix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/model/SonarFix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/model/SonarIssue.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/optimizer/TestPrioritizer.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/performance/PerformanceRegressionDetector.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/prediction/DefectPredictor.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/prompt/SonarPromptBuilder.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/release/ReleaseRiskPredictor.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/service/CodeExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/service/CodeExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/service/CodeExtractor.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/service/SonarAutoFixVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/service/SonarAutoFixVerifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/service/SonarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/service/SonarService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/test/AIChatRunner.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/test/AICodeReviewRunner.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/test/AITest.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/test/FailureAITest.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/test/SonarAITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/test/SonarAITest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/test/SonarAITest.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/test/SonarAITestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/test/SonarAITestRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/traceability/RequirementTraceability.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/factories/APIClientFactory.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/common_utils/ExcelUtils.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/common_utils/LogUtils.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/common_utils/PatchUtils.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/common_utils/ReportUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/common_utils/ReportUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/common_utils/ReportUtils.java.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/config/config/config.properties.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config/config/config.properties.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,62 +14,62 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="227" />
+    <option name="cachedIndexableFilesCount" value="238" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "dhanushAuto"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;dhanushAuto&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/dhanushAuto/Framework_1.git",
-    "accountId": "31f1dd7d-9a83-448b-b124-1f2b91774e70"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/dhanushAuto/Framework_1.git&quot;,
+    &quot;accountId&quot;: &quot;31f1dd7d-9a83-448b-b124-1f2b91774e70&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8,
-  "fromUser": false
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3GVduiIW2jXuE60YPO67fjFL2SI" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "TestNG.C:/Users/Admin/OneDrive/Documents/Framework_1/src/test/resources/TestNg_files/testNG.xml.executor": "Run",
-    "TestNG.SonarAITestRunner.executor": "Run",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "ai-sonar-fix-1784028123017",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Admin/OneDrive/Documents/Framework_1",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "to.speed.mode.migration.done": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;TestNG.C:/Users/Admin/OneDrive/Documents/Framework_1/src/test/resources/TestNg_files/testNG.xml.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.SonarAITestRunner.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ai-sonar-fix-1784028123017&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/OneDrive/Documents/Framework_1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="TestNG.C:/Users/Admin/OneDrive/Documents/Framework_1/src/test/resources/TestNg_files/testNG.xml">
+}</component>
+  <component name="RunManager" selected="TestNG.SonarAITestRunner">
     <configuration name="C:/Users/Admin/OneDrive/Documents/Framework_1/src/test/resources/TestNg_files/testNG.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Framework_1" />
       <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/resources/TestNg_files/testNG.xml" />
@@ -142,8 +99,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.C:/Users/Admin/OneDrive/Documents/Framework_1/src/test/resources/TestNg_files/testNG.xml" />
         <item itemvalue="TestNG.SonarAITestRunner" />
+        <item itemvalue="TestNG.C:/Users/Admin/OneDrive/Documents/Framework_1/src/test/resources/TestNg_files/testNG.xml" />
       </list>
     </recent_temporary>
   </component>
